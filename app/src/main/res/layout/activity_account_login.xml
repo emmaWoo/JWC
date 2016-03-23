@@ -47,10 +47,15 @@
 			android:layout_height="52dp"
 			android:layout_marginLeft="25dp"
 			android:layout_marginRight="25dp"
+			android:textCursorDrawable="@null"
+			android:singleLine="true"
+			android:digits="0123456789"
+			android:inputType="phone"
 			android:hint="@string/account"
 			android:textColor="@color/gray"
 			android:paddingLeft="16dp"
 			android:paddingRight="16dp"
+			android:maxLength="10"
 			android:drawableRight="@drawable/ic_mobile"
 			android:background="@color/white"
 			android:textSize="18sp"
@@ -79,6 +84,7 @@
 			android:background="@color/white"
 			android:textSize="18sp"
 			android:inputType="textPassword"
+			android:imeOptions="actionDone"
 			android:layout_below="@id/edit_line"/>
 
 	<Button
