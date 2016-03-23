@@ -1,0 +1,66 @@
+<resources>
+	<string name="app_name">join worker</string>
+	<string name="join_worker">享工作</string>
+
+	<string name="navigation_drawer_open">Open navigation drawer</string>
+	<string name="navigation_drawer_close">Close navigation drawer</string>
+
+	<string name="action_logout">logout</string>
+
+	<string name="load_more">載入中&#8230;</string>
+
+	<!-- dialog button -->
+	<string name="confirm">確定</string>
+	<string name="cancel">取消</string>
+	<string name="send">送出</string>
+	<string name="allow">允許</string>
+	<string name="not_allowed">不允許</string>
+
+	<!-- account login -->
+	<string name="account">手機號碼</string>
+	<string name="password">登入密碼</string>
+	<string name="sign_in">立即註冊</string>
+	<string name="forget_password">忘記密碼</string>
+	<string name="login">登入</string>
+	<string name="facebook">Facebook帳號登入</string>
+	<string name="account_login">會員登入</string>
+	<string name="account_register">會員註冊</string>
+	<string name="phone_number_hint">請輸入手機號碼</string>
+	<string name="send_verify_code">按下確定將會發送一則簡訊驗證碼到你手機</string>
+	<string name="confirm_verify_code">我們剛剛發送了簡訊到 %1$s %2$s \n請輸入驗證碼即可完成驗證</string>
+	<string name="verify_codes">輸入6位簡訊驗證碼</string>
+	<string name="button_continue">下一步</string>
+	<string name="confirm_receive_code">沒收到驗證碼？</string>
+	<string name="resend">重新發送</string>
+	<string name="phone_number">手機號碼</string>
+	<string name="verify_phone_number">簡訊驗證</string>
+	<string name="verify_code_hint">請輸入簡訊驗證碼</string>
+	<string name="phone_country_code_style">%1$ss +%2$s</string>
+	<string name="register_phone_number">發送驗證碼</string>
+	<string name="dialog_is_leave_register">是否離開註冊流程？</string>
+	<string name="dialog_is_leave_login">是否離開登入流程？</string>
+
+	<string name="register_complete">送出</string>
+	<string name="hint_enter_checking_password">再次輸入密碼</string>
+	<string name="new_password_hint">輸入密碼，須大於6字元</string>
+	<string name="account_register_sub_title">為了個人帳戶安全及下次登入，請修改您的帳號密碼。日後當您更換手機裝置時，透過此帳密登入，即可恢復您帳號內所有資訊。</string>
+	<string name="account_register_title">恭喜您通過電話認證！</string>
+	<string name="uid_hint">請輸入帳號</string>
+	<string name="password_hint">請輸入密碼</string>
+	<string name="confirm_password_error">密碼輸入不一致</string>
+
+	<!-- profile -->
+	<string name="member_level">會員等級</string>
+	<string name="evaluation_level">評價等級</string>
+	<string name="name">姓名</string>
+	<string name="id">身份證字號</string>
+	<string name="phone">電話</string>
+	<string name="address">住址</string>
+	<string name="email">E-mail</string>
+	<string name="bank_code">銀行代號</string>
+	<string name="bank_accound">銀行帳號</string>
+	<string name="gender">性別</string>
+	<string name="save">儲存</string>
+	<string name="man">男</string>
+	<string name="girl">女</string>
+</resources>

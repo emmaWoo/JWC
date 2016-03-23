@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:background="@color/background_color"
+			  android:orientation="vertical">
+
+	<include
+			android:id="@+id/toolbar"
+			layout="@layout/layout_toolbar"/>
+	<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:orientation="vertical">
+
+
+			<RelativeLayout android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="15dp"
+							android:layout_marginLeft="18dp"
+							android:layout_marginBottom="6dp">
+
+
+				<ImageView
+						android:id="@+id/icon_avatar"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginRight="21dp"
+						android:src="@drawable/icon_person_img"
+						android:layout_centerVertical="true"/>
+
+				<ImageView android:layout_width="wrap_content"
+						   android:layout_height="wrap_content"
+						   android:src="@drawable/icon_person_fix"
+						   android:layout_alignBottom="@id/icon_avatar"
+						   android:layout_alignRight="@id/icon_avatar"/>
+
+				<TextView
+						android:id="@+id/label_member_level"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_toRightOf="@id/icon_avatar"
+						android:text="@string/member_level"/>
+
+				<RatingBar
+						android:id="@+id/rating_bar_start"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_toRightOf="@id/icon_avatar"
+						android:layout_below="@id/label_member_level"
+						android:layout_marginTop="8dp"
+						android:isIndicator="false"
+						android:numStars="5"
+						android:progressDrawable="@drawable/start_ratingstart"
+						style="@style/Base.Widget.AppCompat.RatingBar.Small"/>
+
+				<TextView
+						android:id="@+id/label_evaluation_level"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="19dp"
+						android:layout_toRightOf="@id/icon_avatar"
+						android:layout_below="@id/rating_bar_start"
+						android:text="@string/evaluation_level"/>
+
+				<RatingBar
+						android:id="@+id/rating_bar_love"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_toRightOf="@id/icon_avatar"
+						android:layout_below="@id/label_evaluation_level"
+						android:layout_marginTop="8dp"
+						android:isIndicator="false"
+						android:numStars="5"
+						android:progressDrawable="@drawable/love_ratingstart"
+						style="@style/Base.Widget.AppCompat.RatingBar.Small"/>
+			</RelativeLayout>
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:drawableLeft="@drawable/icon_dot"
+					android:drawablePadding="11dp"
+					android:text="@string/name"
+					android:textSize="16sp"
+					android:textColor="#76b3c5"/>
+
+			<EditText
+					android:id="@+id/edit_name"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="9dp"
+					android:layout_marginRight="16dp"
+					android:shadowColor="#bfb3b8"
+					android:textSize="22sp"
+					android:textColor="#505050"/>
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_dot"
+					android:drawablePadding="11dp"
+					android:text="@string/id"
+					android:textSize="16sp"
+					android:textColor="#76b3c5"/>
+
+			<EditText
+					android:id="@+id/edit_id"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="9dp"
+					android:layout_marginRight="16dp"
+					android:shadowColor="#bfb3b8"
+					android:textSize="22sp"
+					android:textColor="#505050"/>
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_dot"
+					android:drawablePadding="11dp"
+					android:text="@string/phone"
+					android:textSize="16sp"
+					android:textColor="#76b3c5"/>
+
+			<EditText
+					android:id="@+id/edit_phone"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="9dp"
+					android:layout_marginRight="16dp"
+					android:shadowColor="#bfb3b8"
+					android:textSize="22sp"
+					android:textColor="#505050"/>
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_dot"
+					android:drawablePadding="11dp"
+					android:text="@string/address"
+					android:textSize="16sp"
+					android:textColor="#76b3c5"/>
+
+			<EditText
+					android:id="@+id/edit_address"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="9dp"
+					android:layout_marginRight="16dp"
+					android:shadowColor="#bfb3b8"
+					android:textSize="15sp"
+					android:textColor="#505050"/>
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_dot"
+					android:drawablePadding="11dp"
+					android:text="@string/email"
+					android:textSize="16sp"
+					android:textColor="#76b3c5"/>
+
+			<EditText
+					android:id="@+id/edit_email"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="9dp"
+					android:layout_marginRight="16dp"
+					android:maxLines="1"
+					android:shadowColor="#bfb3b8"
+					android:textSize="22sp"
+					android:textColor="#505050"/>
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_dot"
+					android:drawablePadding="11dp"
+					android:text="@string/bank_code"
+					android:textSize="16sp"
+					android:textColor="#76b3c5"/>
+
+			<EditText
+					android:id="@+id/edit_bank_code"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="9dp"
+					android:layout_marginRight="16dp"
+					android:maxLines="1"
+					android:shadowColor="#bfb3b8"
+					android:textSize="22sp"
+					android:textColor="#505050"/>
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_dot"
+					android:drawablePadding="11dp"
+					android:text="@string/bank_accound"
+					android:textSize="16sp"
+					android:textColor="#76b3c5"/>
+
+			<EditText
+					android:id="@+id/edit_bank_accound"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="9dp"
+					android:layout_marginRight="16dp"
+					android:maxLines="1"
+					android:shadowColor="#bfb3b8"
+					android:textSize="22sp"
+					android:textColor="#505050"/>
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_dot"
+					android:drawablePadding="11dp"
+					android:text="@string/gender"
+					android:textSize="16sp"
+					android:textColor="#76b3c5"/>
+
+			<TextView
+					android:id="@+id/button_gender"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="9dp"
+					android:layout_marginRight="16dp"
+					android:maxLines="1"
+					android:shadowColor="#bfb3b8"
+					android:text="@string/man"
+					android:textSize="22sp"
+					android:textColor="#505050"/>
+
+			<Button
+					android:id="@+id/button_save"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:background="@drawable/button_red"
+					android:layout_marginTop="22dp"
+					android:layout_marginBottom="22dp"
+					android:layout_gravity="center"
+					android:text="@string/save"
+					android:textColor="@color/white"
+					android:textSize="22sp"/>
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

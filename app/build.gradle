@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+	compileSdkVersion 23
+	buildToolsVersion "23.0.2"
+
+	defaultConfig {
+		applicationId "com.ichg.joinwork"
+		minSdkVersion 15
+		targetSdkVersion 23
+		versionCode 1
+		versionName "1.0"
+	}
+
+	signingConfigs {
+		myConfig {
+			storeFile file("keystore.jks")
+			storePassword "joinworker"
+			keyAlias "joinworker"
+			keyPassword "joinworker"
+		}
+	}
+	buildTypes {
+		release {
+			signingConfig signingConfigs.myConfig
+			minifyEnabled false
+			resValue "bool", "in_debug", "false"
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+		debug {
+			signingConfig signingConfigs.myConfig
+			minifyEnabled false
+			zipAlignEnabled true
+			resValue "bool", "in_debug", "true"
+			debuggable true
+		}
+	}
+
+	packagingOptions {
+		exclude 'META-INF/DEPENDENCIES'
+		exclude 'META-INF/LICENSE.txt'
+		exclude 'META-INF/NOTICE.txt'
+	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+}
+
+dependencies {
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+	compile project(':service')
+	testCompile 'junit:junit:4.12'
+	compile 'com.android.support:appcompat-v7:23.+'
+	compile 'com.android.support:design:23.+'
+	compile 'com.android.support:support-v4:23.+;'
+	compile 'com.squareup.picasso:picasso:2.5.2'
+	compile 'com.google.code.gson:gson:2.5'
+}

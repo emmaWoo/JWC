@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:orientation="vertical">
+
+	<include
+			layout="@layout/layout_toolbar"
+			android:id="@+id/toolbar"/>
+
+	<EditText
+			android:id="@+id/edit_verify_code"
+			android:layout_width="match_parent"
+			android:layout_height="52dp"
+			android:background="@color/white"
+			android:textCursorDrawable="@null"
+			android:paddingLeft="17dp"
+			android:layout_marginTop="18dp"
+			android:layout_marginLeft="25dp"
+			android:layout_marginRight="25dp"
+			android:padding="8dp"
+			android:hint="@string/verify_codes"
+			android:textColorHint="@color/gray"
+			android:textSize="18sp"
+			android:maxLength="6"
+			android:maxLines="1"
+			android:inputType="number"
+			android:imeOptions="actionDone"/>
+
+	<TextView
+			android:id="@+id/button_resend"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="right"
+			android:layout_marginTop="9dp"
+			android:layout_marginRight="25dp"
+			android:text="@string/confirm_receive_code"/>
+
+	<Button
+			android:id="@+id/button_submit"
+			android:layout_width="165dp"
+			android:layout_height="52dp"
+			android:background="@drawable/button_green"
+			android:text="@string/button_continue"
+			android:textColor="@color/white"
+			android:textSize="22sp"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="22dp"/>
+
+</LinearLayout>

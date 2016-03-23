@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@drawable/bg_repeat">
+
+	<ImageView
+			android:id="@+id/icon_logo"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/ic_home_logo"
+			android:layout_centerInParent="true"/>
+
+	<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/icon_logo"
+			android:layout_alignRight="@id/icon_logo"
+			android:layout_marginTop="-30dp"
+			android:textSize="12sp"
+			android:text="ver 1.0"
+			android:textColor="#838383"/>
+
+	<RelativeLayout
+			android:id="@+id/layout_bottom"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="25dp"
+			android:layout_centerHorizontal="true"
+			android:layout_alignParentBottom="true">
+
+
+		<ImageView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:src="@drawable/ic_home_bottom_line"
+				android:layout_centerInParent="true"/>
+
+
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="13sp"
+				android:text="@string/app_name"
+				android:textColor="#313131"
+				android:layout_centerInParent="true"/>
+	</RelativeLayout>
+
+	<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_above="@id/layout_bottom"
+			android:layout_marginBottom="20dp"
+			android:textSize="13sp"
+			android:text="@string/join_worker"
+			android:textColor="#313131"/>
+
+</RelativeLayout>
