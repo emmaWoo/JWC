@@ -7,24 +7,17 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
-public class VerifyPhoneLoginApi extends JoinWorkerApi<String> {
+public class CheckPhoneStatusApi extends JoinWorkerApi<String> {
 
 	private String phoneNo;
-	private String verifyCode;
 
-	public VerifyPhoneLoginApi(String phoneNo, String verifyCode) {
+	public CheckPhoneStatusApi(String phoneNo){
 		this.phoneNo = phoneNo;
-		this.verifyCode = verifyCode;
 	}
 
 	@Override
 	public int getHttpMethod() {
-		return HttpMethod.POST;
-	}
-
-	@Override
-	public String getUrl() {
-		return getBaseUrl() + "/validation/check/verification-code";
+		return HttpMethod.GET;
 	}
 
 	@Override
@@ -36,12 +29,10 @@ public class VerifyPhoneLoginApi extends JoinWorkerApi<String> {
 	public void getParameter(Map<String, String> parameterMap) {
 		super.getParameter(parameterMap);
 		parameterMap.put("phoneNo", phoneNo);
-		parameterMap.put("verificationCode", verifyCode);
 	}
 
 	@Override
-	public void getHeaders(Map<String, String> headerMap) {
-		super.getHeaders(headerMap);
-		headerMap.put("Authorization", AUTH_TOKEN);
+	public String getUrl() {
+		return getBaseUrl() + "/register/phone-status";
 	}
 }

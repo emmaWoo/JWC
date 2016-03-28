@@ -1,18 +1,17 @@
 package com.ichg.service.api.login;
 
+import com.google.gson.JsonObject;
 import com.ichg.service.api.base.JoinWorkerApi;
 import com.ichg.service.framework.HttpMethod;
 
 import org.json.JSONObject;
 
-import java.util.Map;
-
-public class SignInApi extends JoinWorkerApi<String> {
+public class ActivateAccountApi extends JoinWorkerApi<String> {
 
 	private String phoneNo;
 	private String password;
 
-	public SignInApi(String phoneNo, String password){
+	public ActivateAccountApi(String phoneNo, String password){
 		this.phoneNo = phoneNo;
 		this.password = password;
 	}
@@ -24,18 +23,19 @@ public class SignInApi extends JoinWorkerApi<String> {
 
 	@Override
 	protected String parseResult(String result) throws Exception {
-		return new JSONObject(result).optString("status");
+		return new JSONObject(result).optString("token");
 	}
 
 	@Override
-	public void getParameter(Map<String, String> parameterMap) {
-		super.getParameter(parameterMap);
-		parameterMap.put("phoneNo", phoneNo);
-		parameterMap.put("password", password);
+	public String getRequestBody() {
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.addProperty("phoneNo", phoneNo);
+		jsonObject.addProperty("password", password);
+		return jsonObject.toString();
 	}
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/account/sign-up";
+		return getBaseUrl() + "/register/activate";
 	}
 }

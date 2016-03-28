@@ -28,11 +28,11 @@ public class GetVerifyCodeAPI extends JoinWorkerApi<String> {
 
 	@Override
 	public int getHttpMethod() {
-		return HttpMethod.POST;
+		return HttpMethod.GET;
 	}
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/message/sms";
+		return getBaseUrl() + "/register/verification";
 	}
 }

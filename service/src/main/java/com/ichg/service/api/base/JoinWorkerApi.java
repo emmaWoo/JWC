@@ -208,14 +208,14 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 
 	@Override
 	public String getContentType() {
-		return "application/x-www-form-urlencoded";
+		return TextUtils.isEmpty(getRequestBody()) ? "application/x-www-form-urlencoded" : "application/json";
 	}
 
 	@Override
 	public void getHeaders(Map<String, String> headerMap) {
 //		headerMap.put("Authorization", USER_TOKEN == null ? AUTH_TOKEN : USER_TOKEN);
-//		headerMap.put("Content-Type", getContentType());
-//		headerMap.put("User-Agent", USER_AGENT);
+		headerMap.put("Content-Type", getContentType());
+		headerMap.put("User-Agent", USER_AGENT);
 	}
 
 	@Override

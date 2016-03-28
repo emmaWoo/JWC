@@ -5,9 +5,9 @@ import android.os.Bundle;
 import com.ichg.joinworker.listener.RegisterPhoneListener;
 import com.ichg.joinworker.manager.AccountManager;
 import com.ichg.service.api.base.ApiFacade;
-import com.ichg.service.api.login.CheckPhoneApi;
+import com.ichg.service.api.login.CheckPhoneStatusApi;
 import com.ichg.service.api.login.GetVerifyCodeAPI;
-import com.ichg.service.api.login.VerifyPhoneLoginApi;
+import com.ichg.service.api.login.VerifyCodeLoginApi;
 import com.ichg.service.entity.UserProfileBaseEntity;
 import com.ichg.service.object.RegisterPhoneInfo;
 
@@ -35,7 +35,7 @@ public class RegisterPhonePresenter implements VerifyPhonePresenter {
 	}
 
 	private void checkPhoneNumberDuplicate(String phoneNo) {
-		mApiFacade.request(new CheckPhoneApi(phoneNo)
+		mApiFacade.request(new CheckPhoneStatusApi(phoneNo)
 				.success(this::onCheckPhoneNumberDuplicateSuccess)
 				.fail(registerPhoneListener::onRequestFail), this);
 	}
@@ -51,7 +51,7 @@ public class RegisterPhonePresenter implements VerifyPhonePresenter {
 
 	public void checkVerifyCode(String verifyCode) {
 		String phoneNo = currentRegisterPhoneInfo.phoneNo;
-		mApiFacade.request(new VerifyPhoneLoginApi(phoneNo, verifyCode)
+		mApiFacade.request(new VerifyCodeLoginApi(phoneNo, verifyCode)
 				.success(response -> registerLogin(phoneNo, verifyCode))
 				.fail(registerPhoneListener::onVerifyPhoneFail), this);
 		accountManager.updateCellphone(phoneNo);

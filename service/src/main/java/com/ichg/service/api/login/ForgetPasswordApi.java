@@ -1,11 +1,10 @@
 package com.ichg.service.api.login;
 
+import com.google.gson.JsonObject;
 import com.ichg.service.api.base.JoinWorkerApi;
 import com.ichg.service.framework.HttpMethod;
 
 import org.json.JSONObject;
-
-import java.util.Map;
 
 public class ForgetPasswordApi extends JoinWorkerApi<String> {
 
@@ -28,14 +27,15 @@ public class ForgetPasswordApi extends JoinWorkerApi<String> {
 	}
 
 	@Override
-	public void getParameter(Map<String, String> parameterMap) {
-		super.getParameter(parameterMap);
-		parameterMap.put("phoneNo", phoneNo);
-		parameterMap.put("personalId", personalId);
+	public String getRequestBody() {
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.addProperty("phoneNo", phoneNo);
+		jsonObject.addProperty("personalId", personalId);
+		return jsonObject.toString();
 	}
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/account/forget-password\t\n";
+		return getBaseUrl() + "/account/forget-password";
 	}
 }

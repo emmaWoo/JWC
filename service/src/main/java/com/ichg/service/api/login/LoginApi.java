@@ -1,22 +1,23 @@
 package com.ichg.service.api.login;
 
-import java.util.Map;
+import com.google.gson.JsonObject;
 
 public class LoginApi extends LoginApiBase {
 
 	private String phoneNo;
 	private String password;
 
-	public LoginApi(String phoneNo, String password){
+	public LoginApi(String phoneNo, String password) {
 		this.phoneNo = phoneNo;
 		this.password = password;
 	}
 
 	@Override
-	public void getParameter(Map<String, String> parameterMap) {
-		super.getParameter(parameterMap);
-		parameterMap.put("phoneNo", phoneNo);
-		parameterMap.put("password", password);
+	public String getRequestBody() {
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.addProperty("phoneNo", phoneNo);
+		jsonObject.addProperty("password", password);
+		return jsonObject.toString();
 	}
 
 	@Override

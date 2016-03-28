@@ -1,11 +1,10 @@
 package com.ichg.service.api.setting;
 
+import com.google.gson.JsonObject;
 import com.ichg.service.api.base.JoinWorkerApi;
 import com.ichg.service.framework.HttpMethod;
 
 import org.json.JSONObject;
-
-import java.util.Map;
 
 public class SettingPasswordApi extends JoinWorkerApi<String> {
 
@@ -28,10 +27,11 @@ public class SettingPasswordApi extends JoinWorkerApi<String> {
 	}
 
 	@Override
-	public void getParameter(Map<String, String> parameterMap) {
-		super.getParameter(parameterMap);
-		parameterMap.put("password", password);
-		parameterMap.put("newPassword", newPassword);
+	public String getRequestBody() {
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.addProperty("password", password);
+		jsonObject.addProperty("newPassword", newPassword);
+		return jsonObject.toString();
 	}
 
 	@Override
