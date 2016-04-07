@@ -24,7 +24,7 @@
 			android:padding="8dp"
 			android:digits="0123456789"
 			android:hint="@string/verify_codes"
-			android:textColorHint="@color/gray"
+			android:textColorHint="@color/text_gray_deep"
 			android:textSize="18sp"
 			android:maxLength="6"
 			android:maxLines="1"

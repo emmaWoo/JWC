@@ -9,7 +9,6 @@ import com.ichg.service.framework.Protocol;
 import com.ichg.service.framework.RequestError;
 import com.ichg.service.utils.Debug;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -83,12 +82,12 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 		AUTH_TOKEN = "Basic " + Base64.encodeToString(secretKey.getBytes(), Base64.NO_WRAP);
 	}
 
-	public static void updateUserToken(String userToken) {
-		USER_TOKEN = TextUtils.isEmpty(userToken) ? null : "Bearer " + userToken;
-	}
-
 	protected String getBaseUrl() {
 		return getProtocol() + "://" + getDomainName();
+	}
+
+	public static void updateUserToken(String userToken) {
+		USER_TOKEN = TextUtils.isEmpty(userToken) ? null : "Bearer " + userToken;
 	}
 
 	@Override
@@ -107,6 +106,16 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 	final public void onRequestSuccess(final String result) {
 		Debug.i(getClass().getName() + " Result: " + result);
 		isLoading = false;
+		try {
+			JSONObject jsonObject = new JSONObject(result);
+			String message = jsonObject.optString("message");
+			if (!TextUtils.isEmpty(message) && !message.equals("null")) {
+				onRequestFail(RequestError.SERVER_ERROR, result);
+				return;
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 		if (mApiListener != null) {
 			new AsyncTask<Void, Void, T>() {
 				@Override
@@ -152,25 +161,9 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 			case RequestError.SERVER_ERROR:
 				try {
 					JSONObject jsonObject = new JSONObject(response);
-					String error = jsonObject.optString("error");
-					JSONObject errorJsonObject = jsonObject.optJSONObject("error_message");
-					if (errorJsonObject != null) {
-						for (int i = 0; i < errorJsonObject.length(); i++) {
-							String name = (String) errorJsonObject.names().opt(i);
-							JSONArray messageJsonObject = errorJsonObject.optJSONArray(name);
-							if (messageJsonObject != null) {
-								errorMessages += messageJsonObject.get(0) + "\n";
-							}
-						}
-						String message = errorJsonObject.optString("default");
-						if (!TextUtils.isEmpty(message)) {
-							errorMessages += message + "\n";
-						}
-					}
-					if ("FORMAT_INVALID".equals(error)) {
-						apiErrorType = JoinWorkerApiError.PARSE_API_FAIL;
-					} else if ("TOKEN_ERROR".equals(error)) {
-						apiErrorType = JoinWorkerApiError.TOKEN_ERROR;
+					String message = jsonObject.optString("message");
+					if (!TextUtils.isEmpty(message)) {
+						errorMessages += message;
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();

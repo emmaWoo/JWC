@@ -14,8 +14,11 @@
 	<color name="white">#FFFFFF</color>
 	<color name="green">#76b072</color>
 	<color name="black">#000000</color>
+	<color name="gray">#c1c1c1</color>
 
-	<color name="gray">#563743</color>
+	<color name="text_gray_deep">#563743</color>
 	<color name="text_gray">#cabdbc</color>
+
+	<color name="drawer_item_pass">#66585a</color>
 
 </resources>

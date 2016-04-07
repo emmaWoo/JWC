@@ -12,7 +12,8 @@ public abstract class LoginApiBase extends JoinWorkerApi<LoginApiBase.LoginResul
 		JSONObject jsonContent = new JSONObject(result);
 		LoginResultInfo resultInfo = new LoginResultInfo();
 		resultInfo.accessToken = jsonContent.optString("token");
-		resultInfo.isBindCellphone = true;
+		resultInfo.userName = jsonContent.optString("name");
+		resultInfo.avatarUrl = jsonContent.optString("avatarUrl");
 		return resultInfo;
 	}
 
@@ -22,15 +23,12 @@ public abstract class LoginApiBase extends JoinWorkerApi<LoginApiBase.LoginResul
 	}
 
 	public static class LoginResultInfo {
-		public boolean isBindCellphone;
-		public boolean isBindFacebook;
 		public int userId;
-		public String username;
-		public String nickname;
+		public String account;
+		public String userName;
 		public String avatarUrl;
 		public String accessToken;
 
-		public String cellphone;
 		public String facebookId;
 		public String facebookToken;
 		public int avatarImageId;

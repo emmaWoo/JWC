@@ -17,37 +17,23 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent">
 
-			<RelativeLayout
-					android:id="@+id/layout_person_default"
+			<View
+					android:id="@+id/login_logo"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_centerHorizontal="true"
+					android:background="@drawable/bg_login_icon"/>
+
+			<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_margin="16dp"
-					android:layout_centerHorizontal="true">
-
-				<ImageView
-						android:id="@+id/login_icon_default"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_centerHorizontal="true"
-						android:src="@drawable/ic_person_default"
-				/>
-
-				<View
-						android:layout_width="match_parent"
-						android:layout_height="1dp"
-						android:background="#e2dbd9"
-						android:layout_marginLeft="25dp"
-						android:layout_centerVertical="true"
-						android:layout_toLeftOf="@id/login_icon_default"/>
-
-				<View
-						android:layout_width="match_parent"
-						android:layout_height="1dp"
-						android:background="#e2dbd9"
-						android:layout_marginRight="25dp"
-						android:layout_centerVertical="true"
-						android:layout_toRightOf="@id/login_icon_default"/>
-			</RelativeLayout>
+					android:text="@string/welcome"
+					android:textColor="#d2bd99"
+					android:textSize="25sp"
+					android:textStyle="bold"
+					android:layout_alignBottom="@id/login_logo"
+					android:layout_marginBottom="100dp"
+					android:layout_centerHorizontal="true"/>
 
 			<EditText
 					android:id="@+id/login_edit_account"
@@ -55,19 +41,20 @@
 					android:layout_height="52dp"
 					android:layout_marginLeft="25dp"
 					android:layout_marginRight="25dp"
+					android:layout_marginTop="-48dp"
 					android:textCursorDrawable="@null"
 					android:singleLine="true"
 					android:digits="0123456789"
 					android:inputType="phone"
 					android:hint="@string/account"
-					android:textColor="@color/gray"
+					android:textColor="@color/text_gray_deep"
 					android:paddingLeft="16dp"
 					android:paddingRight="16dp"
 					android:maxLength="10"
 					android:drawableRight="@drawable/ic_mobile"
 					android:background="@color/white"
 					android:textSize="18sp"
-					android:layout_below="@id/layout_person_default"/>
+					android:layout_below="@id/login_logo"/>
 
 			<View
 					android:id="@+id/edit_line"
@@ -82,10 +69,11 @@
 					android:id="@+id/login_edit_password"
 					android:layout_width="match_parent"
 					android:layout_height="52dp"
+					android:maxLength="12"
 					android:layout_marginLeft="25dp"
 					android:layout_marginRight="25dp"
 					android:hint="@string/password"
-					android:textColor="@color/gray"
+					android:textColor="@color/text_gray_deep"
 					android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 					android:paddingLeft="16dp"
 					android:paddingRight="16dp"
@@ -100,7 +88,7 @@
 					android:id="@+id/login_submit_button"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:background="@drawable/button_orange"
+					android:background="@drawable/bg_gray_round_corner"
 					android:layout_below="@id/login_edit_password"
 					android:layout_marginRight="25dp"
 					android:layout_marginLeft="25dp"
@@ -140,6 +128,7 @@
 					android:layout_marginTop="33dp"
 					android:layout_marginRight="25dp"
 					android:layout_marginLeft="25dp"
+					android:layout_marginBottom="50dp"
 					android:paddingRight="8dp"
 					android:text="@string/facebook"
 					android:textColor="@color/white"

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent">
+				android:layout_height="match_parent"
+				android:background="@color/background_color">
 
 	<include layout="@layout/layout_toolbar"/>
 
@@ -33,7 +34,7 @@
 					android:gravity="center_vertical"
 					android:layout_gravity="center"
 					android:hint="@string/new_password_hint"
-					android:textColor="@color/gray"
+					android:textColor="@color/text_gray_deep"
 					android:textSize="18sp"/>
 
 			<EditText
@@ -56,7 +57,7 @@
 					android:gravity="center_vertical"
 					android:layout_gravity="center"
 					android:hint="@string/hint_enter_checking_password"
-					android:textColor="@color/gray"
+					android:textColor="@color/text_gray_deep"
 					android:textSize="18sp"/>
 
 			<Button
@@ -65,7 +66,7 @@
 					android:layout_height="wrap_content"
 					android:layout_marginRight="25dp"
 					android:layout_marginLeft="25dp"
-					android:background="@drawable/button_orange"
+					android:background="@drawable/bg_gray_round_corner"
 					android:layout_below="@+id/edit_checking_password"
 					android:text="@string/register_complete"
 					android:textColor="@color/white"
