@@ -16,12 +16,11 @@ import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
 import com.ichg.jwc.adapter.DrawerItemAdapter;
 import com.ichg.jwc.manager.AccountManager;
+import com.ichg.jwc.transform.CircleTransform;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import transform.CircleTransform;
 
 public class NavigationDrawerPresenter {
 

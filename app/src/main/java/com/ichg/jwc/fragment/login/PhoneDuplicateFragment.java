@@ -44,7 +44,7 @@ public class PhoneDuplicateFragment extends FragmentBase {
 //		userProfileBaseEntity = (UserProfileBaseEntity) getArguments().getSerializable(INPUT_USER_PROFILE_BASE_ENTITY);
 //		RegisterPhoneInfo registerPhoneInfo = mPresenter.getCurrentRegisterPhoneInfo();
 //		ImageView userAvatarImageView = (ImageView) contentView.findViewById(R.id.view_avatar);
-//		Picasso.with(getActivityBase()).load(userProfileBaseEntity.avatarUrl).transform(new CircleTransform()).placeholder(R.drawable
+//		Picasso.with(getActivityBase()).load(userProfileBaseEntity.avatarUrl).com.ichg.jwc.transform(new CircleTransform()).placeholder(R.drawable
 //				.bg_avatar_user_default).into(userAvatarImageView);
 //		((TextView) contentView.findViewById(R.id.label_username)).setText(userProfileBaseEntity.nickname);
 //		TextView labelTitle = (TextView) contentView.findViewById(R.id.label_title);

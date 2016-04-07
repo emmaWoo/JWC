@@ -1,4 +1,4 @@
-package transform;
+package com.ichg.jwc.transform;
 
 import android.graphics.Bitmap;
 
