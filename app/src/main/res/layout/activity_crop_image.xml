@@ -1,0 +1,40 @@
+<RelativeLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/black">
+
+	<LinearLayout
+			android:id="@+id/layout_bar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_alignParentBottom="true">
+
+		<TextView
+				android:id="@+id/button_cancel"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="@string/cancel"
+				android:padding="12dp"
+				android:gravity="center"/>
+
+		<TextView
+				android:id="@+id/button_done"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="@string/confirm"
+				android:padding="12dp"
+				android:gravity="center"/>
+
+	</LinearLayout>
+
+	<com.citytalk.citymate.ui.util.crop.CropImageView
+			android:id="@+id/crop_image"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_above="@id/layout_bar"/>
+
+</RelativeLayout>

@@ -4,7 +4,7 @@ import com.ichg.service.entity.UserProfileBaseEntity;
 
 public interface RegisterPhoneListener {
 
-	void onPhoneDuplicate(UserProfileBaseEntity userProfileBase);
+	void onPhoneDuplicate();
 
 	void onPhoneNoUsed();
 

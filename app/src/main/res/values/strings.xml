@@ -73,15 +73,31 @@
 	<string name="evaluation_level">評價等級</string>
 	<string name="name">姓名</string>
 	<string name="id">身份證字號</string>
-	<string name="phone">電話</string>
+	<string name="nationals_id">本國人身份證</string>
+	<string name="foreigner_id">外國人工作證</string>
 	<string name="address">住址</string>
 	<string name="email">E-mail</string>
 	<string name="bank_code">銀行代號</string>
-	<string name="bank_accound">銀行帳號</string>
+	<string name="bank_account">銀行帳號</string>
 	<string name="gender">性別</string>
+	<string name="select_gender">選擇性別</string>
+	<string name="birthday">生日</string>
 	<string name="save">儲存</string>
-	<string name="man">男</string>
-	<string name="girl">女</string>
+	<string name="male">男</string>
+	<string name="female">女</string>
+	<string name="name_empty">姓名不得為空</string>
+	<string name="id_empty">身份證字號不得為空</string>
+	<string name="address_empty">住址不得為空</string>
+	<string name="email_empty">E-mail不得為空</string>
+	<string name="nationals_id_error">身份證字號格式不正確</string>
+	<string name="foreigner_id_error">工作證格式不正確</string>
+	<string name="save_failed">儲存失敗</string>
+	<string name="gallery">由圖片庫匯入</string>
+	<string name="take_picture">拍張照片</string>
+	<string name="avatar_upload_title">上傳頭像</string>
+	<string name="photo_upload_success">照片上傳成功</string>
+	<string name="photo_upload_failed">照片上傳失敗了</string>
+	<string name="please_wait">等待中&#8230;</string>
 
 	<!-- work list -->
 	<string name="work_list">工作列表</string>

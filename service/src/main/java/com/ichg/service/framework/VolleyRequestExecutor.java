@@ -1,6 +1,7 @@
 package com.ichg.service.framework;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v4.util.ArrayMap;
 
 import com.android.volley.AuthFailureError;
@@ -18,6 +19,7 @@ import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ichg.service.utils.Debug;
+import com.ichg.service.volley.MultiPartRequest;
 import com.ichg.service.volley.OkHttpStack;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -81,6 +83,20 @@ public class VolleyRequestExecutor implements RequestExecutor {
 	private boolean isRequestByJson(Api api) {
 		String requestBody = api.getRequestBody();
 		return requestBody != null && !requestBody.isEmpty();
+	}
+
+	private Request<String> sentMultiPartRequest(final Api api) {
+		return new MultiPartRequest(api.getUrl(), api.getBitmap(), (Response.Listener<String>) response -> {
+			Debug.i(api.getClass().getCanonicalName() + " request success.");
+			api.onRequestSuccess(response);
+		}, (Response.ErrorListener) error -> onResponseError(api, error)) {
+			@Override
+			public Map<String, String> getHeaders() throws AuthFailureError {
+				Map<String, String> headerMap = new ArrayMap<>();
+				api.getHeaders(headerMap);
+				return headerMap;
+			}
+		};
 	}
 
 	private Request<String> createStringRequest(final Api api) {

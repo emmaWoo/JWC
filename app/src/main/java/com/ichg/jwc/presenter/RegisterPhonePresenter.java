@@ -36,7 +36,7 @@ public class RegisterPhonePresenter implements VerifyPhonePresenter {
 
 	private void onCheckPhoneNumberDuplicateSuccess(String response) {
 		if (response.equals("EXISTS")) {
-			registerPhoneListener.onPhoneDuplicate(new UserProfileBaseEntity());
+			registerPhoneListener.onPhoneDuplicate();
 		} else {
 			registerPhoneListener.onPhoneNoUsed();
 		}

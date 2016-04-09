@@ -26,7 +26,7 @@ public class MultiPartRequest extends Request<String> {
 
 	private Response.Listener<String> mListener;
 
-	public MultiPartRequest(String url, Map<String, String> fields, Bitmap bitmap, Response.Listener<String> listener,
+	public MultiPartRequest(String url, Bitmap bitmap, Response.Listener<String> listener,
 	                        Response.ErrorListener errorListener) {
 		super(Method.POST, url, errorListener);
 		mListener = listener;
@@ -34,10 +34,10 @@ public class MultiPartRequest extends Request<String> {
 		MultipartEntityBuilder builder = MultipartEntityBuilder.create();
 		final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-		builder.addPart("photo", new ByteArrayBody(outputStream.toByteArray(), "UTF-8"));
-		for(String key : fields.keySet()){
-			builder.addPart(key, new StringBody(fields.get(key), ContentType.MULTIPART_FORM_DATA));
-		}
+		builder.addPart("avatar", new ByteArrayBody(outputStream.toByteArray(), "UTF-8"));
+//		for(String key : fields.keySet()){
+//			builder.addPart(key, new StringBody(fields.get(key), ContentType.MULTIPART_FORM_DATA));
+//		}
 		mHttpEntity = builder.build();
 	}
 

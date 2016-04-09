@@ -6,7 +6,10 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnKeyListener;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.ArrayAdapter;
 
+import com.ichg.jwc.R;
 import com.ichg.jwc.listener.DialogListener;
 import com.ichg.jwc.utils.DialogManager;
 
@@ -131,16 +134,16 @@ public class DialogFragment extends android.support.v4.app.DialogFragment {
 				alertDialog.setCanceledOnTouchOutside(cancelable);
 				alertDialog.setOnCancelListener(cancelListener);
 				return alertDialog;
-//			case DialogManager.DialogType.TEXT_LIST_DIALOG:
-//				builder = new AlertDialog.Builder(getActivity());
-//				if (!TextUtils.isEmpty(title)) {
-//					builder.setTitle(title);
-//				}
-//				builder.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.dialog_expandable_list_item, list), clickListener);
-//				Dialog dialog = builder.create();
-//				dialog.setCancelable(cancelable);
-//				dialog.setCanceledOnTouchOutside(cancelable);
-//				return dialog;
+			case DialogManager.DialogType.TEXT_LIST_DIALOG:
+				builder = new AlertDialog.Builder(getActivity());
+				if (!TextUtils.isEmpty(title)) {
+					builder.setTitle(title);
+				}
+				builder.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.dialog_expandable_list_item, list), clickListener);
+				Dialog dialog = builder.create();
+				dialog.setCancelable(cancelable);
+				dialog.setCanceledOnTouchOutside(cancelable);
+				return dialog;
 		}
 		return null;
 	}

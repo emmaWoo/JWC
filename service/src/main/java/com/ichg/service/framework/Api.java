@@ -1,5 +1,7 @@
 package com.ichg.service.framework;
 
+import android.graphics.Bitmap;
+
 import java.util.Map;
 
 public interface Api<T> {
@@ -13,6 +15,8 @@ public interface Api<T> {
 	String getUrl();
 
 	String getRequestBody();
+
+	Bitmap getBitmap();
 
 	String getContentType();
 

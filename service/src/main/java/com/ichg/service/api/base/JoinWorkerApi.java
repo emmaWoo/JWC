@@ -1,5 +1,6 @@
 package com.ichg.service.api.base;
 
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -214,6 +215,11 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 	@Override
 	public void getParameter(Map<String, String> parameterMap) {
 		parameterMap.put("", "");
+	}
+
+	@Override
+	public Bitmap getBitmap() {
+		return null;
 	}
 
 	protected boolean isDebug() {

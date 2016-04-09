@@ -96,7 +96,7 @@ public class VerifyPhoneActivity extends ActivityBase implements RegisterPhoneLi
 	}
 
 	@Override
-	public void onPhoneDuplicate(UserProfileBaseEntity userProfileBase) {
+	public void onPhoneDuplicate() {
 		DialogManager.with(this).dismissDialog();
 		Bundle arguments = new Bundle();
 		//arguments.putSerializable(PhoneDuplicateFragment.INPUT_USER_PROFILE_BASE_ENTITY, userProfileBase);

@@ -6,6 +6,8 @@ import com.ichg.service.framework.HttpMethod;
 
 import org.json.JSONObject;
 
+import java.util.Map;
+
 public class ActivateAccountApi extends JoinWorkerApi<String> {
 
 	private String phoneNo;
@@ -32,6 +34,11 @@ public class ActivateAccountApi extends JoinWorkerApi<String> {
 		jsonObject.addProperty("phoneNo", phoneNo);
 		jsonObject.addProperty("password", password);
 		return jsonObject.toString();
+	}
+
+	@Override
+	public void getParameter(Map<String, String> parameterMap) {
+
 	}
 
 	@Override

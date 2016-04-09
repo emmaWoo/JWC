@@ -30,21 +30,30 @@
 			android:layout_centerHorizontal="true"
 			android:layout_alignParentBottom="true">
 
-
-		<ImageView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:src="@drawable/ic_home_bottom_line"
-				android:layout_centerInParent="true"/>
-
-
 		<TextView
+				android:id="@+id/label_title"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textSize="13sp"
 				android:text="@string/app_name"
 				android:textColor="#313131"
 				android:layout_centerInParent="true"/>
+
+		<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginRight="8dp"
+				android:src="@drawable/bg_left_line"
+				android:layout_centerVertical="true"
+				android:layout_toLeftOf="@id/label_title"/>
+
+		<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="8dp"
+				android:src="@drawable/bg_right_line"
+				android:layout_centerVertical="true"
+				android:layout_toRightOf="@id/label_title"/>
 	</RelativeLayout>
 
 	<TextView
