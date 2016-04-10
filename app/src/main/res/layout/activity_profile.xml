@@ -41,16 +41,18 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_toRightOf="@id/icon_avatar"
-						android:text="@string/member_level"/>
+						android:text="@string/member_level"
+						android:textColor="#939393"
+						android:textSize="15sp"/>
 
 				<RatingBar
 						android:id="@+id/rating_bar_start"
 						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
+						android:layout_height="16dp"
 						android:layout_toRightOf="@id/icon_avatar"
 						android:layout_below="@id/label_member_level"
 						android:layout_marginTop="8dp"
-						android:isIndicator="false"
+						android:isIndicator="true"
 						android:numStars="5"
 						android:progressDrawable="@drawable/start_ratingstart"
 						style="@style/Base.Widget.AppCompat.RatingBar.Small"/>
@@ -62,16 +64,18 @@
 						android:layout_marginTop="19dp"
 						android:layout_toRightOf="@id/icon_avatar"
 						android:layout_below="@id/rating_bar_start"
-						android:text="@string/evaluation_level"/>
+						android:text="@string/evaluation_level"
+						android:textColor="#939393"
+						android:textSize="15sp"/>
 
 				<RatingBar
 						android:id="@+id/rating_bar_love"
 						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
+						android:layout_height="14dp"
 						android:layout_toRightOf="@id/icon_avatar"
 						android:layout_below="@id/label_evaluation_level"
 						android:layout_marginTop="8dp"
-						android:isIndicator="false"
+						android:isIndicator="true"
 						android:numStars="5"
 						android:progressDrawable="@drawable/love_ratingstart"
 						style="@style/Base.Widget.AppCompat.RatingBar.Small"/>
@@ -96,7 +100,7 @@
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
 					android:maxLength="12"
-					android:maxLines="1"
+					android:singleLine="true"
 					android:textSize="22sp"
 					android:textColor="#505050"/>
 
@@ -147,7 +151,7 @@
 					android:shadowColor="#bfb3b8"
 					android:textSize="22sp"
 					android:textColor="#505050"
-					android:maxLines="1"
+					android:singleLine="true"
 					android:maxLength="10"/>
 
 			<TextView
@@ -192,9 +196,9 @@
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
 					android:shadowColor="#bfb3b8"
-					android:textSize="15sp"
+					android:textSize="16sp"
 					android:textColor="#505050"
-					android:maxLines="1"
+					android:singleLine="true"
 					android:maxLength="100"/>
 
 			<TextView
@@ -216,7 +220,7 @@
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
-					android:maxLines="1"
+					android:singleLine="true"
 					android:maxLength="50"
 					android:shadowColor="#bfb3b8"
 					android:textSize="22sp"
@@ -242,7 +246,7 @@
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
-					android:maxLines="1"
+					android:singleLine="true"
 					android:maxLength="3"
 					android:shadowColor="#bfb3b8"
 					android:textSize="22sp"
@@ -267,7 +271,7 @@
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
-					android:maxLines="1"
+					android:singleLine="true"
 					android:maxLength="16"
 					android:shadowColor="#bfb3b8"
 					android:textSize="22sp"

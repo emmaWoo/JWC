@@ -5,7 +5,7 @@
 	<string name="navigation_drawer_open">Open navigation drawer</string>
 	<string name="navigation_drawer_close">Close navigation drawer</string>
 
-	<string name="action_logout">logout</string>
+	<string name="location">location</string>
 
 	<string name="load_more">載入中&#8230;</string>
 
@@ -101,4 +101,11 @@
 
 	<!-- work list -->
 	<string name="work_list">工作列表</string>
+	<string name="search_hint">搜尋工作</string>
+	<string name="work_list_hour">過去24小時</string>
+	<string name="work_list_city">台北市</string>
+	<string name="my_work_list">工作清單</string>
+	<string name="free">我有空</string>
+	<string name="follow_list">追蹤中</string>
+
 </resources>

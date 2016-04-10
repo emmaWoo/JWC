@@ -17,8 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -38,8 +36,6 @@ import com.ichg.jwc.utils.DialogManager;
 import com.ichg.jwc.utils.IDUtils;
 import com.ichg.jwc.utils.LoginHandler;
 import com.ichg.jwc.utils.crop.Crop;
-import com.ichg.service.api.avatar.UploadAvatarAPI;
-import com.ichg.service.api.login.LoginApiBase;
 import com.ichg.service.object.UserInfo;
 import com.ichg.service.utils.Debug;
 
@@ -120,8 +116,10 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 		String[] cities = getResources().getStringArray(R.array.filter_cities);
 		String[] taipeiArea = getResources().getStringArray(R.array.filter_taipei);
 
-		ArrayAdapter<String> cityList = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cities);
-		ArrayAdapter<String> areaList = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, taipeiArea);
+		ArrayAdapter<String> cityList = new ArrayAdapter<>(this, R.layout.layout_spinner, cities);
+		ArrayAdapter<String> areaList = new ArrayAdapter<>(this, R.layout.layout_spinner, taipeiArea);
+		cityList.setDropDownViewResource(android.R.layout.simple_spinner_item);
+		areaList.setDropDownViewResource(android.R.layout.simple_spinner_item);
 		spinnerCity = (Spinner) findViewById(R.id.spinner_city);
 		spinnerArea = (Spinner) findViewById(R.id.spinner_area);
 		spinnerCity.setAdapter(cityList);

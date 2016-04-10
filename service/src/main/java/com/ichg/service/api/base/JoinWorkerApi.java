@@ -3,7 +3,6 @@ package com.ichg.service.api.base;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.text.TextUtils;
-import android.util.Base64;
 
 import com.ichg.service.framework.Api;
 import com.ichg.service.framework.Protocol;
@@ -40,7 +39,7 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 
 	private static String DEVICE_ID;
 	private static String USER_TOKEN;
-	protected static String AUTH_TOKEN;
+	//protected static String AUTH_TOKEN;
 
 	private ApiErrorListener mApiErrorListener;
 	private ApiListener<T> mApiListener;
@@ -78,9 +77,9 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 				break;
 		}
 		//mDomainName += String.format(VERSION_TEXT, API_VERSION);
-		String secretKey = environmentType != 0 ?
-				"1:client_team" : SECRET_KEY;
-		AUTH_TOKEN = "Basic " + Base64.encodeToString(secretKey.getBytes(), Base64.NO_WRAP);
+//		String secretKey = environmentType != 0 ?
+//				"1:client_team" : SECRET_KEY;
+//		AUTH_TOKEN = "Basic " + Base64.encodeToString(secretKey.getBytes(), Base64.NO_WRAP);
 	}
 
 	protected String getBaseUrl() {
@@ -208,8 +207,11 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 	@Override
 	public void getHeaders(Map<String, String> headerMap) {
 //		headerMap.put("Authorization", USER_TOKEN == null ? AUTH_TOKEN : USER_TOKEN);
+		if (USER_TOKEN != null) {
+			headerMap.put("jwc-token", USER_TOKEN);
+		}
 		headerMap.put("Content-Type", getContentType());
-		headerMap.put("User-Agent", USER_AGENT);
+		//headerMap.put("User-Agent", USER_AGENT);
 	}
 
 	@Override
