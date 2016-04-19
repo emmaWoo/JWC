@@ -5,7 +5,7 @@ import android.text.TextUtils;
 public class IDUtils {
 
 	public static boolean checkID(String id) {
-		if (TextUtils.isEmpty(id)) {
+		if (TextUtils.isEmpty(id) || id.length() < 10) {
 			return false;
 		}
 		int[] num = new int[10];
@@ -38,7 +38,7 @@ public class IDUtils {
 	}
 
 	public static boolean checkWorkId(String workId) {
-		if (TextUtils.isEmpty(workId)) {
+		if (TextUtils.isEmpty(workId) || workId.length() < 10) {
 			return false;
 		}
 		if (workId.charAt(0) < 'A' || workId.charAt(0) > 'Z') {

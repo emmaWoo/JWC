@@ -55,12 +55,12 @@
 					android:layout_alignParentBottom="true"
 					android:background="#bdbdbd"/>
 
-			<ImageView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:src="@drawable/ic_top_arrow"
-					android:layout_centerHorizontal="true"
-					android:layout_alignParentBottom="true"/>
+			<!--<ImageView-->
+					<!--android:layout_width="wrap_content"-->
+					<!--android:layout_height="wrap_content"-->
+					<!--android:src="@drawable/ic_top_arrow"-->
+					<!--android:layout_centerHorizontal="true"-->
+					<!--android:layout_alignParentBottom="true"/>-->
 		</RelativeLayout>
 
 
@@ -92,11 +92,27 @@
 		</RelativeLayout>
 	</LinearLayout>
 
-	<android.support.v7.widget.RecyclerView
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_below="@id/layout_button"
-			android:layout_above="@+id/group_tab"/>
+	<!--<android.support.v7.widget.RecyclerView-->
+			<!--android:layout_width="match_parent"-->
+			<!--android:layout_height="match_parent"-->
+			<!--android:layout_below="@id/layout_button"-->
+			<!--android:layout_above="@+id/group_tab"/>-->
+	<RelativeLayout
+					android:id="@+id/layout_tmp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_below="@id/layout_button">
+
+		<include layout="@layout/item_work_list" />
+	</RelativeLayout>
+
+	<RelativeLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_below="@id/layout_tmp">
+
+		<include layout="@layout/item_work_list_tmp" />
+	</RelativeLayout>
 
 	<RadioGroup
 			android:id="@+id/group_tab"

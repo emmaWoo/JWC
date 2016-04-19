@@ -17,6 +17,9 @@
 	<color name="green">#76b072</color>
 	<color name="black">#000000</color>
 	<color name="gray">#c1c1c1</color>
+	<color name="red">#ff0000</color>
+	<color name="yellow">#cbaf6a</color>
+
 
 	<color name="text_gray_deep">#563743</color>
 	<color name="text_gray">#cabdbc</color>
