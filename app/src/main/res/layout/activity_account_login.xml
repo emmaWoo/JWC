@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:background="@color/background_color">
+				android:background="@color/background_color"
+				android:focusable="true"
+				android:focusableInTouchMode="true">
 
 	<include
 			android:id="@+id/toolbar"
@@ -15,7 +17,7 @@
 
 		<RelativeLayout
 				android:layout_width="match_parent"
-				android:layout_height="match_parent">
+				android:layout_height="wrap_content">
 
 			<View
 					android:id="@+id/login_logo"
