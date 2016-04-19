@@ -20,6 +20,7 @@ public class AccountManager {
 	public String userAvatarUrl;
 	public String facebookId;
 	public String facebookToken;
+	public boolean isSkipProfile;
 	private boolean isLoginByAccount;
 
 
@@ -42,6 +43,7 @@ public class AccountManager {
 		userAccessToken = preference.getUserToken();
 		userAvatarUrl = preference.getAvatarUrl();
 		userName = preference.getUserName();
+		isSkipProfile = preference.isSkipProfile();
 	}
 
 	public void facebookLogin(String userId, String userToken, LoginListener listener) {
@@ -67,7 +69,7 @@ public class AccountManager {
 	public int checkLoginNavigation() {
 		int navigationType;
 		if (isSignIn()) {
-			if (isLoginByAccount) {
+			if (isLoginByAccount || !TextUtils.isEmpty(userName)) {
 				navigationType = LoginNavigationType.MAIN_PAGE;
 			} else {
 				navigationType = LoginNavigationType.PROFILE_SETTING;
@@ -125,6 +127,7 @@ public class AccountManager {
 		facebookId = null;
 		facebookToken = null;
 		isLoginByAccount = false;
+		isSkipProfile = false;
 	}
 
 	private void saveLoginStatus() {
@@ -137,10 +140,11 @@ public class AccountManager {
 		preference.setAvatarUrl(userAvatarUrl);
 		preference.setFacebookUserId(facebookId);
 		preference.setFacebookAccessToken(facebookToken);
+		preference.setSkipProfile(isSkipProfile);
 	}
 
 	public boolean isSignInFlowSuccess() {
-		return !TextUtils.isEmpty(userName) && isSignIn();
+		return (!TextUtils.isEmpty(userName) || isSkipProfile) && isSignIn();
 	}
 
 	public boolean isSignIn() {

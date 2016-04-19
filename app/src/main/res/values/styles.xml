@@ -8,6 +8,7 @@
 		<item name="colorAccent">@color/text_gray</item>
 		<item name="colorControlNormal">#b9adaa</item>
 		<item name="colorControlHighlight">#bfb3b8</item>
+		<item name="actionMenuTextColor">@color/white</item>
 	</style>
 
 	<style name="AppTheme.NoActionBar">

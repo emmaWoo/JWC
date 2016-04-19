@@ -2,15 +2,11 @@ package com.ichg.jwc.presenter;
 
 import android.graphics.Bitmap;
 
-import com.ichg.jwc.R;
 import com.ichg.jwc.listener.PresenterListener;
 import com.ichg.jwc.manager.AccountManager;
-import com.ichg.jwc.utils.DialogManager;
 import com.ichg.service.api.avatar.UploadAvatarAPI;
 import com.ichg.service.api.base.ApiFacade;
-import com.ichg.service.api.login.ActivateAccountApi;
 import com.ichg.service.api.setting.UpdateUserApi;
-import com.ichg.service.framework.Api;
 import com.ichg.service.object.UserInfo;
 
 public class ProfilePresenter {
@@ -39,6 +35,10 @@ public class ProfilePresenter {
 
 	public int checkPageNavigation(){
 		return mAccountManager.checkLoginNavigation();
+	}
+
+	public void skipProfile() {
+		mAccountManager.isSkipProfile = true;
 	}
 
 	public void cancel() {

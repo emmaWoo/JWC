@@ -9,7 +9,9 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
@@ -42,7 +44,6 @@ import com.ichg.service.utils.Debug;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -89,22 +90,36 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 		ToolbarManager toolbarManager = ToolbarManager.init((Toolbar) findViewById(R.id.toolbar))
 				.title(R.string.account_login)
 				.menu(R.menu.profile, item -> {
-					checkDate();
+					clickMenuListener(item);
 					return false;
 				});
 		//toolbarManager.backNavigation(v -> onBackPressed());
+	}
+
+	private void clickMenuListener(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.save:
+				checkDate();
+				break;
+			case R.id.skip:
+				skipProfile();
+				break;
+		}
+
+
 	}
 
 	private void initInputEditTexts() {
 		editTextName = (EditText) findViewById(R.id.edit_name);
 		buttonNationalsId = (RadioButton) findViewById(R.id.button_nationals_id);
 		editTextId = (EditText) findViewById(R.id.edit_id);
+		editTextId.addTextChangedListener(textWatcher);
 		editTextAddress = (EditText) findViewById(R.id.edit_address);
 		editTextEmail = (EditText) findViewById(R.id.edit_email);
 		editTextBankCode = (EditText) findViewById(R.id.edit_bank_code);
 		editTextBankAccount = (EditText) findViewById(R.id.edit_bank_accound);
 		buttonGender = (TextView) findViewById(R.id.button_gender);
-		buttonGender.setOnClickListener(genderClickListener);
+		buttonGender.setEnabled(false);
 		buttonBirthday = (TextView) findViewById(R.id.button_birthday);
 		buttonBirthday.setOnClickListener(birthdayClickListener);
 		ImageView avatar = (ImageView) findViewById(R.id.icon_avatar);
@@ -153,13 +168,23 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 	}
 
 	private void initDate() {
-		gender = "M";
-		buttonGender.setText(gender.equals("M") ? getString(R.string.male) : getString(R.string.female));
 		Date current = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN);
 		birthday = sdf.format(current);
 		buttonBirthday.setText(birthday);
 		buttonNationalsId.setChecked(true);
+	}
+
+	private void skipProfile() {
+		DialogManager.with(this).setMessage(R.string.skip_profile).setPositiveText(R.string.confirm)
+				.setNegativeText(R.string.cancel).setListener(new DialogListener() {
+			@Override
+			public void onPositive() {
+				presenter.skipProfile();
+				LoginHandler.navigateLoginFlowActivity(ProfileActivity.this, presenter.checkPageNavigation());
+				finishAllActivities();
+			}
+		}).showYesOrNoDialog();
 	}
 
 	private void checkDate() {
@@ -176,10 +201,10 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 		if (TextUtils.isEmpty(editTextEmail.getText().toString())) {
 			errorMessage = checkLineBreak(errorMessage, getString(R.string.email_empty));
 		}
-		if (buttonNationalsId.isChecked() && !IDUtils.checkID(editTextId.getText().toString())) {
+		if (buttonNationalsId.isChecked() && !IDUtils.isValidIDorRCNumber(editTextId.getText().toString())) {
 			errorMessage = checkLineBreak(errorMessage, getString(R.string.nationals_id_error));
 		}
-		if (!buttonNationalsId.isChecked() && !IDUtils.checkWorkId(editTextId.getText().toString())) {
+		if (!buttonNationalsId.isChecked() && !IDUtils.isValidIDorRCNumber(editTextId.getText().toString())) {
 			errorMessage = checkLineBreak(errorMessage, getString(R.string.foreigner_id_error));
 		}
 
@@ -240,26 +265,6 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 	public void onInputFormatCheckFinish(boolean isPass) {
 
 	}
-
-	private final View.OnClickListener genderClickListener = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			final ArrayList<CharSequence> list = new ArrayList<>();
-			list.add(getString(R.string.male));
-			list.add(getString(R.string.female));
-			DialogManager.with(ProfileActivity.this).setTitle(R.string.select_gender).setArrayList(list).setListener(new DialogListener() {
-				@Override
-				public void onItemClick(int which) {
-					buttonGender.setText(list.get(which));
-					if (getString(R.string.male).equals(list.get(which))) {
-						gender = "M";
-					} else if (getString(R.string.female).equals(list.get(which))) {
-						gender = "F";
-					}
-				}
-			}).showTextListDialog();
-		}
-	};
 
 	private final View.OnClickListener birthdayClickListener = v -> {
 		Calendar calendar = Calendar.getInstance();
@@ -380,5 +385,31 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 		}
 		return imageUri;
 	}
+
+	private TextWatcher textWatcher = new TextWatcher() {
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+		}
+
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+		}
+
+		@Override
+		public void afterTextChanged(Editable s) {
+			gender = IDUtils.getGender(editTextId.getText().toString());
+			buttonGender.setText(getGender());
+		}
+	};
+
+	private String getGender() {
+		if (TextUtils.isEmpty(gender)) {
+			return "";
+		}
+		return gender.equals("M") ? getString(R.string.male) : getString(R.string.female);
+	}
+
 
 }

@@ -81,12 +81,12 @@ public class EWPreference {
 		return loginPrefs.getString("fb_access_token", "");
 	}
 
-	public boolean isBindingCellphone() {
-		return loginPrefs.getBoolean("is_binding_cellphone", false);
+	public boolean isSkipProfile() {
+		return loginPrefs.getBoolean("is_skip_profile", false);
 	}
 
-	public void setBindingCellphone(boolean isBindingCellphone) {
-		loginPrefs.edit().putBoolean("is_binding_cellphone", isBindingCellphone).apply();
+	public void setSkipProfile(boolean isSkipProfile) {
+		loginPrefs.edit().putBoolean("is_skip_profile", isSkipProfile).apply();
 	}
 
 	public String getRegistrationID() {

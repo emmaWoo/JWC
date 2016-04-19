@@ -83,6 +83,7 @@
 	<string name="select_gender">選擇性別</string>
 	<string name="birthday">生日</string>
 	<string name="save">儲存</string>
+	<string name="skip">略過</string>
 	<string name="male">男</string>
 	<string name="female">女</string>
 	<string name="name_empty">姓名不得為空</string>
@@ -98,6 +99,7 @@
 	<string name="photo_upload_success">照片上傳成功</string>
 	<string name="photo_upload_failed">照片上傳失敗了</string>
 	<string name="please_wait">等待中&#8230;</string>
+	<string name="skip_profile">如果沒有輸入基本資料，無法找工作唷</string>
 
 	<!-- work list -->
 	<string name="work_list">工作列表</string>

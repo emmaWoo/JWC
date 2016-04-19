@@ -88,7 +88,7 @@ public class ForgetPasswordActivity extends ActivityBase implements PresenterLis
 	private final View.OnClickListener submitListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			if (!IDUtils.checkID(editId.getText().toString())) {
+			if (!IDUtils.isValidIDorRCNumber(editId.getText().toString())) {
 				editId.setError(getString(R.string.id_error));
 				editId.requestFocus();
 				return;
