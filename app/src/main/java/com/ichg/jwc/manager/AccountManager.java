@@ -69,7 +69,7 @@ public class AccountManager {
 	public int checkLoginNavigation() {
 		int navigationType;
 		if (isSignIn()) {
-			if (isLoginByAccount || !TextUtils.isEmpty(userName)) {
+			if (isLoginByAccount || isSignInFlowSuccess()) {
 				navigationType = LoginNavigationType.MAIN_PAGE;
 			} else {
 				navigationType = LoginNavigationType.PROFILE_SETTING;
