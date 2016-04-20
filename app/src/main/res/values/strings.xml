@@ -37,6 +37,7 @@
 	<string name="account_login">會員登入</string>
 	<string name="account_register">會員註冊</string>
 	<string name="phone_number_hint">請輸入手機號碼</string>
+	<string name="phone_number_size_hint">請輸入正確的手機</string>
 	<string name="send_verify_code">按下確定將會發送一則簡訊驗證碼到你手機</string>
 	<string name="confirm_verify_code">我們剛剛發送了簡訊到 %1$s %2$s \n請輸入驗證碼即可完成驗證</string>
 	<string name="verify_codes">輸入6位簡訊驗證碼</string>

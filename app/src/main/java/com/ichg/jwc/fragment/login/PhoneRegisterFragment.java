@@ -91,8 +91,13 @@ public class PhoneRegisterFragment extends FragmentBase {
 	}
 
 	private void startVerifyPhoneFlow() {
-		if (TextUtils.isEmpty(phoneNumberEditText.getText().toString())) {
+		String phoneNumber =phoneNumberEditText.getText().toString();
+		if (TextUtils.isEmpty(phoneNumber)) {
 			phoneNumberEditText.setError(getActivityBase().getString(R.string.phone_number_hint));
+			return;
+		}
+		if (phoneNumber.length() < 10 || !phoneNumber.startsWith("09")) {
+			phoneNumberEditText.setError(getActivityBase().getString(R.string.phone_number_size_hint));
 			return;
 		}
 		DialogManager.with(getActivityBase()).setListener(new DialogListener() {
