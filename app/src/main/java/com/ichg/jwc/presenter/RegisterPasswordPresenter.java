@@ -33,8 +33,7 @@ public class RegisterPasswordPresenter {
 	public void checkDataAvailable(String password, String newPassword) {
 		boolean isPasswordPass = !password.isEmpty() && password.length() >= PASSWORD_MINI_SIZE;
 		boolean isNewPasswordPass = !newPassword.isEmpty() && newPassword.length() >= PASSWORD_MINI_SIZE;
-		boolean isPasswordSame = password.equals(newPassword);
-		presenterListener.onInputFormatCheckFinish(isPasswordPass && isNewPasswordPass && isPasswordSame);
+		presenterListener.onInputFormatCheckFinish(isPasswordPass && isNewPasswordPass);
 	}
 
 	public int checkPageNavigation(){

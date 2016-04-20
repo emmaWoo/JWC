@@ -3,6 +3,7 @@ package com.ichg.jwc.activity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
@@ -30,6 +31,14 @@ public class RegisterPasswordActivity extends ActivityBase implements PresenterL
 	private final View.OnClickListener submitListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
+			String errorMessage = "";
+			if (!editPassword.getText().toString().equals(editCheckingPassword.getText().toString())) {
+				errorMessage += getString(R.string.password_error);
+			}
+			if (!TextUtils.isEmpty(errorMessage)) {
+				DialogManager.with(RegisterPasswordActivity.this).setMessage(errorMessage).showAlertDialog();
+				return;
+			}
 			DialogManager.with(RegisterPasswordActivity.this).setListener(new DialogListener() {
 				@Override
 				public void onCancel() {

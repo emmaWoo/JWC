@@ -52,6 +52,7 @@
 	<string name="dialog_is_leave_register">是否離開註冊流程？</string>
 	<string name="dialog_is_leave_login">是否離開登入流程？</string>
 	<string name="welcome">welcome</string>
+	<string name="password_error">兩組密碼輸入不相同</string>
 
 
 	<string name="register_complete">送出</string>
