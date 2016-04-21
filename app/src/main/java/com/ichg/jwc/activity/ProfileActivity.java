@@ -44,6 +44,7 @@ import com.ichg.service.utils.Debug;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -70,6 +71,7 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 	private String gender;
 	private String birthday;
 	private Uri imageUri;
+	private ArrayList<String[]> areaList = new ArrayList();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +108,6 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 				break;
 		}
 
-
 	}
 
 	private void initInputEditTexts() {
@@ -129,24 +130,25 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 
 	private void initSpinner() {
 		String[] cities = getResources().getStringArray(R.array.filter_cities);
-		String[] taipeiArea = getResources().getStringArray(R.array.filter_taipei);
-
-		ArrayAdapter<String> cityList = new ArrayAdapter<>(this, R.layout.layout_spinner, cities);
-		ArrayAdapter<String> areaList = new ArrayAdapter<>(this, R.layout.layout_spinner, taipeiArea);
-		cityList.setDropDownViewResource(android.R.layout.simple_spinner_item);
-		areaList.setDropDownViewResource(android.R.layout.simple_spinner_item);
+		initAreaList();
 		spinnerCity = (Spinner) findViewById(R.id.spinner_city);
 		spinnerArea = (Spinner) findViewById(R.id.spinner_area);
-		spinnerCity.setAdapter(cityList);
-		spinnerArea.setAdapter(areaList);
-		city = cities[0];
-		area = taipeiArea[0];
+		spinnerCity.setTag(0);
+
+		ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, cities);
+		cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+		spinnerCity.setAdapter(cityAdapter);
+		initSpinnerArea((int)spinnerCity.getTag());
+		city = cities[(int)spinnerCity.getTag()];
 
 		spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
+				initSpinnerArea(position);
 				city = cities[position];
+				area = areaList.get(position)[0];
+				spinnerCity.setTag(position);
 			}
 
 			@Override
@@ -158,13 +160,45 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
-				area = taipeiArea[position];
+				area = areaList.get((int)spinnerCity.getTag())[position];
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
 			}
 		});
+	}
+
+	private void initAreaList() {
+		areaList.add(getResources().getStringArray(R.array.filter_taipei));
+		areaList.add(getResources().getStringArray(R.array.filter_keelung));
+		areaList.add(getResources().getStringArray(R.array.filter_new_taipei));
+		areaList.add(getResources().getStringArray(R.array.filter_yilan));
+		areaList.add(getResources().getStringArray(R.array.filter_hsinchu));
+		areaList.add(getResources().getStringArray(R.array.filter_hsinchu_county));
+		areaList.add(getResources().getStringArray(R.array.filter_taoyuan));
+		areaList.add(getResources().getStringArray(R.array.filter_miaoli));
+		areaList.add(getResources().getStringArray(R.array.filter_taichung));
+		areaList.add(getResources().getStringArray(R.array.filter_changhua));
+		areaList.add(getResources().getStringArray(R.array.filter_nantou));
+		areaList.add(getResources().getStringArray(R.array.filter_chiayi));
+		areaList.add(getResources().getStringArray(R.array.filter_chiayi_county));
+		areaList.add(getResources().getStringArray(R.array.filter_yunlin));
+		areaList.add(getResources().getStringArray(R.array.filter_tainan));
+		areaList.add(getResources().getStringArray(R.array.filter_kaohsiung));
+		areaList.add(getResources().getStringArray(R.array.filter_penghu));
+		areaList.add(getResources().getStringArray(R.array.filter_pingtung));
+		areaList.add(getResources().getStringArray(R.array.filter_taitung));
+		areaList.add(getResources().getStringArray(R.array.filter_hualien));
+		areaList.add(getResources().getStringArray(R.array.filter_kinmen));
+		areaList.add(getResources().getStringArray(R.array.filter_lianjiang));
+	}
+
+	private void initSpinnerArea(int position) {
+		ArrayAdapter<String> areaAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, areaList.get(position));
+		areaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+		spinnerArea.setAdapter(areaAdapter);
+		area = areaList.get(position)[0];
 	}
 
 	private void initDate() {
@@ -410,6 +444,5 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 		}
 		return gender.equals("M") ? getString(R.string.male) : getString(R.string.female);
 	}
-
 
 }
