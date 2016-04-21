@@ -87,7 +87,12 @@ public class AccountManager {
 
 	public void updateToken(String token) {
 		userAccessToken = token;
-		preference.setUserToken(userAccessToken);
+		saveLoginStatus();
+	}
+
+	public void updateUserName(String name) {
+		userName = name;
+		preference.setUserName(name);
 	}
 
 	private void startLogin(LoginApi api, LoginListener listener) {

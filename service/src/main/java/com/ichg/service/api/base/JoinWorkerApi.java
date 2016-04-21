@@ -87,7 +87,7 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 	}
 
 	public static void updateUserToken(String userToken) {
-		USER_TOKEN = TextUtils.isEmpty(userToken) ? null : "Bearer " + userToken;
+		USER_TOKEN = TextUtils.isEmpty(userToken) ? null : userToken;
 	}
 
 	@Override

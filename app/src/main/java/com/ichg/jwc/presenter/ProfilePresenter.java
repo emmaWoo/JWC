@@ -23,8 +23,13 @@ public class ProfilePresenter {
 
 	public void saveProfile(UserInfo userInfo) {
 		mApiFacade.request(new UpdateUserApi(userInfo)
-				.success(response -> presenterListener.onSuccess())
+				.success(response -> onSuccess(userInfo))
 				.fail(presenterListener::onFail), this);
+	}
+
+	private void onSuccess(UserInfo userInfo) {
+		mAccountManager.updateUserName(userInfo.userName);
+		presenterListener.onSuccess();
 	}
 
 	public void uploadPhoto(Bitmap bitmap) {
