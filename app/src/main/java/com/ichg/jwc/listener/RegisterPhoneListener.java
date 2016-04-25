@@ -1,7 +1,5 @@
 package com.ichg.jwc.listener;
 
-import com.ichg.service.entity.UserProfileBaseEntity;
-
 public interface RegisterPhoneListener {
 
 	void onPhoneDuplicate();

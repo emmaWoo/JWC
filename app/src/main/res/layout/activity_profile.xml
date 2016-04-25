@@ -101,6 +101,7 @@
 					android:layout_marginRight="16dp"
 					android:maxLength="12"
 					android:singleLine="true"
+					android:hint="@string/mandatory"
 					android:textSize="22sp"
 					android:textColor="#505050"/>
 
@@ -152,6 +153,7 @@
 					android:textSize="22sp"
 					android:textColor="#505050"
 					android:singleLine="true"
+					android:hint="@string/mandatory"
 					android:maxLength="10"/>
 
 			<TextView
@@ -199,6 +201,7 @@
 					android:textSize="16sp"
 					android:textColor="#505050"
 					android:singleLine="true"
+					android:hint="@string/mandatory"
 					android:maxLength="100"/>
 
 			<TextView
@@ -221,6 +224,7 @@
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
 					android:singleLine="true"
+					android:hint="@string/mandatory"
 					android:maxLength="50"
 					android:shadowColor="#bfb3b8"
 					android:textSize="22sp"
@@ -316,16 +320,33 @@
 					android:textSize="16sp"
 					android:textColor="#76b3c5"/>
 
-			<TextView
-					android:id="@+id/button_birthday"
+			<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:drawableRight="@drawable/button_fix"
+					android:orientation="horizontal"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
-					android:layout_marginRight="16dp"
-					android:textSize="22sp"
-					android:textColor="#505050"/>
+					android:layout_marginRight="16dp">
+				<Spinner
+						android:id="@+id/spinner_year"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_weight="0.5"
+						android:textSize="16sp"/>
+				<Spinner
+						android:id="@+id/spinner_month"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_weight="0.5"
+						android:textSize="16sp"/>
+				<Spinner
+						android:id="@+id/spinner_day"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_weight="0.5"
+						android:textSize="16sp"/>
+
+			</LinearLayout>
 
 			<View android:layout_width="match_parent"
 				  android:layout_height="1dp"

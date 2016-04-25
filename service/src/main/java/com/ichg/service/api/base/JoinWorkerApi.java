@@ -201,7 +201,13 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 
 	@Override
 	public String getContentType() {
-		return TextUtils.isEmpty(getRequestBody()) ? "application/x-www-form-urlencoded" : "application/json";
+		if (getBitmap() != null) {
+			return "multipart/form-data";
+		} else if(TextUtils.isEmpty(getRequestBody())) {
+			return "application/x-www-form-urlencoded";
+		} else {
+			return "application/json";
+		}
 	}
 
 	@Override

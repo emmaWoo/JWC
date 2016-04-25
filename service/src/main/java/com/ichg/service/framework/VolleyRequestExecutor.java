@@ -37,10 +37,12 @@ public class VolleyRequestExecutor implements RequestExecutor {
 
 	@Override
 	public void request(Api api, Object tag) {
-		Request<String> request =
-				isRequestByJson(api) ?
-						createJsonStringRequest(api) :
-						createStringRequest(api);
+		Request<String> request;
+		if (isRequestByMultiPart(api)) {
+			request = sentMultiPartRequest(api);
+		} else {
+			request = isRequestByJson(api) ? createJsonStringRequest(api) : createStringRequest(api);
+		}
 		request.setRetryPolicy(new DefaultRetryPolicy(api.getTimeout(), api.getRetryCount(), DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 		request.setTag(tag);
 		mRequestQueue.add(request);
@@ -83,6 +85,11 @@ public class VolleyRequestExecutor implements RequestExecutor {
 	private boolean isRequestByJson(Api api) {
 		String requestBody = api.getRequestBody();
 		return requestBody != null && !requestBody.isEmpty();
+	}
+
+	private boolean isRequestByMultiPart(Api api) {
+		Bitmap bitmap = api.getBitmap();
+		return bitmap != null;
 	}
 
 	private Request<String> sentMultiPartRequest(final Api api) {

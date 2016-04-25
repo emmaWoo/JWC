@@ -1,7 +1,6 @@
 package com.ichg.jwc.activity;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -29,9 +28,10 @@ import android.widget.Toast;
 import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
 import com.ichg.jwc.listener.DialogListener;
-import com.ichg.jwc.listener.PresenterListener;
+import com.ichg.jwc.listener.ProfileListener;
 import com.ichg.jwc.manager.ToolbarManager;
 import com.ichg.jwc.presenter.ProfilePresenter;
+import com.ichg.jwc.utils.BitmapUtils;
 import com.ichg.jwc.utils.CacheUtils;
 import com.ichg.jwc.utils.DateUtils;
 import com.ichg.jwc.utils.DialogManager;
@@ -49,7 +49,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class ProfileActivity extends ActivityBase implements PresenterListener {
+public class ProfileActivity extends ActivityBase implements ProfileListener {
 
 	private static final int REQUEST_UPDATE_PHOTO_GALLERY = 88;
 	private static final int REQUEST_UPDATE_PHOTO_CAMERA = 99;
@@ -58,14 +58,14 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 	private EditText editTextName;
 	private RadioButton buttonNationalsId;
 	private EditText editTextId;
-	private Spinner spinnerCity;
-	private Spinner spinnerArea;
 	private EditText editTextAddress;
 	private EditText editTextEmail;
 	private EditText editTextBankCode;
 	private EditText editTextBankAccount;
 	private TextView buttonGender;
-	private TextView buttonBirthday;
+	private Spinner spinnerArea;
+	private Spinner spinnerDay;
+	private ImageView avatar;
 	private String city;
 	private String area;
 	private String gender;
@@ -80,7 +80,8 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 		initPresenter();
 		initToolbar();
 		initInputEditTexts();
-		initSpinner();
+		initAddressSpinner();
+		initBirthdaySpinner();
 		initDate();
 	}
 
@@ -121,17 +122,104 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 		editTextBankAccount = (EditText) findViewById(R.id.edit_bank_accound);
 		buttonGender = (TextView) findViewById(R.id.button_gender);
 		buttonGender.setEnabled(false);
-		buttonBirthday = (TextView) findViewById(R.id.button_birthday);
-		buttonBirthday.setOnClickListener(birthdayClickListener);
-		ImageView avatar = (ImageView) findViewById(R.id.icon_avatar);
+
+		avatar = (ImageView) findViewById(R.id.icon_avatar);
 		registerForContextMenu(avatar);
 		avatar.setOnClickListener(v -> avatar.showContextMenu());
 	}
 
-	private void initSpinner() {
+	private void initBirthdaySpinner() {
+		Spinner spinnerYear = (Spinner) findViewById(R.id.spinner_year);
+		Spinner spinnerMonth = (Spinner) findViewById(R.id.spinner_month);
+		spinnerDay  = (Spinner) findViewById(R.id.spinner_day);
+
+		Calendar calendar = Calendar.getInstance();
+		int newYear = calendar.get(Calendar.YEAR);
+		int newMonth = calendar.get(Calendar.MONTH) + 1;
+		int newDay = calendar.get(Calendar.DAY_OF_MONTH);
+		String[] yearArray = new String[100];
+		for (int i = 0; i < 100 ; i++) {
+			yearArray[i] = String.valueOf(newYear - (99 - i));
+		}
+
+		String[] monthArray = new String[12];
+		for (int i = 0; i < 12 ; i++) {
+			monthArray[i] = String.valueOf(i + 1);
+		}
+		String[] dayArray = initDay(String.valueOf(newYear), String.valueOf(newMonth));
+
+		ArrayAdapter<String> yearAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, yearArray);
+		ArrayAdapter<String> monthAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, monthArray);
+		yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+		spinnerYear.setAdapter(yearAdapter);
+		monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+		spinnerMonth.setAdapter(monthAdapter);
+		spinnerYear.setSelection(99);
+		spinnerMonth.setSelection(newMonth - 1);
+		spinnerDay.setSelection(Integer.parseInt(dayArray[newDay - 1]));
+		birthday = yearArray[0] + "/" + monthArray[newMonth - 1] + "/" + dayArray[newDay - 1];
+		spinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
+				int yearPosition = spinnerYear.getSelectedItemPosition();
+				int monthPosition = spinnerMonth.getSelectedItemPosition();
+				initDay(yearArray[yearPosition], monthArray[monthPosition]);
+				birthday = yearArray[yearPosition] + "/" + monthArray[monthPosition] + "/" + dayArray[0];
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+			}
+		});
+		spinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
+				int yearPosition = spinnerYear.getSelectedItemPosition();
+				int monthPosition = spinnerMonth.getSelectedItemPosition();
+				initDay(yearArray[yearPosition], monthArray[monthPosition]);
+				birthday = yearArray[yearPosition] + "/" + monthArray[monthPosition] + "/" + dayArray[0];
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+			}
+		});
+		spinnerDay.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
+				int yearPosition = spinnerYear.getSelectedItemPosition();
+				int monthPosition = spinnerMonth.getSelectedItemPosition();
+				birthday = yearArray[yearPosition] + "/" + monthArray[monthPosition] + "/" + dayArray[position];
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+			}
+		});
+	}
+
+	private String[] initDay(String year, String month) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.YEAR, Integer.parseInt(year));
+		calendar.set(Calendar.MONTH, Integer.parseInt(month) - 1);
+		int maxDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+		String[] dayArray = new String[maxDay];
+		for (int i = 0; i < maxDay ; i++) {
+			dayArray[i] = String.valueOf(i + 1);
+		}
+		ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, dayArray);
+		dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+		spinnerDay.setAdapter(dayAdapter);
+		return dayArray;
+	}
+
+	private void initAddressSpinner() {
 		String[] cities = getResources().getStringArray(R.array.filter_cities);
 		initAreaList();
-		spinnerCity = (Spinner) findViewById(R.id.spinner_city);
+		Spinner spinnerCity = (Spinner) findViewById(R.id.spinner_city);
 		spinnerArea = (Spinner) findViewById(R.id.spinner_area);
 		spinnerCity.setTag(0);
 
@@ -205,7 +293,6 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 		Date current = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN);
 		birthday = sdf.format(current);
-		buttonBirthday.setText(birthday);
 		buttonNationalsId.setChecked(true);
 	}
 
@@ -296,42 +383,9 @@ public class ProfileActivity extends ActivityBase implements PresenterListener {
 	}
 
 	@Override
-	public void onInputFormatCheckFinish(boolean isPass) {
-
+	public void onAvatarUpdateSuccess(Bitmap bitmap) {
+		avatar.setImageBitmap(BitmapUtils.createCircularBitmap(bitmap));
 	}
-
-	private final View.OnClickListener birthdayClickListener = v -> {
-		Calendar calendar = Calendar.getInstance();
-		int year = calendar.get(Calendar.YEAR);
-		int month = calendar.get(Calendar.MONTH);
-		int day = calendar.get(Calendar.DAY_OF_MONTH);
-		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN);
-			Date date = sdf.parse(birthday);
-			calendar.setTime(date);
-			year = calendar.get(Calendar.YEAR);
-			month = calendar.get(Calendar.MONTH);
-			day = calendar.get(Calendar.DAY_OF_MONTH);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		DatePickerDialog datePickerDialog = new DatePickerDialog(ProfileActivity.this, (view, year1, month1, day1) -> {
-			Calendar selectedDay = Calendar.getInstance();
-			Calendar today = Calendar.getInstance();
-			selectedDay.set(year1, month1, day1);
-			today.setTime(new Date());
-			if (today.before(selectedDay)) {
-				year1 = today.get(Calendar.YEAR);
-				month1 = today.get(Calendar.MONTH);
-				day1 = today.get(Calendar.DAY_OF_MONTH);
-			}
-			month1++;
-			birthday = year1 + "/" + month1 + "/" + day1;
-			buttonBirthday.setText(birthday);
-		}, year, month, day);
-		datePickerDialog.getDatePicker().setMaxDate(Calendar.getInstance().getTimeInMillis());
-		datePickerDialog.show();
-	};
 
 	private void uploadPhoto(Bitmap bitmap) {
 		DialogManager.with(this).showProgressingDialog();
