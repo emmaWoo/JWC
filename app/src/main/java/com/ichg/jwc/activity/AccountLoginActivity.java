@@ -15,7 +15,6 @@ import com.ichg.jwc.listener.DialogListener;
 import com.ichg.jwc.listener.PresenterListener;
 import com.ichg.jwc.manager.ToolbarManager;
 import com.ichg.jwc.presenter.AccountLoginPresenter;
-import com.ichg.jwc.presenter.PresenterFactory;
 import com.ichg.jwc.utils.DialogManager;
 import com.ichg.jwc.utils.LoginHandler;
 
@@ -40,7 +39,7 @@ public class AccountLoginActivity extends ActivityBase implements PresenterListe
 
 	private void initPresenter() {
 		if (mPresenter == null) {
-			mPresenter = PresenterFactory.createAccountLoginPresenter(JoinWorkerApp.accountManager, this);
+			mPresenter = new AccountLoginPresenter(JoinWorkerApp.accountManager, this);
 		}
 	}
 
@@ -70,7 +69,7 @@ public class AccountLoginActivity extends ActivityBase implements PresenterListe
 
 	private void initRegisterButton() {
 		findViewById(R.id.login_sign_in).setOnClickListener(v -> {
-			startActivity(new Intent(getBaseContext(), VerifyPhoneActivity.class));
+			startActivity(new Intent(getBaseContext(), PhoneRegisterActivity.class));
 		});
 	}
 
