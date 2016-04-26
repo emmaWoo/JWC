@@ -95,13 +95,13 @@
 					android:id="@+id/edit_name"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
 					android:maxLength="12"
 					android:singleLine="true"
 					android:hint="@string/mandatory"
-					android:textColorHint="@color/gray"
 					android:textSize="22sp"
 					android:textColor="#505050"/>
 
@@ -145,6 +145,7 @@
 					android:id="@+id/edit_id"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
@@ -153,7 +154,6 @@
 					android:textColor="#505050"
 					android:singleLine="true"
 					android:hint="@string/mandatory"
-					android:textColorHint="@color/gray"
 					android:maxLength="10"/>
 
 			<TextView
@@ -193,6 +193,7 @@
 					android:id="@+id/edit_address"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
@@ -201,7 +202,6 @@
 					android:textColor="#505050"
 					android:singleLine="true"
 					android:hint="@string/mandatory"
-					android:textColorHint="@color/gray"
 					android:maxLength="100"/>
 
 			<TextView
@@ -239,12 +239,12 @@
 					android:id="@+id/edit_email"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
 					android:singleLine="true"
 					android:hint="@string/mandatory"
-					android:textColorHint="@color/gray"
 					android:maxLength="50"
 					android:shadowColor="#bfb3b8"
 					android:textSize="22sp"
@@ -266,6 +266,7 @@
 					android:id="@+id/edit_bank_code"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
@@ -290,6 +291,7 @@
 					android:id="@+id/edit_bank_accound"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
@@ -314,11 +316,18 @@
 					android:id="@+id/button_gender"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:drawableRight="@drawable/button_fix"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
 					android:textSize="22sp"
 					android:textColor="#505050"/>
+
+			<View android:layout_width="match_parent"
+				  android:layout_height="1dp"
+				  android:layout_marginLeft="42dp"
+				  android:layout_marginRight="16dp"
+				  android:background="#bfb3b8"/>
 
 			<TextView
 					android:layout_width="wrap_content"
@@ -337,8 +346,7 @@
 					android:orientation="horizontal"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
-					android:layout_marginRight="16dp"
-					android:layout_marginBottom="50dp">
+					android:layout_marginRight="16dp">
 				<Spinner
 						android:id="@+id/spinner_year"
 						android:layout_width="0dp"
@@ -359,6 +367,13 @@
 						android:textSize="16sp"/>
 
 			</LinearLayout>
+
+			<View android:layout_width="match_parent"
+				  android:layout_height="1dp"
+				  android:layout_marginLeft="42dp"
+				  android:layout_marginRight="16dp"
+				  android:layout_marginBottom="50dp"
+				  android:background="#bfb3b8"/>
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

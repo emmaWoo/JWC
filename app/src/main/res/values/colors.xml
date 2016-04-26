@@ -8,8 +8,7 @@
 	<color name="background_color">#fbf8f1</color>
 	<color name="title_background_orange">#d57e65</color>
 	<color name="edit_line_color">#f0eff0</color>
-	<color name="work_list_button_disable">#e7e7e7</color>
-	<color name="work_list_button_enable">#fbde98</color>
+	<color name="work_list_button_filter">#fbde98</color>
 
 
 	<color name="orange">#feba27</color>
@@ -24,8 +23,7 @@
 	<color name="text_gray_deep">#563743</color>
 	<color name="text_gray">#cabdbc</color>
 	<color name="text_search">#c6c6c6</color>
-	<color name="text_work_list_disable">#b6b6b6</color>
-	<color name="text_work_list_enable">#9f6060</color>
+	<color name="text_work_list_filter">#9f6060</color>
 
 	<color name="drawer_item_pass">#66585a</color>
 

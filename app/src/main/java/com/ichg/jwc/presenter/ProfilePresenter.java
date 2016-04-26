@@ -43,7 +43,7 @@ public class ProfilePresenter {
 	}
 
 	public void skipProfile() {
-		mAccountManager.isSkipProfile = true;
+		mAccountManager.skipProfile();
 	}
 
 	public void cancel() {

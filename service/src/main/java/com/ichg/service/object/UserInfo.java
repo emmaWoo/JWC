@@ -9,6 +9,7 @@ public class UserInfo {
 	public String city;
 	public String area;
 	public String address;
+	public String location;
 	public String email;
 	public String bankCode;
 	public String bankAccount;

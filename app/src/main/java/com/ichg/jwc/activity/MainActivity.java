@@ -24,17 +24,16 @@ import java.util.TimerTask;
 
 public class MainActivity extends ActivityBase {
 
-	private static final int DEFAULT_PAGE_TYPE = NavigationType.NOTIFICATION;
+	private static final int DEFAULT_PAGE_TYPE = NavigationType.WORK_LIST;
 
 	private static final int DURING_LEAVE_WAIT = 2000;
 
 	public static final class NavigationType {
-		public static final int PROFILE = 1;
-		public static final int ACCOUNT_SETTING = 2;
-		public static final int NOTIFICATION = 3;
-		public static final int SETTING = 4;
-		public static final int QUESTION = 5;
-		public static final int LOGOUT = 6;
+		public static final int ACCOUNT_SETTING = 1;
+		public static final int WORK_LIST = 2;
+		public static final int PROFILE = 3;
+		public static final int QUESTION = 4;
+		public static final int LOGOUT = 5;
 	}
 
 	private SparseArray<Fragment> fragmentMap;
@@ -65,6 +64,13 @@ public class MainActivity extends ActivityBase {
 							startActivity(intent);
 							//getActivityBase().overridePendingTransition(R.anim.activity_slide_in_up, android.R.anim.fade_out);
 							finish();
+						} else if (itemInfo.pageType == NavigationType.PROFILE) {
+							Bundle bundle = new Bundle();
+							bundle.putBoolean(ProfileActivity.BUNDEL_IS_VIEW_PROFILE, true);
+							Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+							intent.putExtras(bundle);
+							startActivity(intent);
+							//getActivityBase().overridePendingTransition(R.anim.activity_slide_in_up, android.R.anim.fade_out);
 						} else {
 							onNavigationDrawerItemSelected(itemInfo);
 						}
@@ -72,7 +78,11 @@ public class MainActivity extends ActivityBase {
 
 					@Override
 					public void onProfileClick() {
-
+						Bundle bundle = new Bundle();
+						bundle.putBoolean(ProfileActivity.BUNDEL_IS_VIEW_PROFILE, true);
+						Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+						intent.putExtras(bundle);
+						startActivity(intent);
 					}
 				}
 		);
@@ -83,13 +93,11 @@ public class MainActivity extends ActivityBase {
 
 	private List<NavigationItemInfo> initDrawerItemInfoList() {
 		List<NavigationItemInfo> drawerItemList = new ArrayList<>();
-		drawerItemList.add(createNavigationItemInfo(R.string.profile, R.drawable.icon_profile, NavigationType.PROFILE));
 		drawerItemList.add(createNavigationItemInfo(R.string.account_setting, R.drawable.icon_set, NavigationType.ACCOUNT_SETTING));
-		drawerItemList.add(createNavigationItemInfo(R.string.notification, R.drawable.icon_notice, NavigationType.NOTIFICATION));
-		drawerItemList.add(createNavigationItemInfo(R.string.setting, R.drawable.icon_proset, NavigationType.SETTING));
+		drawerItemList.add(createNavigationItemInfo(R.string.work_list, R.drawable.icon_notice, NavigationType.WORK_LIST));
+		drawerItemList.add(createNavigationItemInfo(R.string.profile, R.drawable.icon_profile, NavigationType.PROFILE));
 		drawerItemList.add(createNavigationItemInfo(R.string.question, R.drawable.icon_qa, NavigationType.QUESTION));
 		drawerItemList.add(createNavigationItemInfo(R.string.logout, R.drawable.icon_signout, NavigationType.LOGOUT));
-
 		return drawerItemList;
 	}
 
@@ -120,16 +128,10 @@ public class MainActivity extends ActivityBase {
 	private Fragment createPageFragment(int pageType) {
 		Fragment pageFragment = null;
 		switch (pageType) {
-			case NavigationType.PROFILE:
-				pageFragment = new WorkListFragment();
-				break;
 			case NavigationType.ACCOUNT_SETTING:
 				pageFragment = new WorkListFragment();
 				break;
-			case NavigationType.NOTIFICATION:
-				pageFragment = new WorkListFragment();
-				break;
-			case NavigationType.SETTING:
+			case NavigationType.WORK_LIST:
 				pageFragment = new WorkListFragment();
 				break;
 			case NavigationType.QUESTION:
@@ -177,9 +179,9 @@ public class MainActivity extends ActivityBase {
 	public void onBackPressed() {
 		if (drawerPresenter.isOpen()) {
 			drawerPresenter.closeDrawer();
-		} else if (drawerPresenter.getCurrentPageType() != NavigationType.NOTIFICATION) {
+		} else if (drawerPresenter.getCurrentPageType() != NavigationType.WORK_LIST) {
 			//FragmentBase.setAnimation(AnimationType.NONE);
-			selectNavigationItem(NavigationType.NOTIFICATION);
+			selectNavigationItem(NavigationType.WORK_LIST);
 		} else if (isClickToLeave) {
 			super.onBackPressed();
 		} else {

@@ -63,8 +63,12 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
 	private EditText editTextBankCode;
 	private EditText editTextBankAccount;
 	private TextView buttonGender;
+	private Spinner spinnerCity;
 	private Spinner spinnerArea;
+	private Spinner spinnerYear;
+	private Spinner spinnerMonth;
 	private Spinner spinnerDay;
+	private Spinner spinnerLocation;
 	private ImageView avatar;
 	private String city;
 	private String area;
@@ -81,6 +85,7 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
 		initToolbar();
 		initInputEditTexts();
 		initAddressSpinner();
+		initLocationSpinner();
 		initBirthdaySpinner();
 		initDate();
 	}
@@ -129,21 +134,21 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
 	}
 
 	private void initBirthdaySpinner() {
-		Spinner spinnerYear = (Spinner) findViewById(R.id.spinner_year);
-		Spinner spinnerMonth = (Spinner) findViewById(R.id.spinner_month);
-		spinnerDay  = (Spinner) findViewById(R.id.spinner_day);
+		spinnerYear = (Spinner) findViewById(R.id.spinner_year);
+		spinnerMonth = (Spinner) findViewById(R.id.spinner_month);
+		spinnerDay = (Spinner) findViewById(R.id.spinner_day);
 
 		Calendar calendar = Calendar.getInstance();
 		int newYear = calendar.get(Calendar.YEAR);
 		int newMonth = calendar.get(Calendar.MONTH) + 1;
 		int newDay = calendar.get(Calendar.DAY_OF_MONTH);
 		String[] yearArray = new String[100];
-		for (int i = 0; i < 100 ; i++) {
+		for (int i = 0; i < 100; i++) {
 			yearArray[i] = String.valueOf(newYear - (99 - i));
 		}
 
 		String[] monthArray = new String[12];
-		for (int i = 0; i < 12 ; i++) {
+		for (int i = 0; i < 12; i++) {
 			monthArray[i] = String.valueOf(i + 1);
 		}
 		String[] dayArray = initDay(String.valueOf(newYear), String.valueOf(newMonth));
@@ -207,7 +212,7 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
 		calendar.set(Calendar.MONTH, Integer.parseInt(month) - 1);
 		int maxDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 		String[] dayArray = new String[maxDay];
-		for (int i = 0; i < maxDay ; i++) {
+		for (int i = 0; i < maxDay; i++) {
 			dayArray[i] = String.valueOf(i + 1);
 		}
 		ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, dayArray);
@@ -219,15 +224,15 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
 	private void initAddressSpinner() {
 		String[] cities = getResources().getStringArray(R.array.filter_cities);
 		initAreaList();
-		Spinner spinnerCity = (Spinner) findViewById(R.id.spinner_city);
+		spinnerCity = (Spinner) findViewById(R.id.spinner_city);
 		spinnerArea = (Spinner) findViewById(R.id.spinner_area);
 		spinnerCity.setTag(0);
 
 		ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, cities);
 		cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 		spinnerCity.setAdapter(cityAdapter);
-		initSpinnerArea((int)spinnerCity.getTag());
-		city = cities[(int)spinnerCity.getTag()];
+		initSpinnerArea((int) spinnerCity.getTag());
+		city = cities[(int) spinnerCity.getTag()];
 
 		spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -248,13 +253,21 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
 
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
-				area = areaList.get((int)spinnerCity.getTag())[position];
+				area = areaList.get((int) spinnerCity.getTag())[position];
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
 			}
 		});
+	}
+
+	private void initLocationSpinner() {
+		String[] cities = getResources().getStringArray(R.array.filter_cities);
+		spinnerLocation = (Spinner) findViewById(R.id.spinner_location);
+		ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, cities);
+		cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+		spinnerLocation.setAdapter(cityAdapter);
 	}
 
 	private void initAreaList() {

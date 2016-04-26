@@ -8,7 +8,7 @@ import com.ichg.service.object.UserInfo;
 
 import org.json.JSONObject;
 
-public class GetUserApi extends JoinWorkerApi<UserProfileBaseEntity> {
+public class GetUserApi extends JoinWorkerApi<UserInfo> {
 
 	@Override
 	public int getHttpMethod() {
@@ -16,9 +16,10 @@ public class GetUserApi extends JoinWorkerApi<UserProfileBaseEntity> {
 	}
 
 	@Override
-	protected UserProfileBaseEntity parseResult(String result) throws Exception {
+	protected UserInfo parseResult(String result) throws Exception {
 		JSONObject dataObject = new JSONObject(result).optJSONObject("data");
-		return new Gson().fromJson(dataObject.toString(), UserProfileBaseEntity.class);
+		UserProfileBaseEntity userProfileBaseEntity = new Gson().fromJson(dataObject.toString(), UserProfileBaseEntity.class);
+		return userProfileBaseEntity.getUserInfo();
 	}
 
 	@Override

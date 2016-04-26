@@ -23,6 +23,24 @@ public class UserProfileBaseEntity {
 		bankAccount = userInfo.bankAccount;
 	}
 
+	public UserInfo getUserInfo() {
+		UserInfo userInfo = new UserInfo();
+		userInfo.userName = userName;
+		userInfo.birthday = birthday;
+		userInfo.gender = sex;
+		if (identityType != null) {
+			userInfo.isNationalsId = identityType.equals("P");
+			userInfo.id = userInfo.isNationalsId ? personalId : workPermitNo;
+		}
+		userInfo.city = city;
+		userInfo.area = district;
+		userInfo.address = address;
+		userInfo.email = email;
+		userInfo.bankCode = bankCode;
+		userInfo.bankAccount = bankAccount;
+		return userInfo;
+	}
+
 	@SerializedName("name")
 	public String userName;
 

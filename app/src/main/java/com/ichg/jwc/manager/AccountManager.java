@@ -90,6 +90,11 @@ public class AccountManager {
 		saveLoginStatus();
 	}
 
+	public void skipProfile() {
+		isSkipProfile = true;
+		saveLoginStatus();
+	}
+
 	public void updateUserName(String name) {
 		userName = name;
 		preference.setUserName(name);
