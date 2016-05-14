@@ -4,17 +4,17 @@
 				android:layout_height="match_parent"
 				android:background="@color/background_color">
 
-	<include layout="@layout/layout_toolbar_orange"/>
-
-	<View android:layout_width="match_parent"
-		  android:layout_height="1dp"
-		  android:background="@color/white"/>
+	<View
+			android:id="@+id/view_line"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="@color/white"/>
 
 	<RelativeLayout
 			android:id="@+id/layout_search"
 			android:layout_width="wrap_content"
 			android:layout_height="42dp"
-			android:layout_below="@id/toolbar"
+			android:layout_below="@id/view_line"
 			android:background="@color/title_background_orange"
 			android:layout_centerHorizontal="true">
 		<EditText
@@ -102,54 +102,5 @@
 
 		<include layout="@layout/item_work_list_tmp"/>
 	</RelativeLayout>
-
-	<RadioGroup
-			android:id="@+id/group_tab"
-			android:layout_width="match_parent"
-			android:layout_height="58dp"
-			android:layout_alignParentBottom="true"
-			android:paddingLeft="16dp"
-			android:paddingRight="16dp"
-			android:background="#ffbb28"
-			android:orientation="horizontal">
-
-		<RadioButton
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="0.3"
-				android:button="@null"
-				android:drawableTop="@drawable/ic_mylist"
-				android:drawablePadding="7dp"
-				android:paddingTop="9dp"
-				android:text="@string/my_work_list"
-				android:textSize="13sp"
-				android:textColor="@color/white"
-				android:gravity="center_horizontal"/>
-
-		<RadioButton
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="0.3" android:button="@null"
-				android:drawableTop="@drawable/ic_mydo"
-				android:drawablePadding="7dp"
-				android:paddingTop="9dp"
-				android:text="@string/free"
-				android:textSize="13sp"
-				android:textColor="@color/white"
-				android:gravity="center_horizontal"/>
-
-		<RadioButton
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="0.3" android:button="@null"
-				android:drawableTop="@drawable/ic_myfollow"
-				android:drawablePadding="7dp"
-				android:paddingTop="9dp"
-				android:text="@string/follow_list"
-				android:textSize="13sp"
-				android:textColor="@color/white"
-				android:gravity="center_horizontal"/>
-
-	</RadioGroup>
 
 </RelativeLayout>

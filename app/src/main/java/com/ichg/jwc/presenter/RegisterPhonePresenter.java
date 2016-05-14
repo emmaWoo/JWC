@@ -9,7 +9,7 @@ import com.ichg.service.api.login.VerifyCodeLoginApi;
 import com.ichg.service.entity.UserProfileBaseEntity;
 import com.ichg.service.object.RegisterPhoneInfo;
 
-public class RegisterPhonePresenter implements VerifyPhonePresenter {
+public class RegisterPhonePresenter {
 
 	private ApiFacade mApiFacade;
 	private AccountManager accountManager;
@@ -46,7 +46,7 @@ public class RegisterPhonePresenter implements VerifyPhonePresenter {
 		String phoneNo = currentRegisterPhoneInfo.phoneNo;
 		mApiFacade.request(new VerifyCodeLoginApi(phoneNo, verifyCode)
 				.success(response -> registerLogin(phoneNo))
-				.fail(registerPhoneListener::onVerifyPhoneFail), this);
+				.fail(registerPhoneListener::onRequestFail), this);
 	}
 
 	private void registerLogin(String phoneNo) {
@@ -68,7 +68,7 @@ public class RegisterPhonePresenter implements VerifyPhonePresenter {
 						registerPhoneListener.onResendVerifyCodeSuccess();
 					}
 				})
-				.fail((errorType, message) -> registerPhoneListener.onGetVerifyCodeFail(errorType, message)), this);
+				.fail(registerPhoneListener::onRequestFail), this);
 	}
 
 	public void resendVerifyCode() {

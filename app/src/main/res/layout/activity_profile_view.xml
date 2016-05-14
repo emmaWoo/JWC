@@ -3,7 +3,9 @@
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
 			  android:background="@color/background_color"
-			  android:orientation="vertical">
+			  android:orientation="vertical"
+			  android:focusable="true"
+			  android:focusableInTouchMode="true">
 
 	<include
 			android:id="@+id/toolbar"
@@ -91,19 +93,25 @@
 					android:textSize="16sp"
 					android:textColor="#76b3c5"/>
 
-			<EditText
-					android:id="@+id/edit_name"
+			<TextView
+					android:id="@+id/label_name"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:drawableRight="@drawable/button_fix"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
 					android:maxLength="12"
 					android:singleLine="true"
-					android:hint="@string/mandatory"
 					android:textSize="22sp"
 					android:textColor="#505050"/>
+
+			<View
+					android:layout_width="match_parent"
+					android:layout_height="1dp"
+					android:layout_marginTop="6dp"
+					android:layout_marginLeft="42dp"
+					android:layout_marginRight="16dp"
+					android:background="#dedede"/>
 
 			<TextView
 					android:layout_width="wrap_content"
@@ -116,36 +124,10 @@
 					android:textSize="16sp"
 					android:textColor="#76b3c5"/>
 
-			<RadioGroup
+			<TextView
+					android:id="@+id/label_id"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:orientation="horizontal"
-					android:layout_marginLeft="42dp"
-					android:layout_marginTop="9dp"
-					android:layout_marginRight="16dp">
-
-				<RadioButton
-						android:id="@+id/button_nationals_id"
-						android:layout_width="0dp"
-						android:layout_height="wrap_content"
-						android:layout_weight="1"
-						android:text="@string/nationals_id"
-						android:textColor="#505050"/>
-
-				<RadioButton
-						android:id="@+id/button_foreigner_id"
-						android:layout_width="0dp"
-						android:layout_height="wrap_content"
-						android:layout_weight="1"
-						android:text="@string/foreigner_id"
-						android:textColor="#505050"/>
-			</RadioGroup>
-
-			<EditText
-					android:id="@+id/edit_id"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:drawableRight="@drawable/button_fix"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
@@ -153,8 +135,15 @@
 					android:textSize="22sp"
 					android:textColor="#505050"
 					android:singleLine="true"
-					android:hint="@string/mandatory"
 					android:maxLength="10"/>
+
+			<View
+					android:layout_width="match_parent"
+					android:layout_height="1dp"
+					android:layout_marginTop="6dp"
+					android:layout_marginLeft="42dp"
+					android:layout_marginRight="16dp"
+					android:background="#dedede"/>
 
 			<TextView
 					android:layout_width="wrap_content"
@@ -167,33 +156,10 @@
 					android:textSize="16sp"
 					android:textColor="#76b3c5"/>
 
-			<LinearLayout
+			<TextView
+					android:id="@+id/label_address"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:orientation="horizontal"
-					android:layout_marginLeft="42dp"
-					android:layout_marginTop="9dp"
-					android:layout_marginRight="16dp">
-				<Spinner
-						android:id="@+id/spinner_city"
-						android:layout_width="0dp"
-						android:layout_height="wrap_content"
-						android:layout_weight="0.5"
-						android:textSize="16sp"/>
-				<Spinner
-						android:id="@+id/spinner_area"
-						android:layout_width="0dp"
-						android:layout_height="wrap_content"
-						android:layout_weight="0.5"
-						android:textSize="16sp"/>
-
-			</LinearLayout>
-
-			<EditText
-					android:id="@+id/edit_address"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:drawableRight="@drawable/button_fix"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
@@ -201,8 +167,15 @@
 					android:textSize="16sp"
 					android:textColor="#505050"
 					android:singleLine="true"
-					android:hint="@string/mandatory"
 					android:maxLength="100"/>
+
+			<View
+					android:layout_width="match_parent"
+					android:layout_height="1dp"
+					android:layout_marginTop="6dp"
+					android:layout_marginLeft="42dp"
+					android:layout_marginRight="16dp"
+					android:background="#dedede"/>
 
 			<TextView
 					android:layout_width="wrap_content"
@@ -215,14 +188,22 @@
 					android:textSize="16sp"
 					android:textColor="#76b3c5"/>
 
-			<Spinner
-					android:id="@+id/spinner_location"
+			<TextView
+					android:id="@+id/label_location"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
 					android:textSize="16sp"/>
+
+			<View
+					android:layout_width="match_parent"
+					android:layout_height="1dp"
+					android:layout_marginTop="6dp"
+					android:layout_marginLeft="42dp"
+					android:layout_marginRight="16dp"
+					android:background="#dedede"/>
 
 			<TextView
 					android:layout_width="wrap_content"
@@ -235,21 +216,26 @@
 					android:textSize="16sp"
 					android:textColor="#76b3c5"/>
 
-			<EditText
-					android:id="@+id/edit_email"
+			<TextView
+					android:id="@+id/label_email"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:drawableRight="@drawable/button_fix"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
 					android:singleLine="true"
-					android:hint="@string/mandatory"
 					android:maxLength="50"
 					android:shadowColor="#bfb3b8"
 					android:textSize="22sp"
-					android:textColor="#505050"
-					android:inputType="textEmailAddress"/>
+					android:textColor="#505050"/>
+
+			<View
+					android:layout_width="match_parent"
+					android:layout_height="1dp"
+					android:layout_marginTop="6dp"
+					android:layout_marginLeft="42dp"
+					android:layout_marginRight="16dp"
+					android:background="#dedede"/>
 
 			<TextView
 					android:layout_width="wrap_content"
@@ -262,11 +248,10 @@
 					android:textSize="16sp"
 					android:textColor="#76b3c5"/>
 
-			<EditText
-					android:id="@+id/edit_bank_code"
+			<TextView
+					android:id="@+id/label_bank_code"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:drawableRight="@drawable/button_fix"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
@@ -275,6 +260,14 @@
 					android:shadowColor="#bfb3b8"
 					android:textSize="22sp"
 					android:textColor="#505050"/>
+
+			<View
+					android:layout_width="match_parent"
+					android:layout_height="1dp"
+					android:layout_marginTop="6dp"
+					android:layout_marginLeft="42dp"
+					android:layout_marginRight="16dp"
+					android:background="#dedede"/>
 
 			<TextView
 					android:layout_width="wrap_content"
@@ -287,11 +280,10 @@
 					android:textSize="16sp"
 					android:textColor="#76b3c5"/>
 
-			<EditText
-					android:id="@+id/edit_bank_accound"
+			<TextView
+					android:id="@+id/label_bank_account"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:drawableRight="@drawable/button_fix"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
@@ -300,6 +292,14 @@
 					android:shadowColor="#bfb3b8"
 					android:textSize="22sp"
 					android:textColor="#505050"/>
+
+			<View
+					android:layout_width="match_parent"
+					android:layout_height="1dp"
+					android:layout_marginTop="6dp"
+					android:layout_marginLeft="42dp"
+					android:layout_marginRight="16dp"
+					android:background="#dedede"/>
 
 			<TextView
 					android:layout_width="wrap_content"
@@ -313,21 +313,22 @@
 					android:textColor="#76b3c5"/>
 
 			<TextView
-					android:id="@+id/button_gender"
+					android:id="@+id/label_gender"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:drawableRight="@drawable/button_fix"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
 					android:textSize="22sp"
 					android:textColor="#505050"/>
 
-			<View android:layout_width="match_parent"
-				  android:layout_height="1dp"
-				  android:layout_marginLeft="42dp"
-				  android:layout_marginRight="16dp"
-				  android:background="#bfb3b8"/>
+			<View
+					android:layout_width="match_parent"
+					android:layout_height="1dp"
+					android:layout_marginTop="6dp"
+					android:layout_marginLeft="42dp"
+					android:layout_marginRight="16dp"
+					android:background="#dedede"/>
 
 			<TextView
 					android:layout_width="wrap_content"
@@ -340,40 +341,24 @@
 					android:textSize="16sp"
 					android:textColor="#76b3c5"/>
 
-			<LinearLayout
+			<TextView
+					android:id="@+id/label_birthday"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:orientation="horizontal"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
-					android:layout_marginRight="16dp">
-				<Spinner
-						android:id="@+id/spinner_year"
-						android:layout_width="0dp"
-						android:layout_height="wrap_content"
-						android:layout_weight="0.5"
-						android:textSize="16sp"/>
-				<Spinner
-						android:id="@+id/spinner_month"
-						android:layout_width="0dp"
-						android:layout_height="wrap_content"
-						android:layout_weight="0.5"
-						android:textSize="16sp"/>
-				<Spinner
-						android:id="@+id/spinner_day"
-						android:layout_width="0dp"
-						android:layout_height="wrap_content"
-						android:layout_weight="0.5"
-						android:textSize="16sp"/>
+					android:layout_marginRight="16dp"
+					android:textSize="22sp"
+					android:textColor="#505050"/>
 
-			</LinearLayout>
-
-			<View android:layout_width="match_parent"
-				  android:layout_height="1dp"
-				  android:layout_marginLeft="42dp"
-				  android:layout_marginRight="16dp"
-				  android:layout_marginBottom="50dp"
-				  android:background="#bfb3b8"/>
+			<View
+					android:layout_width="match_parent"
+					android:layout_height="1dp"
+					android:layout_marginTop="6dp"
+					android:layout_marginLeft="42dp"
+					android:layout_marginRight="16dp"
+					android:layout_marginBottom="20dp"
+					android:background="#dedede"/>
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

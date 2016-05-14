@@ -1,4 +1,4 @@
-package com.ichg.jwc.fragment;
+package com.ichg.jwc.fragment.work;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,30 +9,16 @@ import android.view.ViewGroup;
 
 import com.ichg.jwc.R;
 import com.ichg.jwc.activity.MainActivity;
+import com.ichg.jwc.fragment.FragmentBase;
 import com.ichg.jwc.manager.ToolbarManager;
 
 public class WorkListFragment extends FragmentBase {
-
 
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View contentView = inflater.inflate(R.layout.fragment_work_list, container, false);
-		initToolbar(contentView);
 		return contentView;
-	}
-
-	private void initToolbar(View contentView) {
-		Toolbar toolbar = (Toolbar) contentView.findViewById(R.id.toolbar);
-		ToolbarManager.init(toolbar)
-				.title(R.string.work_list)
-				.backNavigation(v -> onNavigationClick())
-				.menu(R.menu.main, v -> {
-
-					return false;
-				});
-
-		((MainActivity) getActivity()).bindToolbarToDrawer(toolbar);
 	}
 
 }

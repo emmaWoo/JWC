@@ -8,14 +8,10 @@ public interface RegisterPhoneListener {
 
 	void startVerifyPhone();
 
-	void onVerifyPhoneFail(int errorType, String message);
-
 	void onResendVerifyCodeSuccess();
 
 	void onRegisterLoginSuccess(int loginNavigationType);
 
 	void onRequestFail(int errorType, String message);
-
-	void onGetVerifyCodeFail(int errorType, String message);
 
 }

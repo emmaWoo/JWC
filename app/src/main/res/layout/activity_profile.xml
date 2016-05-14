@@ -3,7 +3,9 @@
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
 			  android:background="@color/background_color"
-			  android:orientation="vertical">
+			  android:orientation="vertical"
+			  android:focusable="true"
+			  android:focusableInTouchMode="true">
 
 	<include
 			android:id="@+id/toolbar"
@@ -101,7 +103,7 @@
 					android:maxLength="12"
 					android:singleLine="true"
 					android:hint="@string/mandatory"
-					android:textColorHint="@color/gray"
+					android:textColorHint="@drawable/selector_edit_text_hint_color"
 					android:textSize="22sp"
 					android:textColor="#505050"/>
 
@@ -153,7 +155,7 @@
 					android:textColor="#505050"
 					android:singleLine="true"
 					android:hint="@string/mandatory"
-					android:textColorHint="@color/gray"
+					android:textColorHint="@drawable/selector_edit_text_hint_color"
 					android:maxLength="10"/>
 
 			<TextView
@@ -201,7 +203,7 @@
 					android:textColor="#505050"
 					android:singleLine="true"
 					android:hint="@string/mandatory"
-					android:textColorHint="@color/gray"
+					android:textColorHint="@drawable/selector_edit_text_hint_color"
 					android:maxLength="100"/>
 
 			<TextView
@@ -244,7 +246,7 @@
 					android:layout_marginRight="16dp"
 					android:singleLine="true"
 					android:hint="@string/mandatory"
-					android:textColorHint="@color/gray"
+					android:textColorHint="@drawable/selector_edit_text_hint_color"
 					android:maxLength="50"
 					android:shadowColor="#bfb3b8"
 					android:textSize="22sp"

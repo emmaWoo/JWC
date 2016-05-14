@@ -9,11 +9,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
-import com.ichg.jwc.fragment.WorkListFragment;
+import com.ichg.jwc.fragment.work.WorkListFragment;
+import com.ichg.jwc.fragment.work.WorkTabFragment;
 import com.ichg.jwc.presenter.NavigationDrawerPresenter;
 import com.ichg.jwc.presenter.NavigationItemInfo;
 
@@ -66,8 +68,7 @@ public class MainActivity extends ActivityBase {
 							finish();
 						} else if (itemInfo.pageType == NavigationType.PROFILE) {
 							Bundle bundle = new Bundle();
-							bundle.putBoolean(ProfileActivity.BUNDEL_IS_VIEW_PROFILE, true);
-							Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+							Intent intent = new Intent(MainActivity.this, ProfileViewActivity.class);
 							intent.putExtras(bundle);
 							startActivity(intent);
 							//getActivityBase().overridePendingTransition(R.anim.activity_slide_in_up, android.R.anim.fade_out);
@@ -79,8 +80,7 @@ public class MainActivity extends ActivityBase {
 					@Override
 					public void onProfileClick() {
 						Bundle bundle = new Bundle();
-						bundle.putBoolean(ProfileActivity.BUNDEL_IS_VIEW_PROFILE, true);
-						Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+						Intent intent = new Intent(MainActivity.this, ProfileViewActivity.class);
 						intent.putExtras(bundle);
 						startActivity(intent);
 					}
@@ -129,13 +129,13 @@ public class MainActivity extends ActivityBase {
 		Fragment pageFragment = null;
 		switch (pageType) {
 			case NavigationType.ACCOUNT_SETTING:
-				pageFragment = new WorkListFragment();
+				pageFragment = new WorkTabFragment();
 				break;
 			case NavigationType.WORK_LIST:
-				pageFragment = new WorkListFragment();
+				pageFragment = new WorkTabFragment();
 				break;
 			case NavigationType.QUESTION:
-				pageFragment = new WorkListFragment();
+				pageFragment = new WorkTabFragment();
 				break;
 		}
 		return pageFragment;

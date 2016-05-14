@@ -1,5 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:id="@+id/registerPhone_contentLayout"
-			 xmlns:android="http://schemas.android.com/apk/res/android"
-			 android:layout_width="match_parent"
-			 android:layout_height="match_parent"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/background_color">
+
+	<include layout="@layout/layout_toolbar"/>
+
+	<EditText
+			android:id="@+id/edit_phone_number"
+			android:layout_width="match_parent"
+			android:layout_height="52dp"
+			android:background="@drawable/bg_white_round_corner"
+			android:textCursorDrawable="@null"
+			android:singleLine="true"
+			android:layout_below="@id/toolbar"
+			android:layout_gravity="center_vertical"
+			android:digits="0123456789"
+			android:focusable="true"
+			android:focusableInTouchMode="true"
+			android:inputType="phone"
+			android:layout_marginTop="18dp"
+			android:layout_marginRight="25dp"
+			android:layout_marginLeft="25dp"
+			android:paddingLeft="17dp"
+			android:paddingRight="17dp"
+			android:maxLength="10"
+			android:imeOptions="actionDone"
+			android:hint="@string/phone_number"
+			android:textColorHint="@color/gray"
+			android:textColor="@color/text_gray_deep"
+			android:textSize="18sp"/>
+
+	<Button
+			android:id="@+id/button_submit"
+			android:layout_width="wrap_content"
+			android:layout_height="52dp"
+			android:background="@drawable/bg_green_round_corner"
+			android:paddingLeft="25dp"
+			android:paddingRight="25dp"
+			android:gravity="center"
+			android:layout_below="@+id/edit_phone_number"
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="18dp"
+			android:textColor="@color/white"
+			android:textSize="22sp"
+			android:text="@string/register_phone_number"/>
+
+	<EditText
+			android:id="@+id/edit_verify_code"
+			android:layout_width="match_parent"
+			android:layout_height="52dp"
+			android:background="@drawable/bg_white_round_corner"
+			android:textCursorDrawable="@null"
+			android:singleLine="true"
+			android:layout_below="@id/button_submit"
+			android:layout_gravity="center_vertical"
+			android:digits="0123456789"
+			android:focusable="true"
+			android:focusableInTouchMode="true"
+			android:inputType="phone"
+			android:layout_marginTop="18dp"
+			android:layout_marginRight="25dp"
+			android:layout_marginLeft="25dp"
+			android:paddingLeft="17dp"
+			android:paddingRight="17dp"
+			android:maxLength="6"
+			android:imeOptions="actionDone"
+			android:hint="@string/verify_code_hint"
+			android:textColorHint="@color/gray"
+			android:textColor="@color/text_gray_deep"
+			android:textSize="18sp"
+			android:visibility="gone"/>
+
+	<Button
+			android:id="@+id/button_next"
+			android:layout_width="wrap_content"
+			android:layout_height="52dp"
+			android:background="@drawable/bg_green_round_corner"
+			android:paddingLeft="25dp"
+			android:paddingRight="25dp"
+			android:gravity="center"
+			android:layout_below="@+id/edit_verify_code"
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="18dp"
+			android:textColor="@color/white"
+			android:textSize="22sp"
+			android:text="@string/button_continue"
+			android:visibility="gone"/>
+</RelativeLayout>

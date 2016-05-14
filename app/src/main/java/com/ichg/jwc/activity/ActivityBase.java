@@ -1,10 +1,13 @@
 package com.ichg.jwc.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,6 +86,19 @@ public class ActivityBase extends AppCompatActivity {
 		sendIntent.setType("text/plain");
 		List activities = getPackageManager().queryIntentActivities(sendIntent, 0);
 		return activities != null && !activities.isEmpty();
+	}
+
+	protected final void showSoftInputFromWindow() {
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+	}
+
+	protected final void hideSoftInputFromWindow() {
+		View focusView = getWindow().getCurrentFocus();
+		if (focusView != null) {
+			InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+			inputMethodManager.hideSoftInputFromWindow(focusView.getWindowToken(), 0);
+		}
 	}
 
 //	public void sendMessageToActiveFragments(Bundle arguments) {

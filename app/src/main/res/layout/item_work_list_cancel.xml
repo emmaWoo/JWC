@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@color/background_color"
+				android:layout_marginTop="8dp"
+				android:layout_marginBottom="1dp">
+
+
+	<android.support.v7.widget.CardView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="16dp"
+			android:layout_marginRight="16dp"
+			android:background="@color/white">
+		<RelativeLayout android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+			<TextView
+					android:id="@+id/label_city"
+					android:layout_width="36dp"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="13dp"
+					android:layout_marginTop="10dp"
+					android:background="@drawable/bg_yellow_round_corner"
+					android:gravity="center"
+					android:text="台北"
+					android:textColor="@color/white"
+					android:textSize="15sp"/>
+
+			<TextView
+					android:id="@+id/label_hourly"
+					android:layout_width="36dp"
+					android:layout_height="wrap_content"
+					android:background="@drawable/bg_red_round_corner"
+					android:layout_marginLeft="14dp"
+					android:layout_toRightOf="@id/label_city"
+					android:layout_alignTop="@id/label_city"
+					android:gravity="center"
+					android:text="時薪"
+					android:textColor="@color/white"
+					android:textSize="15sp"/>
+
+			<TextView
+					android:id="@+id/label_money"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_toRightOf="@id/label_hourly"
+					android:layout_marginRight="9dp"
+					android:text="150元"
+					android:textColor="@color/red"
+					android:textSize="17sp"
+					android:layout_alignTop="@id/label_hourly"
+					android:layout_marginLeft="14dp"/>
+
+			<ImageView android:layout_width="wrap_content"
+					   android:layout_height="wrap_content"
+					   android:layout_alignParentRight="true"
+					   android:layout_alignParentTop="true"
+					   android:src="@drawable/ic_cancel"/>
+
+			<TextView
+					android:id="@+id/label_title"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="短期工讀生"
+					android:textColor="#404141"
+					android:textSize="18sp"
+					android:layout_below="@id/label_city"
+					android:layout_marginTop="10dp"
+					android:layout_marginLeft="16dp"/>
+
+			<TextView
+					android:id="@+id/label_status"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="您已取消此工作"
+					android:textColor="#bbbbbb"
+					android:textSize="15sp"
+					android:layout_below="@id/label_title"
+					android:layout_alignParentRight="true"
+					android:layout_marginTop="10dp"
+					android:layout_marginRight="11dp"
+					android:paddingBottom="6dp"/>
+
+
+			<TextView
+					android:id="@+id/label_date"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="105/12/12上工"
+					android:textColor="#929292"
+					android:textSize="12sp"
+					android:layout_below="@id/label_title"
+					android:layout_toLeftOf="@id/label_time"
+					android:layout_marginTop="10dp"
+					android:layout_marginLeft="16dp"/>
+		</RelativeLayout>
+	</android.support.v7.widget.CardView>
+</RelativeLayout>

@@ -1,7 +1,8 @@
 package com.ichg.service.object;
 
+import java.io.Serializable;
 
-public class UserInfo {
+public class UserInfo implements Serializable{
 
 	public String userName;
 	public boolean isNationalsId;

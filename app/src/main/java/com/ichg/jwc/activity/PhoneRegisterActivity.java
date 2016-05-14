@@ -1,29 +1,28 @@
-package com.ichg.jwc.fragment.login;
+package com.ichg.jwc.activity;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
-import com.ichg.jwc.activity.VerifyPhoneActivity;
-import com.ichg.jwc.fragment.FragmentBase;
 import com.ichg.jwc.listener.DialogListener;
+import com.ichg.jwc.listener.RegisterPhoneListener;
 import com.ichg.jwc.manager.ToolbarManager;
-import com.ichg.jwc.presenter.VerifyPhonePresenter;
+import com.ichg.jwc.presenter.RegisterPhonePresenter;
 import com.ichg.jwc.utils.DialogManager;
+import com.ichg.jwc.utils.LoginHandler;
 
-public class PhoneRegisterFragment extends FragmentBase {
+public class PhoneRegisterActivity extends ActivityBase implements RegisterPhoneListener {
 
-	private VerifyPhonePresenter mPresenter;
+	private RegisterPhonePresenter mPresenter;
 
 	private EditText phoneNumberEditText;
 	private EditText verifyCodeEditText;
@@ -32,19 +31,13 @@ public class PhoneRegisterFragment extends FragmentBase {
 	private CountDownTimer countDownTimer;
 
 	@Override
-	public void onAttach(Context context) {
-		super.onAttach(context);
-		mPresenter = ((VerifyPhoneActivity) context).getPresenter();
-	}
-
-	@Nullable
-	@Override
-	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View contentView = inflater.inflate(R.layout.fragment_register_phone, container, false);
-		initToolbar(contentView);
-		initEditText(contentView);
-		initButton(contentView);
-		return contentView;
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_register_phone);
+		initToolbar();
+		initPresenter();
+		initEditText();
+		initButton();
 	}
 
 	@Override
@@ -53,14 +46,20 @@ public class PhoneRegisterFragment extends FragmentBase {
 		showKeyboard(phoneNumberEditText);
 	}
 
-	private void initToolbar(View contentView) {
-		ToolbarManager.init((Toolbar) contentView.findViewById(R.id.toolbar))
+	private void initToolbar() {
+		ToolbarManager.init((Toolbar) findViewById(R.id.toolbar))
 				.title(R.string.account_register)
-				.backNavigation(v -> onNavigationClick());
+				.backNavigation(v -> onBackPressed());
 	}
 
-	private void initEditText(View contentView) {
-		phoneNumberEditText = (EditText) contentView.findViewById(R.id.edit_phone_number);
+	private void initPresenter() {
+		if (mPresenter == null) {
+			mPresenter = new RegisterPhonePresenter(JoinWorkerApp.apiFacade, JoinWorkerApp.accountManager, this);
+		}
+	}
+
+	private void initEditText() {
+		phoneNumberEditText = (EditText) findViewById(R.id.edit_phone_number);
 		phoneNumberEditText.setOnEditorActionListener((v, actionId, event) -> {
 			if (actionId == EditorInfo.IME_ACTION_DONE) {
 				startVerifyPhoneFlow();
@@ -68,7 +67,7 @@ public class PhoneRegisterFragment extends FragmentBase {
 			}
 			return false;
 		});
-		verifyCodeEditText = (EditText) contentView.findViewById(R.id.edit_verify_code);
+		verifyCodeEditText = (EditText) findViewById(R.id.edit_verify_code);
 		verifyCodeEditText.setOnEditorActionListener((v, actionId, event) -> {
 			if (actionId == EditorInfo.IME_ACTION_DONE) {
 				startVerifyCode();
@@ -83,24 +82,24 @@ public class PhoneRegisterFragment extends FragmentBase {
 		showSoftInputFromWindow();
 	}
 
-	private void initButton(View contentView) {
-		buttonSubmit = (Button) contentView.findViewById(R.id.button_submit);
+	private void initButton() {
+		buttonSubmit = (Button) findViewById(R.id.button_submit);
 		buttonSubmit.setOnClickListener(v -> startVerifyPhoneFlow());
-		buttonNext = contentView.findViewById(R.id.button_next);
+		buttonNext = findViewById(R.id.button_next);
 		buttonNext.setOnClickListener(v -> startVerifyCode());
 	}
 
 	private void startVerifyPhoneFlow() {
 		String phoneNumber =phoneNumberEditText.getText().toString();
 		if (TextUtils.isEmpty(phoneNumber)) {
-			phoneNumberEditText.setError(getActivityBase().getString(R.string.phone_number_hint));
+			phoneNumberEditText.setError(this.getString(R.string.phone_number_hint));
 			return;
 		}
 		if (phoneNumber.length() < 10 || !phoneNumber.startsWith("09")) {
-			phoneNumberEditText.setError(getActivityBase().getString(R.string.phone_number_size_hint));
+			phoneNumberEditText.setError(this.getString(R.string.phone_number_size_hint));
 			return;
 		}
-		DialogManager.with(getActivityBase()).setListener(new DialogListener() {
+		DialogManager.with(this).setListener(new DialogListener() {
 			@Override
 			public void onCancel() {
 				mPresenter.cancel();
@@ -114,12 +113,12 @@ public class PhoneRegisterFragment extends FragmentBase {
 	}
 
 	public void requestVerifyCode() {
-		DialogManager.with(getActivityBase()).dismissDialog();
-		DialogManager.with(getActivityBase()).setMessage(R.string.send_verify_code).setListener(new DialogListener() {
+		DialogManager.with(this).dismissDialog();
+		DialogManager.with(this).setMessage(R.string.send_verify_code).setListener(new DialogListener() {
 			@Override
 			public void onPositive() {
 				super.onPositive();
-				DialogManager.with(getActivityBase()).setListener(new DialogListener() {
+				DialogManager.with(PhoneRegisterActivity.this).setListener(new DialogListener() {
 					@Override
 					public void onCancel() {
 						mPresenter.cancel();
@@ -131,6 +130,7 @@ public class PhoneRegisterFragment extends FragmentBase {
 	}
 
 	public void showVerifyCode() {
+		DialogManager.with(this).dismissDialog();
 		verifyCodeEditText.setVisibility(View.VISIBLE);
 		buttonNext.setVisibility(View.VISIBLE);
 		resendTimer();
@@ -159,7 +159,7 @@ public class PhoneRegisterFragment extends FragmentBase {
 	private void startVerifyCode(){
 		final String verifyCode = verifyCodeEditText.getText().toString().trim();
 		if (TextUtils.isEmpty(verifyCode)) {
-			verifyCodeEditText.setError(getActivity().getString(R.string.verify_code_hint));
+			verifyCodeEditText.setError(this.getString(R.string.verify_code_hint));
 			verifyCodeEditText.requestFocus();
 			return;
 		}
@@ -167,7 +167,7 @@ public class PhoneRegisterFragment extends FragmentBase {
 	}
 
 	private void startVerifyCodeRequest(String verifyCode){
-		DialogManager.with(getActivityBase()).setListener(new DialogListener() {
+		DialogManager.with(this).setListener(new DialogListener() {
 			@Override
 			public void onCancel() {
 				mPresenter.cancel();
@@ -187,5 +187,41 @@ public class PhoneRegisterFragment extends FragmentBase {
 		if (countDownTimer != null) {
 			countDownTimer.cancel();
 		}
+	}
+
+	@Override
+	public void onPhoneDuplicate() {
+		DialogManager.with(this).dismissDialog();
+		DialogManager.with(this).setMessage(R.string.duplicate_phone).showAlertDialog();
+	}
+
+	@Override
+	public void onPhoneNoUsed() {
+		requestVerifyCode();
+	}
+
+	@Override
+	public void startVerifyPhone() {
+		showVerifyCode();
+	}
+
+	@Override
+	public void onResendVerifyCodeSuccess() {
+		DialogManager.with(this).dismissDialog();
+		Toast.makeText(this, R.string.resend_verify_code, Toast.LENGTH_SHORT).show();
+		showVerifyCode();
+	}
+
+	@Override
+	public void onRegisterLoginSuccess(int loginNavigationType) {
+		DialogManager.with(this).dismissDialog();
+		startActivity(new Intent(this, RegisterPasswordActivity.class));
+		//		LoginHandler.navigateLoginFlowActivity(this, presenter.checkPageNavigation());
+	}
+
+	@Override
+	public void onRequestFail(int errorType, String message) {
+		DialogManager.with(this).dismissDialog();
+		DialogManager.with(this).showAPIErrorDialog(errorType, message);
 	}
 }

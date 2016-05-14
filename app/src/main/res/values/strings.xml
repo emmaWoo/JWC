@@ -62,6 +62,7 @@
 	<string name="uid_hint">請輸入帳號</string>
 	<string name="password_hint">請輸入密碼</string>
 	<string name="confirm_password_error">密碼輸入不一致</string>
+	<string name="duplicate_phone">電話號碼重覆註冊，如有問題請聯絡客服電話「09xxxxxxxx」</string>
 
 	<!-- forget password -->
 	<string name="id_hint">輸入身份證字號</string>
@@ -85,6 +86,7 @@
 	<string name="birthday">生日</string>
 	<string name="save">儲存</string>
 	<string name="skip">略過</string>
+	<string name="finish">完成</string>
 	<string name="modify">修改</string>
 	<string name="male">男</string>
 	<string name="female">女</string>
@@ -105,14 +107,16 @@
 	<string name="mandatory">必填</string>
 
 	<!-- work list -->
+	<string name="my_work_list">我的工作</string>
+	<string name="all_work_list">所有工作</string>
+	<string name="booking_work_list">我有空</string>
+	<string name="following_work_list">追蹤中</string>
 	<string name="work_list">工作列表</string>
 	<string name="search_hint">搜尋工作</string>
 	<string name="work_list_hour">過去24小時</string>
 	<string name="work_list_city">台北市</string>
-	<string name="my_work_list">我的工作</string>
-	<string name="free">我有空</string>
-	<string name="follow_list">追蹤中</string>
 	<string name="advanced_search">進階搜尋</string>
 
-
+	<!-- profile -->
+	<string name="profile_title">基本資料</string>
 </resources>

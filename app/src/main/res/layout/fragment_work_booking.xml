@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/background_color">
+
+
+	<!--<android.support.v7.widget.RecyclerView-->
+	<!--android:layout_width="match_parent"-->
+	<!--android:layout_height="match_parent"-->
+	<!--android:layout_below="@id/layout_button"-->
+	<!--android:layout_above="@+id/group_tab"/>-->
+
+	<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+		<LinearLayout android:layout_width="match_parent"
+					  android:layout_height="match_parent"
+					  android:orientation="vertical">
+
+
+			<RelativeLayout
+					android:id="@+id/layout_tmp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+				<include layout="@layout/item_work_list_waiting"/>
+			</RelativeLayout>
+
+			<RelativeLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+				<include layout="@layout/item_work_list_waiting"/>
+			</RelativeLayout>
+
+			<RelativeLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+				<include layout="@layout/item_work_list_reply"/>
+			</RelativeLayout>
+
+			<RelativeLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+				<include layout="@layout/item_work_list_waiting"/>
+			</RelativeLayout>
+
+			<RelativeLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+				<include layout="@layout/item_work_list_waiting"/>
+			</RelativeLayout>
+
+			<RelativeLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+				<include layout="@layout/item_work_list_reply"/>
+			</RelativeLayout>
+
+			<RelativeLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+				<include layout="@layout/item_work_list_reply"/>
+			</RelativeLayout>
+
+			<RelativeLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+				<include layout="@layout/item_work_list_reply"/>
+			</RelativeLayout>
+		</LinearLayout>
+	</ScrollView>
+
+</RelativeLayout>

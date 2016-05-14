@@ -31,10 +31,11 @@
 					android:layout_marginTop="18dp"
 					android:layout_marginLeft="25dp"
 					android:layout_marginRight="25dp"
-					android:background="@color/white"
+					android:background="@drawable/bg_white_round_corner"
 					android:gravity="center_vertical"
 					android:layout_gravity="center"
 					android:hint="@string/new_password_hint"
+					android:textColorHint="@color/gray"
 					android:textColor="@color/text_gray_deep"
 					android:textSize="18sp"/>
 
@@ -44,13 +45,13 @@
 					android:layout_height="52dp"
 					android:textCursorDrawable="@null"
 					android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-					android:maxLength="80"
+					android:maxLength="12"
 					android:layout_below="@+id/edit_password"
 					android:freezesText="true"
 					android:singleLine="true"
 					android:inputType="textPassword"
 					android:imeOptions="actionDone"
-					android:background="@color/white"
+					android:background="@drawable/bg_white_round_corner"
 					android:paddingRight="17dp"
 					android:paddingLeft="17dp"
 					android:layout_marginTop="18dp"
@@ -59,6 +60,7 @@
 					android:gravity="center_vertical"
 					android:layout_gravity="center"
 					android:hint="@string/hint_enter_checking_password"
+					android:textColorHint="@color/gray"
 					android:textColor="@color/text_gray_deep"
 					android:textSize="18sp"/>
 

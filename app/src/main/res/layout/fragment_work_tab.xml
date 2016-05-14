@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/background_color">
+
+	<include layout="@layout/layout_toolbar_orange"/>
+
+	<FrameLayout
+			android:id="@+id/sub_fragment"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@id/toolbar"
+			android:layout_above="@+id/group_tab"/>
+
+	<RadioGroup
+			android:id="@+id/group_tab"
+			android:layout_width="match_parent"
+			android:layout_height="58dp"
+			android:layout_alignParentBottom="true"
+			android:paddingLeft="16dp"
+			android:paddingRight="16dp"
+			android:background="#ffbb28"
+			android:orientation="horizontal">
+
+		<RadioButton
+				android:id="@+id/radio_all_work"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="0.3"
+				android:button="@null"
+				android:drawableTop="@drawable/ic_mylist"
+				android:drawablePadding="7dp"
+				android:paddingTop="9dp"
+				android:text="@string/all_work_list"
+				android:textSize="13sp"
+				android:textColor="@color/white"
+				android:gravity="center_horizontal"/>
+
+		<RadioButton
+				android:id="@+id/radio_my_work"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="0.3"
+				android:button="@null"
+				android:drawableTop="@drawable/ic_mylist"
+				android:drawablePadding="7dp"
+				android:paddingTop="9dp"
+				android:text="@string/my_work_list"
+				android:textSize="13sp"
+				android:textColor="@color/white"
+				android:gravity="center_horizontal"/>
+
+		<RadioButton
+				android:id="@+id/radio_booking_work"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="0.3"
+				android:button="@null"
+				android:drawableTop="@drawable/ic_mydo"
+				android:drawablePadding="7dp"
+				android:paddingTop="9dp"
+				android:text="@string/booking_work_list"
+				android:textSize="13sp"
+				android:textColor="@color/white"
+				android:gravity="center_horizontal"/>
+
+		<RadioButton
+				android:id="@+id/radio_following_work"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="0.3"
+				android:button="@null"
+				android:drawableTop="@drawable/ic_myfollow"
+				android:drawablePadding="7dp"
+				android:paddingTop="9dp"
+				android:text="@string/following_work_list"
+				android:textSize="13sp"
+				android:textColor="@color/white"
+				android:gravity="center_horizontal"/>
+
+	</RadioGroup>
+
+</RelativeLayout>

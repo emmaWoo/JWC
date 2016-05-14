@@ -3,6 +3,7 @@ package com.ichg.service.framework;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.util.ArrayMap;
+import android.text.TextUtils;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -145,7 +146,9 @@ public class VolleyRequestExecutor implements RequestExecutor {
 		api.getParameter(paramsMap);
 		try {
 			for (String key : paramsMap.keySet()) {
-				url += key + "=" + URLEncoder.encode(paramsMap.get(key), "UTF-8") + "&";
+				if(!TextUtils.isEmpty(key)) {
+					url += key + "=" + URLEncoder.encode(paramsMap.get(key), "UTF-8") + "&";
+				}
 			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
