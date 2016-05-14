@@ -54,6 +54,7 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
 	private static final int REQUEST_UPDATE_PHOTO_GALLERY = 88;
 	private static final int REQUEST_UPDATE_PHOTO_CAMERA = 99;
 
+	private UserInfo userInfo;
 	private ProfilePresenter presenter;
 	private EditText editTextName;
 	private RadioButton buttonNationalsId;
@@ -106,7 +107,7 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
 
 	private void clickMenuListener(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.save:
+			case R.id.finish:
 				checkDate();
 				break;
 			case R.id.skip:
