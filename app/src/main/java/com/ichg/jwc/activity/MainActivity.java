@@ -9,12 +9,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
-import com.ichg.jwc.fragment.work.WorkListFragment;
 import com.ichg.jwc.fragment.work.WorkTabFragment;
 import com.ichg.jwc.presenter.NavigationDrawerPresenter;
 import com.ichg.jwc.presenter.NavigationItemInfo;
@@ -31,11 +29,11 @@ public class MainActivity extends ActivityBase {
 	private static final int DURING_LEAVE_WAIT = 2000;
 
 	public static final class NavigationType {
-		public static final int ACCOUNT_SETTING = 1;
-		public static final int WORK_LIST = 2;
-		public static final int PROFILE = 3;
+		public static final int WORK_LIST = 1;
+		public static final int WORK_HISTORY = 2;
+		public static final int SETTING = 3;
 		public static final int QUESTION = 4;
-		public static final int LOGOUT = 5;
+		public static final int ABOUT = 5;
 	}
 
 	private SparseArray<Fragment> fragmentMap;
@@ -60,21 +58,7 @@ public class MainActivity extends ActivityBase {
 
 					@Override
 					public void onNavigationItemSelected(NavigationItemInfo itemInfo) {
-						if (itemInfo.pageType == NavigationType.LOGOUT) {
-							JoinWorkerApp.logout();
-							Intent intent = new Intent(MainActivity.this, AccountLoginActivity.class);
-							startActivity(intent);
-							//getActivityBase().overridePendingTransition(R.anim.activity_slide_in_up, android.R.anim.fade_out);
-							finish();
-						} else if (itemInfo.pageType == NavigationType.PROFILE) {
-							Bundle bundle = new Bundle();
-							Intent intent = new Intent(MainActivity.this, ProfileViewActivity.class);
-							intent.putExtras(bundle);
-							startActivity(intent);
-							//getActivityBase().overridePendingTransition(R.anim.activity_slide_in_up, android.R.anim.fade_out);
-						} else {
-							onNavigationDrawerItemSelected(itemInfo);
-						}
+						onNavigationDrawerItemSelected(itemInfo);
 					}
 
 					@Override
@@ -93,11 +77,11 @@ public class MainActivity extends ActivityBase {
 
 	private List<NavigationItemInfo> initDrawerItemInfoList() {
 		List<NavigationItemInfo> drawerItemList = new ArrayList<>();
-		drawerItemList.add(createNavigationItemInfo(R.string.account_setting, R.drawable.icon_set, NavigationType.ACCOUNT_SETTING));
-		drawerItemList.add(createNavigationItemInfo(R.string.work_list, R.drawable.icon_notice, NavigationType.WORK_LIST));
-		drawerItemList.add(createNavigationItemInfo(R.string.profile, R.drawable.icon_profile, NavigationType.PROFILE));
-		drawerItemList.add(createNavigationItemInfo(R.string.question, R.drawable.icon_qa, NavigationType.QUESTION));
-		drawerItemList.add(createNavigationItemInfo(R.string.logout, R.drawable.icon_signout, NavigationType.LOGOUT));
+		drawerItemList.add(createNavigationItemInfo(R.string.drawer_work_list, R.drawable.icon_joblist, NavigationType.WORK_LIST));
+		drawerItemList.add(createNavigationItemInfo(R.string.drawer_work_history, R.drawable.icon_track, NavigationType.WORK_HISTORY));
+		drawerItemList.add(createNavigationItemInfo(R.string.drawer_setting, R.drawable.icon_proset, NavigationType.SETTING));
+		drawerItemList.add(createNavigationItemInfo(R.string.drawer_question, R.drawable.icon_question, NavigationType.QUESTION));
+		drawerItemList.add(createNavigationItemInfo(R.string.drawer_about, R.drawable.icon_about, NavigationType.ABOUT));
 		return drawerItemList;
 	}
 
@@ -128,10 +112,10 @@ public class MainActivity extends ActivityBase {
 	private Fragment createPageFragment(int pageType) {
 		Fragment pageFragment = null;
 		switch (pageType) {
-			case NavigationType.ACCOUNT_SETTING:
+			case NavigationType.WORK_LIST:
 				pageFragment = new WorkTabFragment();
 				break;
-			case NavigationType.WORK_LIST:
+			case NavigationType.WORK_HISTORY:
 				pageFragment = new WorkTabFragment();
 				break;
 			case NavigationType.QUESTION:

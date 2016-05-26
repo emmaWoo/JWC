@@ -10,6 +10,8 @@
 	<color name="edit_line_color">#f0eff0</color>
 	<color name="work_list_button_filter">#fbde98</color>
 
+	<color name="tab_normal">#fcbb2a</color>
+	<color name="tab_pass">#b6841e</color>
 
 	<color name="orange">#feba27</color>
 	<color name="white">#FFFFFF</color>

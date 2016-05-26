@@ -13,10 +13,11 @@
 	<string name="exit_toast_message">再次點擊退出享工作</string>
 
 	<!-- drawer -->
-	<string name="account_setting">帳號設定</string>
-	<string name="profile">基本資料</string>
-	<string name="question">常見問題</string>
-	<string name="logout">登出</string>
+	<string name="drawer_work_list">工作列表</string>
+	<string name="drawer_work_history">歷史工作</string>
+	<string name="drawer_setting">設定</string>
+	<string name="drawer_question">常見問題</string>
+	<string name="drawer_about">關於享工作</string>
 
 	<!-- dialog button -->
 	<string name="confirm">確定</string>
@@ -116,6 +117,19 @@
 	<string name="work_list_hour">過去24小時</string>
 	<string name="work_list_city">台北市</string>
 	<string name="advanced_search">進階搜尋</string>
+
+	<!-- work detail -->
+	<string name="work_title">工作內容</string>
+	<string name="work_time">工作時間</string>
+	<string name="work_place">工作地點</string>
+	<string name="work_context">工作內容</string>
+	<string name="work_need_number">需求人數</string>
+	<string name="work_have_meals">有無供餐</string>
+	<string name="work_payroll_day">薪資發放日</string>
+	<string name="work_company_name">公司名稱</string>
+	<string name="work_contact_person">聯絡人</string>
+	<string name="work_contact_person_phone">聯絡電話</string>
+
 
 	<!-- profile -->
 	<string name="profile_title">基本資料</string>

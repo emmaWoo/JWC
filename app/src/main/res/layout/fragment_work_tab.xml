@@ -18,9 +18,6 @@
 			android:layout_width="match_parent"
 			android:layout_height="58dp"
 			android:layout_alignParentBottom="true"
-			android:paddingLeft="16dp"
-			android:paddingRight="16dp"
-			android:background="#ffbb28"
 			android:orientation="horizontal">
 
 		<RadioButton
@@ -29,7 +26,8 @@
 				android:layout_height="match_parent"
 				android:layout_weight="0.3"
 				android:button="@null"
-				android:drawableTop="@drawable/ic_mylist"
+				android:background="@drawable/selector_tab_work_list"
+				android:drawableTop="@drawable/icon_posted"
 				android:drawablePadding="7dp"
 				android:paddingTop="9dp"
 				android:text="@string/all_work_list"
@@ -43,6 +41,7 @@
 				android:layout_height="match_parent"
 				android:layout_weight="0.3"
 				android:button="@null"
+				android:background="@drawable/selector_tab_work_list"
 				android:drawableTop="@drawable/ic_mylist"
 				android:drawablePadding="7dp"
 				android:paddingTop="9dp"
@@ -57,6 +56,7 @@
 				android:layout_height="match_parent"
 				android:layout_weight="0.3"
 				android:button="@null"
+				android:background="@drawable/selector_tab_work_list"
 				android:drawableTop="@drawable/ic_mydo"
 				android:drawablePadding="7dp"
 				android:paddingTop="9dp"
@@ -71,6 +71,7 @@
 				android:layout_height="match_parent"
 				android:layout_weight="0.3"
 				android:button="@null"
+				android:background="@drawable/selector_tab_work_list"
 				android:drawableTop="@drawable/ic_myfollow"
 				android:drawablePadding="7dp"
 				android:paddingTop="9dp"

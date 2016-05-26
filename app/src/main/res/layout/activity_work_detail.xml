@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:background="@color/background_color"
+			  android:orientation="vertical">
+
+	<include
+			android:id="@+id/toolbar"
+			layout="@layout/layout_toolbar_orange"/>
+
+	<ImageView
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="@color/white"/>
+
+	<TextView
+			android:id="@+id/label_work_title"
+			android:layout_width="match_parent"
+			android:layout_height="34dp"
+			android:singleLine="true"
+			android:text="短期行政工讀"
+			android:gravity="center"
+			android:background="#9e5f4d"
+			android:textSize="23sp"
+			android:textColor="@color/white"/>
+
+
+	<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_circle"
+					android:drawablePadding="11dp"
+					android:text="@string/work_time"
+					android:textSize="18sp"
+					android:textColor="#7b7b7b"/>
+
+			<TextView
+					android:id="@+id/label_work_time"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="8dp"
+					android:layout_marginRight="16dp"
+					android:singleLine="true"
+					android:text="2015/12/12 08:00 ~ 18:00"
+					android:textSize="18sp"
+					android:textColor="#505050"/>
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_circle"
+					android:drawablePadding="11dp"
+					android:text="@string/work_place"
+					android:textSize="18sp"
+					android:textColor="#7b7b7b"/>
+
+			<TextView
+					android:id="@+id/label_work_place"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="8dp"
+					android:layout_marginRight="16dp"
+					android:singleLine="true"
+					android:text="台北市中和區"
+					android:textSize="18sp"
+					android:textColor="#505050"/>
+
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_circle"
+					android:drawablePadding="11dp"
+					android:text="@string/work_context"
+					android:textSize="18sp"
+					android:textColor="#7b7b7b"/>
+
+			<TextView
+					android:id="@+id/label_work_context"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="8dp"
+					android:layout_marginRight="16dp"
+					android:singleLine="true"
+					android:text="環境維護"
+					android:textSize="18sp"
+					android:textColor="#505050"/>
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_circle"
+					android:drawablePadding="11dp"
+					android:text="@string/work_need_number"
+					android:textSize="18sp"
+					android:textColor="#7b7b7b"/>
+
+			<TextView
+					android:id="@+id/label_work_need_number"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="8dp"
+					android:layout_marginRight="16dp"
+					android:singleLine="true"
+					android:text="2人"
+					android:textSize="18sp"
+					android:textColor="#505050"/>
+
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_circle"
+					android:drawablePadding="11dp"
+					android:text="@string/work_have_meals"
+					android:textSize="18sp"
+					android:textColor="#7b7b7b"/>
+
+			<TextView
+					android:id="@+id/label_work_have_meals"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="8dp"
+					android:layout_marginRight="16dp"
+					android:singleLine="true"
+					android:text="有/中餐"
+					android:textSize="18sp"
+					android:textColor="#505050"/>
+
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_circle"
+					android:drawablePadding="11dp"
+					android:text="@string/work_payroll_day"
+					android:textSize="18sp"
+					android:textColor="#7b7b7b"/>
+
+			<TextView
+					android:id="@+id/label_work_payroll_day"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="8dp"
+					android:layout_marginRight="16dp"
+					android:singleLine="true"
+					android:text="每月5日"
+					android:textSize="18sp"
+					android:textColor="#505050"/>
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_circle"
+					android:drawablePadding="11dp"
+					android:text="@string/work_company_name"
+					android:textSize="18sp"
+					android:textColor="#7b7b7b"/>
+
+			<TextView
+					android:id="@+id/label_work_company_name"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="9dp"
+					android:layout_marginRight="16dp"
+					android:singleLine="true"
+					android:maxLength="16"
+					android:shadowColor="#bfb3b8"
+					android:text="承新國際管理顧問有限公司"
+					android:textSize="18sp"
+					android:textColor="#505050"/>
+
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_circle"
+					android:drawablePadding="11dp"
+					android:text="@string/work_contact_person"
+					android:textSize="18sp"
+					android:textColor="#7b7b7b"/>
+
+			<TextView
+					android:id="@+id/label_work_contact_person"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="8dp"
+					android:layout_marginRight="16dp"
+					android:singleLine="true"
+					android:text="李先生"
+					android:textSize="18sp"
+					android:textColor="#505050"/>
+
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="18dp"
+					android:layout_marginTop="22dp"
+					android:drawableLeft="@drawable/icon_circle"
+					android:drawablePadding="11dp"
+					android:text="@string/work_contact_person_phone"
+					android:textSize="18sp"
+					android:textColor="#7b7b7b"/>
+
+			<TextView
+					android:id="@+id/label_work_contact_person_phone"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="42dp"
+					android:layout_marginTop="8dp"
+					android:layout_marginRight="16dp"
+					android:layout_marginBottom="20dp"
+					android:singleLine="true"
+					android:text="02XXXXXXX"
+					android:textSize="18sp"
+					android:textColor="#505050"/>
+
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>
