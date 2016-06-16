@@ -1,7 +1,9 @@
 package com.ichg.jwc.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -77,6 +79,14 @@ public class AccountLoginActivity extends ActivityBase implements PresenterListe
 		findViewById(R.id.login_forget_password).setOnClickListener(v -> {
 			startActivity(new Intent(getBaseContext(), ForgetPasswordActivity.class));
 		});
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+		}
 	}
 
 	@Override

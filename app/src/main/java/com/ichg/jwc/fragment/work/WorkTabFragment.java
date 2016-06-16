@@ -28,8 +28,7 @@ public class WorkTabFragment extends FragmentBase {
 
 	private void initToolbar(View contentView) {
 		Toolbar toolbar = (Toolbar) contentView.findViewById(R.id.toolbar);
-		toolbarManager = ToolbarManager.init(toolbar)
-				.menu(R.menu.main, v -> false);
+		toolbarManager = ToolbarManager.init(toolbar);
 
 		((MainActivity) getActivity()).bindToolbarToDrawer(toolbar);
 	}

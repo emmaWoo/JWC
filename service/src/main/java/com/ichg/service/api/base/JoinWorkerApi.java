@@ -18,6 +18,7 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 
 	private static ApiFacade mApiFacade;
 
+	public static int LIMIT_COUNT = 25;
 	public static final int MAX_COUNT_PER_REQUEST = 25;
 	public static final int TIMEOUT = 30000;
 	public static final int RETRY_COUNT = 2;

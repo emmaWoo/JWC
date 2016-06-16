@@ -19,7 +19,7 @@
 
 			<TextView
 					android:id="@+id/label_city"
-					android:layout_width="36dp"
+					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_marginLeft="13dp"
 					android:layout_marginTop="10dp"
@@ -30,7 +30,7 @@
 					android:textSize="15sp"/>
 
 			<TextView
-					android:id="@+id/label_hourly"
+					android:id="@+id/label_pay"
 					android:layout_width="36dp"
 					android:layout_height="wrap_content"
 					android:background="@drawable/bg_red_round_corner"
@@ -38,7 +38,6 @@
 					android:layout_toRightOf="@id/label_city"
 					android:layout_alignTop="@id/label_city"
 					android:gravity="center"
-					android:text="時薪"
 					android:textColor="@color/white"
 					android:textSize="15sp"/>
 
@@ -47,19 +46,17 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:drawableRight="@drawable/button_fa_off"
-					android:layout_toRightOf="@id/label_hourly"
+					android:layout_toRightOf="@id/label_pay"
 					android:layout_marginRight="9dp"
-					android:text="150元"
 					android:textColor="@color/red"
 					android:textSize="17sp"
-					android:layout_alignTop="@id/label_hourly"
+					android:layout_alignTop="@id/label_pay"
 					android:layout_marginLeft="14dp"/>
 
 			<TextView
 					android:id="@+id/label_title"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:text="短期工讀生"
 					android:textColor="#404141"
 					android:textSize="18sp"
 					android:layout_below="@id/label_city"
@@ -70,7 +67,6 @@
 					android:id="@+id/label_time"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="45分鐘前"
 					android:drawableLeft="@drawable/ic_time"
 					android:drawablePadding="5dp"
 					android:textColor="#a1a1a1"
@@ -86,7 +82,6 @@
 					android:id="@+id/label_date"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:text="105/12/12上工"
 					android:textColor="#929292"
 					android:textSize="12sp"
 					android:layout_below="@id/label_title"

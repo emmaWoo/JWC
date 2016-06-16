@@ -84,6 +84,13 @@
 				android:windowSoftInputMode="adjustResize"/>
 
 		<activity
+			android:name=".activity.setting.SettingActivity"
+			android:exported="false"
+			android:saveEnabled="false"
+			android:screenOrientation="portrait"
+			android:windowSoftInputMode="adjustResize"/>
+
+		<activity
 				android:name=".utils.crop.CropImageActivity"
 				android:exported="false"
 				android:saveEnabled="false"

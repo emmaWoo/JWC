@@ -1,10 +1,12 @@
 package com.ichg.jwc.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
+import com.ichg.jwc.activity.setting.SettingActivity;
 import com.ichg.jwc.fragment.work.WorkTabFragment;
 import com.ichg.jwc.presenter.NavigationDrawerPresenter;
 import com.ichg.jwc.presenter.NavigationItemInfo;
@@ -58,15 +61,16 @@ public class MainActivity extends ActivityBase {
 
 					@Override
 					public void onNavigationItemSelected(NavigationItemInfo itemInfo) {
-						onNavigationDrawerItemSelected(itemInfo);
+						if(itemInfo.pageType == NavigationType.SETTING) {
+							startSetting();
+						} else {
+							onNavigationDrawerItemSelected(itemInfo);
+						}
 					}
 
 					@Override
 					public void onProfileClick() {
-						Bundle bundle = new Bundle();
-						Intent intent = new Intent(MainActivity.this, ProfileViewActivity.class);
-						intent.putExtras(bundle);
-						startActivity(intent);
+						startActivity(new Intent(MainActivity.this, ProfileViewActivity.class));
 					}
 				}
 		);
@@ -91,6 +95,9 @@ public class MainActivity extends ActivityBase {
 		return itemInfo;
 	}
 
+	private void startSetting() {
+		startActivity(new Intent(MainActivity.this, SettingActivity.class));
+	}
 
 	private void onNavigationDrawerItemSelected(NavigationItemInfo itemInfo) {
 		//FragmentBase.setAnimation(FragmentBase.AnimationType.FAST_FADE_OUT);
@@ -142,6 +149,9 @@ public class MainActivity extends ActivityBase {
 
 	@Override
 	protected void onResume() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.title_background_orange));
+		}
 		super.onResume();
  		boolean isLogin = JoinWorkerApp.accountManager.isSignIn();
 		boolean isLoginFlowSuccess = JoinWorkerApp.accountManager.isSignInFlowSuccess();
