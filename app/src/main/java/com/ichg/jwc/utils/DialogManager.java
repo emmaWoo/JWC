@@ -5,6 +5,7 @@ import android.content.DialogInterface.OnKeyListener;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 
@@ -139,9 +140,12 @@ public class DialogManager {
 	}
 
 	public void showAPIErrorDialog(int errorCode, String errorMessage) {
-		setMessage(errorMessage).showAlertDialog();
+		if (TextUtils.isEmpty(errorMessage)) {
+			setMessage(R.string.server_error).showAlertDialog();
+		} else {
+			setMessage(errorMessage).showAlertDialog();
+		}
 	}
-
 	public void dismissDialog() {
 		Fragment attachedFragment = activity.getSupportFragmentManager().findFragmentByTag("dialog");
 		if (attachedFragment != null && attachedFragment instanceof android.support.v4.app.DialogFragment && !activity.isFinishing()) {

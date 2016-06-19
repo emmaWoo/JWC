@@ -7,6 +7,11 @@ import java.util.Locale;
 
 public class WorkListInfo implements Serializable{
 
+	public static String CREATE_WORK = "P";
+	public static String RESPONSE_WORK = "A";
+	public static String DETERMINE_WORK = "I";
+	public static String DONE_WORK = "W";
+
 	public String id;
 	public String title;
 	public String city;
@@ -17,6 +22,7 @@ public class WorkListInfo implements Serializable{
 	public String payType; // H|D
 	public long createTime;
 	public String follow; // Y\N
+	public String status;
 
 	public boolean isDailyWage() {
 		return "D".equals(payType);

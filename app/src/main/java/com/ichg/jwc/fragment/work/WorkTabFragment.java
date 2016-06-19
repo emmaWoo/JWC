@@ -43,7 +43,7 @@ public class WorkTabFragment extends FragmentBase {
 					break;
 				case R.id.radio_my_work:
 					toolbarManager.title(R.string.my_work_list);
-					switchToChildFragment(new MyWorkFragment(), new Bundle());
+					switchToChildFragment(new MyWorkListFragment(), new Bundle());
 					break;
 				case R.id.radio_booking_work:
 					toolbarManager.title(R.string.booking_work_list);

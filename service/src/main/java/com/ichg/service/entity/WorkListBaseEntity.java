@@ -17,6 +17,7 @@ public class WorkListBaseEntity {
 		payType = workListInfo.payType;
 		createTime = workListInfo.createTime;
 		follow = workListInfo.follow;
+		status = workListInfo.status;
 	}
 
 	public WorkListInfo getWorkListInfo () {
@@ -31,6 +32,7 @@ public class WorkListBaseEntity {
 		workListInfo.payType = payType;
 		workListInfo.createTime = createTime;
 		workListInfo.follow = follow;
+		workListInfo.status = status;
 		return workListInfo;
 	}
 
@@ -64,4 +66,6 @@ public class WorkListBaseEntity {
 	@SerializedName("follow")
 	public String follow;
 
+	@SerializedName("status")
+	public String status;
 }

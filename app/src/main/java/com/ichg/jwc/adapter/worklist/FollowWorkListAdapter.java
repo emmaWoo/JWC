@@ -17,7 +17,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class WorkListAdapter extends RecyclerAdapterBase {
+public class FollowWorkListAdapter extends RecyclerAdapterBase {
+
 
     private OnItemAdapterListener mListener;
     private List<WorkListInfo> workListInfoList;
@@ -25,9 +26,11 @@ public class WorkListAdapter extends RecyclerAdapterBase {
 
     public interface OnItemAdapterListener {
         void onClickItem(int workListId);
+
+        void onClickDelete(WorkListInfo workListInfo);
     }
 
-    public WorkListAdapter(Context context, List<WorkListInfo> workListInfoList, OnItemAdapterListener listener) {
+    public FollowWorkListAdapter(Context context, List<WorkListInfo> workListInfoList, OnItemAdapterListener listener) {
         super(workListInfoList);
         this.context = context;
         this.mListener = listener;
@@ -36,7 +39,7 @@ public class WorkListAdapter extends RecyclerAdapterBase {
 
     @Override
     protected RecyclerView.ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_work_list, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_work_list_follow, parent, false));
     }
 
     @Override
@@ -50,9 +53,7 @@ public class WorkListAdapter extends RecyclerAdapterBase {
         holder.labelTitle.setText(itemInfo.title);
         holder.labelDate.setText(itemInfo.getWorkDate());
         holder.labelMoney.setText(itemInfo.payAmount);
-        holder.labelTime.setText(itemInfo.getCreateTime());
     }
-
 
     class ViewHolder extends RecyclerView.ViewHolder {
         int itemPosition;
@@ -60,7 +61,6 @@ public class WorkListAdapter extends RecyclerAdapterBase {
         @Bind(R.id.label_pay) TextView labelPay;
         @Bind(R.id.label_money) TextView labelMoney;
         @Bind(R.id.label_title) TextView labelTitle;
-        @Bind(R.id.label_time) TextView labelTime;
         @Bind(R.id.label_date) TextView labelDate;
 
         ViewHolder(View view) {
@@ -72,6 +72,11 @@ public class WorkListAdapter extends RecyclerAdapterBase {
         public void onClick() {
             String workId = workListInfoList.get(itemPosition).id;
             mListener.onClickItem(Integer.parseInt(workId));
+        }
+
+        @OnClick(R.id.icon_delete)
+        public void onClickFollow() {
+            mListener.onClickDelete(workListInfoList.get(itemPosition));
         }
     }
 }

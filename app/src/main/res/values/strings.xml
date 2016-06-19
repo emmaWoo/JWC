@@ -9,6 +9,8 @@
 
 	<string name="load_more">載入中&#8230;</string>
 
+	<string name="server_error">伺服器發生不明錯誤</string>
+
 
 	<string name="exit_toast_message">再次點擊退出享工作</string>
 
@@ -120,19 +122,26 @@
 	<string name="daily_wage">日薪</string>
 	<string name="hourly">時薪</string>
 	<string name="money">金額</string>
+	<string name="remove_follow">是否確定刪除</string>
 
 	<!-- work detail -->
 	<string name="work_title">工作內容</string>
+	<string name="work_type">工作類別</string>
 	<string name="work_time">工作時間</string>
 	<string name="work_place">工作地點</string>
 	<string name="work_context">工作內容</string>
-	<string name="work_need_number">需求人數</string>
+	<string name="work_need_number">需求人數 / 已徵得人數</string>
 	<string name="work_have_meals">有無供餐</string>
 	<string name="work_payroll_day">薪資發放日</string>
 	<string name="work_company_name">公司名稱</string>
 	<string name="work_contact_person">聯絡人</string>
 	<string name="work_contact_person_phone">聯絡電話</string>
-
+	<string name="work_follow">加入追蹤</string>
+	<string name="work_date">%1$s %2$s ~ %3$s</string>
+	<string name="work_need_people">%1$s / %2$s 人</string>
+	<string name="yes">有</string>
+	<string name="no">無</string>
+	<string name="work_money">%1$s元</string>
 
 	<!-- profile -->
 	<string name="profile_title">基本資料</string>

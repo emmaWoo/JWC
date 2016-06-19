@@ -25,56 +25,56 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content">
 
-				<include layout="@layout/item_work_list_delete"/>
+				<include layout="@layout/item_work_list_follow"/>
 			</RelativeLayout>
 
 			<RelativeLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content">
 
-				<include layout="@layout/item_work_list_delete"/>
+				<include layout="@layout/item_work_list_follow"/>
 			</RelativeLayout>
 
 			<RelativeLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content">
 
-				<include layout="@layout/item_work_list_delete"/>
+				<include layout="@layout/item_work_list_follow"/>
 			</RelativeLayout>
 
 			<RelativeLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content">
 
-				<include layout="@layout/item_work_list_delete"/>
+				<include layout="@layout/item_work_list_follow"/>
 			</RelativeLayout>
 
 			<RelativeLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content">
 
-				<include layout="@layout/item_work_list_delete"/>
+				<include layout="@layout/item_work_list_follow"/>
 			</RelativeLayout>
 
 			<RelativeLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content">
 
-				<include layout="@layout/item_work_list_delete"/>
+				<include layout="@layout/item_work_list_follow"/>
 			</RelativeLayout>
 
 			<RelativeLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content">
 
-				<include layout="@layout/item_work_list_delete"/>
+				<include layout="@layout/item_work_list_follow"/>
 			</RelativeLayout>
 
 			<RelativeLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content">
 
-				<include layout="@layout/item_work_list_delete"/>
+				<include layout="@layout/item_work_list_follow"/>
 			</RelativeLayout>
 		</LinearLayout>
 	</ScrollView>

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ichg.jwc.R;
@@ -17,7 +18,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class WorkListAdapter extends RecyclerAdapterBase {
+public class MyWorkListAdapter extends RecyclerAdapterBase {
 
     private OnItemAdapterListener mListener;
     private List<WorkListInfo> workListInfoList;
@@ -27,7 +28,7 @@ public class WorkListAdapter extends RecyclerAdapterBase {
         void onClickItem(int workListId);
     }
 
-    public WorkListAdapter(Context context, List<WorkListInfo> workListInfoList, OnItemAdapterListener listener) {
+    public MyWorkListAdapter(Context context, List<WorkListInfo> workListInfoList, OnItemAdapterListener listener) {
         super(workListInfoList);
         this.context = context;
         this.mListener = listener;
@@ -36,7 +37,7 @@ public class WorkListAdapter extends RecyclerAdapterBase {
 
     @Override
     protected RecyclerView.ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_work_list, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_work_list_wait, parent, false));
     }
 
     @Override
@@ -50,9 +51,8 @@ public class WorkListAdapter extends RecyclerAdapterBase {
         holder.labelTitle.setText(itemInfo.title);
         holder.labelDate.setText(itemInfo.getWorkDate());
         holder.labelMoney.setText(itemInfo.payAmount);
-        holder.labelTime.setText(itemInfo.getCreateTime());
-    }
 
+    }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         int itemPosition;
@@ -60,8 +60,8 @@ public class WorkListAdapter extends RecyclerAdapterBase {
         @Bind(R.id.label_pay) TextView labelPay;
         @Bind(R.id.label_money) TextView labelMoney;
         @Bind(R.id.label_title) TextView labelTitle;
-        @Bind(R.id.label_time) TextView labelTime;
         @Bind(R.id.label_date) TextView labelDate;
+        @Bind(R.id.icon_wait) ImageView iconWait;
 
         ViewHolder(View view) {
             super(view);

@@ -12,11 +12,11 @@ import android.view.ViewGroup;
 import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
 import com.ichg.jwc.activity.WorkDetailActivity;
-import com.ichg.jwc.adapter.worklist.WorkListAdapter;
+import com.ichg.jwc.adapter.worklist.MyWorkListAdapter;
 import com.ichg.jwc.fragment.FragmentBase;
-import com.ichg.jwc.listener.WorkListListener;
+import com.ichg.jwc.listener.DownWorkListListener;
 import com.ichg.jwc.presenter.RefreshListViewController;
-import com.ichg.jwc.presenter.worklist.WorkListPresenter;
+import com.ichg.jwc.presenter.worklist.MyWorkListPresenter;
 import com.ichg.jwc.utils.DialogManager;
 import com.ichg.service.api.base.JoinWorkerApi;
 import com.ichg.service.object.WorkListInfo;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class WorkListFragment extends FragmentBase implements WorkListAdapter.OnItemAdapterListener, WorkListListener {
+public class MyWorkListFragment extends FragmentBase implements MyWorkListAdapter.OnItemAdapterListener, DownWorkListListener {
 
 	public static String WORK_DETAIL_ID = "work_detail_id";
 
@@ -37,8 +37,8 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
 
 	private int startId;
 	private boolean isLoading = false;
-	private WorkListPresenter mPresenter;
-	private WorkListAdapter workListAdapter;
+	private MyWorkListPresenter mPresenter;
+	private MyWorkListAdapter myWorkListAdapter;
 
 	private RefreshListViewController refreshListViewController;
 
@@ -59,18 +59,18 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
 
 	private void initPresenter() {
 		if (mPresenter == null) {
-			mPresenter = new WorkListPresenter(JoinWorkerApp.apiFacade, this);
+			mPresenter = new MyWorkListPresenter(JoinWorkerApp.apiFacade, this);
 		}
 	}
 
 	private void initUI() {
-		workListAdapter = new WorkListAdapter(getContext(), workListInfoList, this);
+		myWorkListAdapter = new MyWorkListAdapter(getContext(), workListInfoList, this);
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
 		recyclerView.setLayoutManager(linearLayoutManager);
-		recyclerView.setAdapter(workListAdapter);
+		recyclerView.setAdapter(myWorkListAdapter);
 
 		refreshListViewController = RefreshListViewController.init(getView())
-				.setAdapter(workListAdapter)
+				.setAdapter(myWorkListAdapter)
 				.onRefresh(this::onRefresh)
 				.onLoadMore(this::onLoadMore);
 	}
@@ -121,10 +121,11 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
 			startId = Integer.parseInt(workListInfoList.get(workListInfoList.size() - 1).id);
 		}
 		boolean isNeedLoadMore = workListInfoList.size() == JoinWorkerApi.LIMIT_COUNT;
-		workListAdapter.setLoadMoreEnable(isNeedLoadMore);
+		myWorkListAdapter.setLoadMoreEnable(isNeedLoadMore);
 		isLoading = false;
 
 		this.workListInfoList.addAll(workListInfoList);
-		workListAdapter.notifyDataSetChanged();
+		myWorkListAdapter.notifyDataSetChanged();
 	}
+
 }
