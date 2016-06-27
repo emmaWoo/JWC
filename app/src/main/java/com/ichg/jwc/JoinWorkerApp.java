@@ -6,10 +6,13 @@ import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.ichg.jwc.manager.AccountManager;
 import com.ichg.jwc.utils.EWPreference;
 import com.ichg.service.api.base.ApiFacade;
 import com.ichg.service.framework.VolleyRequestExecutor;
+
+import io.fabric.sdk.android.Fabric;
 
 public class JoinWorkerApp extends Application {
 	public static EWPreference preference;
@@ -26,6 +29,7 @@ public class JoinWorkerApp extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		Fabric.with(this, new Crashlytics());
 		instance = this;
 		preference = new EWPreference(this);
 		isDebug = getResources().getBoolean(R.bool.in_debug);

@@ -3,6 +3,7 @@ package com.ichg.jwc.presenter;
 import com.ichg.jwc.listener.WorkDetailListener;
 import com.ichg.service.api.base.ApiFacade;
 import com.ichg.service.api.worklist.GetWorkDetailApi;
+import com.ichg.service.api.worklist.WorkDetermineApi;
 import com.ichg.service.api.worklist.WorkFollowApi;
 import com.ichg.service.api.worklist.WorkResponseApi;
 import com.ichg.service.api.worklist.WorkUnfollowApi;
@@ -25,6 +26,12 @@ public class WorkDetailPresenter {
 
     public void sendWorkResponse(int id) {
         mApiFacade.request(new WorkResponseApi(id)
+                .success(workDetailListener::onSuccessResponse)
+                .fail(workDetailListener::onFail), this);
+    }
+
+    public void sendWorkDetermine(int id) {
+        mApiFacade.request(new WorkDetermineApi(id)
                 .success(workDetailListener::onSuccessResponse)
                 .fail(workDetailListener::onFail), this);
     }

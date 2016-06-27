@@ -1,4 +1,19 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
@@ -67,4 +82,7 @@ dependencies {
 	compile 'com.squareup.picasso:picasso:2.5.2'
 	compile 'com.google.code.gson:gson:2.5'
 	compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.7@aar') {
+        transitive = true;
+    }
 }

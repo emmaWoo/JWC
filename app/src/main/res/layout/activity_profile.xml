@@ -180,12 +180,20 @@
 						android:id="@+id/spinner_city"
 						android:layout_width="0dp"
 						android:layout_height="wrap_content"
+						android:background="@drawable/bg_spinner"
+						android:paddingTop="4dp"
+						android:paddingBottom="4dp"
+						android:layout_marginRight="4dp"
 						android:layout_weight="0.5"
 						android:textSize="16sp"/>
 				<Spinner
 						android:id="@+id/spinner_area"
 						android:layout_width="0dp"
 						android:layout_height="wrap_content"
+						android:background="@drawable/bg_spinner"
+						android:paddingTop="4dp"
+						android:paddingBottom="4dp"
+						android:layout_marginLeft="4dp"
 						android:layout_weight="0.5"
 						android:textSize="16sp"/>
 
@@ -217,14 +225,38 @@
 					android:textSize="16sp"
 					android:textColor="#76b3c5"/>
 
-			<Spinner
-					android:id="@+id/spinner_location"
-					android:layout_width="match_parent"
+			<LinearLayout android:layout_width="match_parent"
+						  android:layout_height="wrap_content"
+						  android:layout_marginLeft="42dp"
+						  android:layout_marginTop="9dp"
+						  android:layout_marginRight="16dp"
+						android:orientation="horizontal">
+
+				<Spinner
+					android:id="@+id/spinner_ideal_work_city"
+					android:layout_width="0dp"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="42dp"
-					android:layout_marginTop="9dp"
-					android:layout_marginRight="16dp"
+					android:background="@drawable/bg_spinner"
+					android:paddingTop="4dp"
+					android:paddingBottom="4dp"
+					android:layout_marginRight="4dp"
+					android:layout_weight="0.5"
 					android:textSize="16sp"/>
+
+				<Spinner
+					android:id="@+id/spinner_ideal_work_area"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:background="@drawable/bg_spinner"
+					android:paddingTop="4dp"
+					android:paddingBottom="4dp"
+					android:layout_marginLeft="4dp"
+					android:layout_weight="0.5"
+					android:textSize="16sp"/>
+
+			</LinearLayout>
+
+
 
 			<TextView
 					android:layout_width="wrap_content"
@@ -289,7 +321,7 @@
 					android:textColor="#76b3c5"/>
 
 			<EditText
-					android:id="@+id/edit_bank_accound"
+					android:id="@+id/edit_bank_account"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginLeft="42dp"
@@ -316,6 +348,7 @@
 					android:id="@+id/button_gender"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:enabled="false"
 					android:layout_marginLeft="42dp"
 					android:layout_marginTop="9dp"
 					android:layout_marginRight="16dp"
@@ -345,18 +378,31 @@
 						android:id="@+id/spinner_year"
 						android:layout_width="0dp"
 						android:layout_height="wrap_content"
+						android:background="@drawable/bg_spinner"
+						android:paddingTop="4dp"
+						android:paddingBottom="4dp"
+						android:layout_marginRight="4dp"
 						android:layout_weight="0.5"
 						android:textSize="16sp"/>
 				<Spinner
 						android:id="@+id/spinner_month"
 						android:layout_width="0dp"
 						android:layout_height="wrap_content"
+						android:background="@drawable/bg_spinner"
+						android:paddingTop="4dp"
+						android:paddingBottom="4dp"
+						android:layout_marginRight="4dp"
+						android:layout_marginLeft="4dp"
 						android:layout_weight="0.5"
 						android:textSize="16sp"/>
 				<Spinner
 						android:id="@+id/spinner_day"
 						android:layout_width="0dp"
 						android:layout_height="wrap_content"
+						android:background="@drawable/bg_spinner"
+						android:paddingTop="4dp"
+						android:paddingBottom="4dp"
+						android:layout_marginLeft="4dp"
 						android:layout_weight="0.5"
 						android:textSize="16sp"/>
 

@@ -10,7 +10,8 @@ public class UserInfo implements Serializable{
 	public String city;
 	public String area;
 	public String address;
-	public String location;
+	public String idealWorkCity;
+	public String idealWorkArea;
 	public String email;
 	public String bankCode;
 	public String bankAccount;

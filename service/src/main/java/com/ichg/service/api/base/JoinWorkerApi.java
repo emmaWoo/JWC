@@ -123,7 +123,7 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 				protected T doInBackground(Void... params) {
 					T parsedResult = null;
 					try {
-						parsedResult = parseResult(result);
+						parsedResult = parseResult(result.replaceAll("null", "\"\""));
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

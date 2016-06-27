@@ -10,6 +10,8 @@ public interface WorkDetailListener {
 
     void onSuccessResponse(String status);
 
+    void onSuccessDetermine(String status);
+
     void onSuccessFollowStatusChange(String status);
 
 }

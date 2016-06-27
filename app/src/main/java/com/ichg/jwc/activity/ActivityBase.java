@@ -3,15 +3,11 @@ package com.ichg.jwc.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-
-import com.ichg.jwc.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +33,6 @@ public class ActivityBase extends AppCompatActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.title_background_orange));
-		}
 	}
 
 	@Override

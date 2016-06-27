@@ -97,6 +97,9 @@
 				android:screenOrientation="portrait"
 				android:windowSoftInputMode="adjustResize"/>
 
-	</application>
+	    <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="bb46d32799cd58e85d628176706eedbad2486fb4" />
+    </application>
 
 </manifest>

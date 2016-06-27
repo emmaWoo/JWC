@@ -1,6 +1,8 @@
 package com.ichg.jwc.activity;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -67,6 +69,14 @@ public class WorkDetailActivity extends ActivityBase implements WorkDetailListen
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.title_background_orange));
+        }
+    }
+
     @OnClick({R.id.button_status, R.id.label_follow})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -77,7 +87,7 @@ public class WorkDetailActivity extends ActivityBase implements WorkDetailListen
                 }
                 DialogManager.with(this).showProgressingDialog();
                 if (WorkDetailInfo.DETERMINE_WORK.equals(status)) {
-
+                    mPresenter.sendWorkDetermine(detailId);
                 } else if (WorkDetailInfo.DONE_WORK.equals(status)) {
 
                 } else {
@@ -135,7 +145,7 @@ public class WorkDetailActivity extends ActivityBase implements WorkDetailListen
         } else if (WorkDetailInfo.DETERMINE_WORK.equals(status)) {
             return R.drawable.button_do_3;
         } else if (WorkDetailInfo.DONE_WORK.equals(status)) {
-            return R.drawable.button_do_4;
+            return R.drawable.button_do_gray;
         } else {
             return R.drawable.button_do_1;
         }
@@ -150,6 +160,11 @@ public class WorkDetailActivity extends ActivityBase implements WorkDetailListen
     public void onSuccessFollowStatusChange(String status) {
         workDetailInfo.updateFollow();
         updateFollow();
+    }
+
+    @Override
+    public void onSuccessDetermine(String status) {
+        mPresenter.getWorkDetail(detailId);
     }
 
     @Override

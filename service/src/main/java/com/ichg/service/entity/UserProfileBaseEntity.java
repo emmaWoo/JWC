@@ -59,6 +59,8 @@ public class UserProfileBaseEntity {
 	@SerializedName("workPermitNo")
 	public String workPermitNo;
 
+	//TODO 理想工作地點 市，區 ideal work city and area
+
 	@SerializedName("city")
 	public String city;
 

@@ -1,5 +1,7 @@
 package com.ichg.service.object;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -77,6 +79,9 @@ public class WorkDetailInfo implements Serializable {
     }
 
     public String getCompanyContactPhone() {
+        if (TextUtils.isEmpty(companyContactPhone)) {
+            return "";
+        }
         if (CREATE_WORK.equals(status) || RESPONSE_WORK.equals(status)) {
             return companyContactPhone.substring(0, companyContactPhone.length() - 6) + "******";
         }

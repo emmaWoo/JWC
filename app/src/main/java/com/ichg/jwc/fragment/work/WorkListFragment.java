@@ -45,7 +45,7 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_work_list, container, false);
+		return inflater.inflate(R.layout.fragment_search_work_list, container, false);
 	}
 
 	@Override

@@ -53,7 +53,7 @@ public class DrawerItemAdapter extends RecyclerAdapterBase {
 		holder.itemNameTextView.setText(itemInfo.name);
 		holder.itemIconImageView.setImageResource(getIconImage(isSelectPosition, itemInfo.iconRes));
 		holder.itemNameTextView.setTextColor(ContextCompat.getColorStateList(holder.itemNameTextView.getContext(), getTextColor(isSelectPosition)));
-		holder.contentView.setBackgroundResource(getBackgroundDrawable(isSelectPosition));
+		//holder.contentView.setBackgroundResource(getBackgroundDrawable(isSelectPosition));
 		if (itemInfo.eventCount == 0) {
 			holder.eventCountTextView.setVisibility(View.GONE);
 		} else {
@@ -88,13 +88,13 @@ public class DrawerItemAdapter extends RecyclerAdapterBase {
 
 	private void selectItemByPosition(int itemPosition) {
 		NavigationItemInfo itemInfo = mItemInfoList.get(itemPosition);
-		if (mSelectedPosition != itemPosition) {
+		//if (mSelectedPosition != itemPosition) {
 			mSelectedPosition = itemPosition;
 			notifyDataSetChanged();
 			mListener.onDrawerItemClick(itemInfo);
-		} else {
-			mListener.onClickSelectedItem(itemInfo);
-		}
+		//} else {
+		//	mListener.onClickSelectedItem(itemInfo);
+		//}
 	}
 
 	public void setItemArguments(int pageType, Bundle arguments) {

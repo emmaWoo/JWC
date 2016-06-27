@@ -39,8 +39,7 @@
 	<string name="account_register">會員註冊</string>
 	<string name="phone_number_hint">請輸入手機號碼</string>
 	<string name="phone_number_size_hint">請輸入正確的手機</string>
-	<string name="send_verify_code">按下確定將會發送一則簡訊驗證碼到你手機</string>
-	<string name="confirm_verify_code">我們剛剛發送了簡訊到 %1$s %2$s \n請輸入驗證碼即可完成驗證</string>
+	<string name="send_verify_code">發送簡訊至 %1$s</string>
 	<string name="verify_codes">輸入6位簡訊驗證碼</string>
 	<string name="button_continue">下一步</string>
 	<string name="confirm_receive_code">沒收到驗證碼？</string>
@@ -72,13 +71,13 @@
 	<string name="account_hint">輸入帳號</string>
 	<string name="id_error">身份證字號錯誤</string>
 
-	<!-- profile -->
+	<!-- menu_profile -->
 	<string name="member_level">會員等級</string>
 	<string name="evaluation_level">評價等級</string>
 	<string name="name">姓名</string>
 	<string name="id">身份證字號</string>
 	<string name="nationals_id">本國人身份證</string>
-	<string name="foreigner_id">外國人工作證</string>
+	<string name="foreigner_id">居留證</string>
 	<string name="address">住址</string>
 	<string name="email">E-mail</string>
 	<string name="working_location">理想工作地點</string>
@@ -98,7 +97,7 @@
 	<string name="address_empty">住址不得為空</string>
 	<string name="email_empty">E-mail不得為空</string>
 	<string name="nationals_id_error">身份證字號格式不正確</string>
-	<string name="foreigner_id_error">工作證格式不正確</string>
+	<string name="foreigner_id_error">居留證格式不正確</string>
 	<string name="save_failed">儲存失敗</string>
 	<string name="gallery">由圖片庫匯入</string>
 	<string name="take_picture">拍張照片</string>
@@ -108,6 +107,7 @@
 	<string name="please_wait">等待中&#8230;</string>
 	<string name="skip_profile">如果沒有輸入基本資料，無法找工作唷</string>
 	<string name="mandatory">必填</string>
+	<string name="all_area">全區</string>
 
 	<!-- work list -->
 	<string name="my_work_list">我的工作</string>
@@ -143,7 +143,7 @@
 	<string name="no">無</string>
 	<string name="work_money">%1$s元</string>
 
-	<!-- profile -->
+	<!-- menu_profile -->
 	<string name="profile_title">基本資料</string>
 
 	<!-- setting -->

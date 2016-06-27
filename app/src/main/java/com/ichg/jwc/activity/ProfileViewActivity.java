@@ -62,7 +62,7 @@ public class ProfileViewActivity extends ActivityBase implements ProfileViewList
 		((TextView)findViewById(R.id.label_name)).setText(userInfo.userName);
 		((TextView)findViewById(R.id.label_id)).setText(userInfo.id);
 		((TextView)findViewById(R.id.label_address)).setText(userInfo.address);
-		((TextView)findViewById(R.id.label_location)).setText(userInfo.location);
+		//((TextView)findViewById(R.id.label_location)).setText(userInfo.location);
 		((TextView)findViewById(R.id.label_email)).setText(userInfo.email);
 		((TextView)findViewById(R.id.label_bank_code)).setText(userInfo.bankCode);
 		((TextView)findViewById(R.id.label_bank_account)).setText(userInfo.bankAccount);

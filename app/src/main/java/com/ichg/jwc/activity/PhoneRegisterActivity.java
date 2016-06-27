@@ -2,9 +2,7 @@ package com.ichg.jwc.activity;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -22,11 +20,7 @@ import com.ichg.jwc.listener.DialogListener;
 import com.ichg.jwc.listener.RegisterPhoneListener;
 import com.ichg.jwc.manager.ToolbarManager;
 import com.ichg.jwc.presenter.RegisterPhonePresenter;
-import com.ichg.jwc.receiver.SMSReceiver;
 import com.ichg.jwc.utils.DialogManager;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class PhoneRegisterActivity extends ActivityBase implements RegisterPhoneListener {
 
@@ -52,46 +46,46 @@ public class PhoneRegisterActivity extends ActivityBase implements RegisterPhone
 		initPresenter();
 		initEditText();
 		initButton();
-		initSMSReceiver();
-		IntentFilter intentFilter = new IntentFilter("SmsMessage.intent.MAIN");
-		mIntentReceiver = new BroadcastReceiver() {
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				String msg = intent.getStringExtra(SMSReceiver.GET_MESSAGE);
-				Matcher matcher = Pattern.compile(PATTERN).matcher(msg);
-				if (matcher.find()) {
-					String verifyCode = matcher.toMatchResult().group(0).trim();
-					if (isActive) {
-						verifyCodeAutoSubmit(verifyCode);
-					} else {
-						mVerifyCode = verifyCode;
-					}
-				}
-			}
-		};
-		registerReceiver(mIntentReceiver, intentFilter);
+//		initSMSReceiver();
+//		IntentFilter intentFilter = new IntentFilter("SmsMessage.intent.MAIN");
+//		mIntentReceiver = new BroadcastReceiver() {
+//			@Override
+//			public void onReceive(Context context, Intent intent) {
+//				String msg = intent.getStringExtra(SMSReceiver.GET_MESSAGE);
+//				Matcher matcher = Pattern.compile(PATTERN).matcher(msg);
+//				if (matcher.find()) {
+//					String verifyCode = matcher.toMatchResult().group(0).trim();
+//					if (isActive) {
+//						verifyCodeAutoSubmit(verifyCode);
+//					} else {
+//						mVerifyCode = verifyCode;
+//					}
+//				}
+//			}
+//		};
+//		registerReceiver(mIntentReceiver, intentFilter);
 	}
 
-	private void initSMSReceiver() {
-		mPackageManager = getPackageManager();
-		mComponentName = new ComponentName(this, SMSReceiver.class);
-		mPackageManager.setComponentEnabledSetting(mComponentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-	}
+//	private void initSMSReceiver() {
+//		mPackageManager = getPackageManager();
+//		mComponentName = new ComponentName(this, SMSReceiver.class);
+//		mPackageManager.setComponentEnabledSetting(mComponentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+//	}
 
-	private void initResendButton(View contentView) {
-		contentView.findViewById(R.id.button_resend).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				DialogManager.with(PhoneRegisterActivity.this).setListener(new DialogListener() {
-					@Override
-					public void onCancel() {
-						mPresenter.cancel();
-					}
-				}).showProgressingDialog();
-				mPresenter.resendVerifyCode();
-			}
-		});
-	}
+//	private void initResendButton(View contentView) {
+//		contentView.findViewById(R.id.button_resend).setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				DialogManager.with(PhoneRegisterActivity.this).setListener(new DialogListener() {
+//					@Override
+//					public void onCancel() {
+//						mPresenter.cancel();
+//					}
+//				}).showProgressingDialog();
+//				mPresenter.resendVerifyCode();
+//			}
+//		});
+//	}
 
 	@Override
 	public void onResume() {
@@ -146,7 +140,7 @@ public class PhoneRegisterActivity extends ActivityBase implements RegisterPhone
 	}
 
 	private void startVerifyPhoneFlow() {
-		String phoneNumber =phoneNumberEditText.getText().toString();
+		String phoneNumber = phoneNumberEditText.getText().toString();
 		if (TextUtils.isEmpty(phoneNumber)) {
 			phoneNumberEditText.setError(this.getString(R.string.phone_number_hint));
 			return;
@@ -162,7 +156,7 @@ public class PhoneRegisterActivity extends ActivityBase implements RegisterPhone
 			}
 		}).showProgressingDialog();
 		if(buttonNext.getVisibility() == View.GONE) {
-			mPresenter.startVerifyPhoneFlow(phoneNumberEditText.getText().toString());
+			mPresenter.startVerifyPhoneFlow(phoneNumber);
 		} else {
 			mPresenter.requestVerifyCodeFromServer(false);
 		}
@@ -170,7 +164,8 @@ public class PhoneRegisterActivity extends ActivityBase implements RegisterPhone
 
 	public void requestVerifyCode() {
 		DialogManager.with(this).dismissDialog();
-		DialogManager.with(this).setMessage(R.string.send_verify_code).setListener(new DialogListener() {
+		String verifyCodeMessage = getString(R.string.send_verify_code, phoneNumberEditText.getText().toString());
+		DialogManager.with(this).setMessage(verifyCodeMessage).setListener(new DialogListener() {
 			@Override
 			public void onPositive() {
 				super.onPositive();
@@ -243,8 +238,8 @@ public class PhoneRegisterActivity extends ActivityBase implements RegisterPhone
 		if (countDownTimer != null) {
 			countDownTimer.cancel();
 		}
-		mPackageManager.setComponentEnabledSetting(mComponentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-		unregisterReceiver(mIntentReceiver);
+//		mPackageManager.setComponentEnabledSetting(mComponentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+//		unregisterReceiver(mIntentReceiver);
 	}
 
 	@Override
