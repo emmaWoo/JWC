@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background_color"
+              android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_head"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="24dp"
+                android:background="#dedede"/>
+
+            <TextView
+                android:id="@+id/label_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="39dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:drawableLeft="@drawable/ic_phone"
+                android:drawablePadding="6dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/call_phone"
+                android:textSize="20sp"
+                android:textColor="#9a9a9a"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="24dp"
+                android:background="#dedede"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="6dp"
+                android:singleLine="true"
+                android:text="文字文字文字"
+                android:textSize="16sp"
+                android:textColor="#5a5a5a"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:drawableLeft="@drawable/ic_answer"
+                android:drawablePadding="6dp"
+                android:text="文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字"
+                android:textSize="18sp"
+                android:textColor="#505050"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="24dp"
+                android:background="#dedede"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="6dp"
+                android:singleLine="true"
+                android:text="文字文字文字"
+                android:textSize="16sp"
+                android:textColor="#5a5a5a"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:drawableLeft="@drawable/ic_answer"
+                android:drawablePadding="6dp"
+                android:text="文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字"
+                android:textSize="18sp"
+                android:textColor="#505050"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="24dp"
+                android:background="#dedede"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="6dp"
+                android:singleLine="true"
+                android:text="文字文字文字"
+                android:textSize="16sp"
+                android:textColor="#5a5a5a"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:drawableLeft="@drawable/ic_answer"
+                android:drawablePadding="6dp"
+                android:text="文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字"
+                android:textSize="18sp"
+                android:textColor="#505050"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="24dp"
+                android:background="#dedede"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

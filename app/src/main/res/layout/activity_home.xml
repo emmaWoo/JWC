@@ -13,13 +13,13 @@
 			android:layout_centerInParent="true"/>
 
 	<TextView
+			android:id="@+id/label_version"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_below="@id/icon_logo"
 			android:layout_alignRight="@id/icon_logo"
 			android:layout_marginTop="-30dp"
 			android:textSize="12sp"
-			android:text="ver 1.0"
 			android:textColor="#838383"/>
 
 	<RelativeLayout

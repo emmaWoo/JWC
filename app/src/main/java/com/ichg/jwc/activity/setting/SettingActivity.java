@@ -12,6 +12,7 @@ import com.ichg.jwc.R;
 import com.ichg.jwc.activity.ActivityBase;
 import com.ichg.jwc.activity.ProfileViewActivity;
 import com.ichg.jwc.manager.ToolbarManager;
+import com.ichg.jwc.utils.DialogManager;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -40,12 +41,11 @@ public class SettingActivity extends ActivityBase {
         }
     }
 
-    @OnClick({R.id.label_notification, R.id.label_modify_account, R.id.label_modify_password, R.id.label_profile, R.id.label_logout})
+    @OnClick({R.id.label_modify_account, R.id.label_modify_password, R.id.label_profile, R.id.label_logout})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.label_notification:
-                break;
             case R.id.label_modify_account:
+                DialogManager.with(this).setMessage(R.string.modify_account_message).showAlertDialog();
                 break;
             case R.id.label_modify_password:
                 break;

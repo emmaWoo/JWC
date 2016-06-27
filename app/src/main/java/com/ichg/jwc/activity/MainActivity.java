@@ -61,8 +61,12 @@ public class MainActivity extends ActivityBase {
 
 					@Override
 					public void onNavigationItemSelected(NavigationItemInfo itemInfo) {
-						if(itemInfo.pageType == NavigationType.SETTING) {
+						if (itemInfo.pageType == NavigationType.SETTING) {
 							startSetting();
+						} else if (itemInfo.pageType == NavigationType.QUESTION) {
+							startQuestion();
+						} else if (itemInfo.pageType == NavigationType.ABOUT) {
+							startAbout();
 						} else {
 							onNavigationDrawerItemSelected(itemInfo);
 						}
@@ -99,6 +103,14 @@ public class MainActivity extends ActivityBase {
 		startActivity(new Intent(MainActivity.this, SettingActivity.class));
 	}
 
+	private void startQuestion() {
+		startActivity(new Intent(MainActivity.this, QuestionActivity.class));
+	}
+
+	private void startAbout() {
+		startActivity(new Intent(MainActivity.this, AboutActivity.class));
+	}
+
 	private void onNavigationDrawerItemSelected(NavigationItemInfo itemInfo) {
 		//FragmentBase.setAnimation(FragmentBase.AnimationType.FAST_FADE_OUT);
 		FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -123,9 +135,6 @@ public class MainActivity extends ActivityBase {
 				pageFragment = new WorkTabFragment();
 				break;
 			case NavigationType.WORK_HISTORY:
-				pageFragment = new WorkTabFragment();
-				break;
-			case NavigationType.QUESTION:
 				pageFragment = new WorkTabFragment();
 				break;
 		}
