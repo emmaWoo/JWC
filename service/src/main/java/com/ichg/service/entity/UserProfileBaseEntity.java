@@ -1,5 +1,7 @@
 package com.ichg.service.entity;
 
+import android.text.TextUtils;
+
 import com.google.gson.annotations.SerializedName;
 import com.ichg.service.object.UserInfo;
 
@@ -15,6 +17,8 @@ public class UserProfileBaseEntity {
 		} else {
 			workPermitNo = userInfo.id;
 		}
+		workCity = userInfo.idealWorkCity;
+		workDistrict = userInfo.idealWorkArea;
 		city = userInfo.city;
 		district = userInfo.area;
 		address = userInfo.address;
@@ -31,7 +35,11 @@ public class UserProfileBaseEntity {
 		if (identityType != null) {
 			userInfo.isNationalsId = identityType.equals("P");
 			userInfo.id = userInfo.isNationalsId ? personalId : workPermitNo;
+		} else {
+			userInfo.id = !TextUtils.isEmpty(personalId) ? personalId : workPermitNo;
 		}
+		userInfo.idealWorkCity = workCity;
+		userInfo.idealWorkArea = workDistrict;
 		userInfo.city = city;
 		userInfo.area = district;
 		userInfo.address = address;
@@ -59,7 +67,11 @@ public class UserProfileBaseEntity {
 	@SerializedName("workPermitNo")
 	public String workPermitNo;
 
-	//TODO 理想工作地點 市，區 ideal work city and area
+	@SerializedName("workCity")
+	public String workCity;
+
+	@SerializedName("workDistrict")
+	public String workDistrict;
 
 	@SerializedName("city")
 	public String city;

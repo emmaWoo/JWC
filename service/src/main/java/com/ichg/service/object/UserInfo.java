@@ -17,4 +17,8 @@ public class UserInfo implements Serializable{
 	public String bankAccount;
 	public String gender;
 	public long birthday;
+
+	public boolean isMan() {
+		return "M".equals(gender);
+	}
 }

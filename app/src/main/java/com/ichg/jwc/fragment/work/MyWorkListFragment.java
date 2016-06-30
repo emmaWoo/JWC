@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,6 +100,11 @@ public class MyWorkListFragment extends FragmentBase implements MyWorkListAdapte
 
 	@Override
 	public void onClickItem(int workListId) {
+		String userName = JoinWorkerApp.preference.getUserName();
+		if(TextUtils.isEmpty(userName)) {
+			DialogManager.with(getActivity()).setMessage(R.string.profile_message).showAlertDialog();
+			return;
+		}
 		Intent intent = new Intent(getContext(), WorkDetailActivity.class);
 		intent.putExtra(WORK_DETAIL_ID, workListId);
 		startActivity(intent);

@@ -81,6 +81,7 @@ public class MainActivity extends ActivityBase {
 
 		drawerPresenter.addDrawerItems(initDrawerItemInfoList());
 		drawerPresenter.selectNavigationItem(DEFAULT_PAGE_TYPE);
+		drawerPresenter.updateStatus();
 	}
 
 	private List<NavigationItemInfo> initDrawerItemInfoList() {

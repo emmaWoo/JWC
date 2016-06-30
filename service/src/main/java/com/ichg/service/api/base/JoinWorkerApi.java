@@ -83,7 +83,7 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 //		AUTH_TOKEN = "Basic " + Base64.encodeToString(secretKey.getBytes(), Base64.NO_WRAP);
 	}
 
-	protected String getBaseUrl() {
+	public static String getBaseUrl() {
 		return getProtocol() + "://" + getDomainName();
 	}
 
@@ -185,13 +185,11 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 		return RETRY_COUNT;
 	}
 
-	@Override
-	public String getProtocol() {
+	public static  String getProtocol() {
 		return mApiProtocol;
 	}
 
-	@Override
-	public String getDomainName() {
+	public static  String getDomainName() {
 		return mDomainName;
 	}
 

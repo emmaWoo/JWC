@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
@@ -29,6 +30,8 @@ public class NavigationDrawerPresenter {
 	private DrawerLayout drawerLayout;
 
 	private ImageView viewProfile;
+
+	private TextView labelName;
 
 	private NavigationDrawerPresenterListener mListener;
 
@@ -62,6 +65,7 @@ public class NavigationDrawerPresenter {
 
 	private void initProfileArea(View drawerView) {
 		viewProfile = (ImageView) drawerView.findViewById(R.id.icon_avatar);
+		labelName = (TextView) drawerView.findViewById(R.id.label_name);
 		viewProfile.setOnClickListener(v -> mListener.onProfileClick());
 	}
 
@@ -101,7 +105,8 @@ public class NavigationDrawerPresenter {
 
 	public void updateUserProfile() {
 		Picasso.with(context).load(mAccountManager.userAvatarUrl)
-				.transform(new CircleTransform()).into(viewProfile);
+				.transform(new CircleTransform()).placeholder(R.drawable.ic_person_default).into(viewProfile);
+		labelName.setText(mAccountManager.userName);
 	}
 
 	public boolean isOpen() {

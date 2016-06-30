@@ -509,6 +509,13 @@
 		<item>31</item>
 	</array>
 
+	<array name="filter_time">
+		<item>過去24小時</item>
+		<item>過去三天</item>
+		<item>過去五天</item>
+		<item>過去一週</item>
+		<item>不限</item>
+	</array>
 
 </resources>
 

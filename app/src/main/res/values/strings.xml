@@ -163,4 +163,6 @@
 	<string name="company_info">公司資訊</string>
 	<string name="company_name">承新國際管理顧問股份有限公司</string>
 	<string name="company_phone">(02)2225-4066</string>
+
+	<string name="profile_message">填寫基本資料後才可以瀏覽工作內容</string>
 </resources>

@@ -6,11 +6,7 @@ import java.util.Map;
 
 public interface Api<T> {
 
-	String getProtocol();
-
 	int getHttpMethod();
-
-	String getDomainName();
 
 	String getUrl();
 

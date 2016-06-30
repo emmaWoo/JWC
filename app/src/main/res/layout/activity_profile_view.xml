@@ -32,55 +32,6 @@
 						android:src="@drawable/icon_person_img"
 						android:layout_centerVertical="true"/>
 
-				<ImageView android:layout_width="wrap_content"
-						   android:layout_height="wrap_content"
-						   android:src="@drawable/icon_person_fix"
-						   android:layout_alignBottom="@id/icon_avatar"
-						   android:layout_alignRight="@id/icon_avatar"/>
-
-				<TextView
-						android:id="@+id/label_member_level"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_toRightOf="@id/icon_avatar"
-						android:text="@string/member_level"
-						android:textColor="#939393"
-						android:textSize="15sp"/>
-
-				<RatingBar
-						android:id="@+id/rating_bar_start"
-						android:layout_width="wrap_content"
-						android:layout_height="16dp"
-						android:layout_toRightOf="@id/icon_avatar"
-						android:layout_below="@id/label_member_level"
-						android:layout_marginTop="8dp"
-						android:isIndicator="true"
-						android:numStars="5"
-						android:progressDrawable="@drawable/start_ratingstart"
-						style="@style/Base.Widget.AppCompat.RatingBar.Small"/>
-
-				<TextView
-						android:id="@+id/label_evaluation_level"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginTop="19dp"
-						android:layout_toRightOf="@id/icon_avatar"
-						android:layout_below="@id/rating_bar_start"
-						android:text="@string/evaluation_level"
-						android:textColor="#939393"
-						android:textSize="15sp"/>
-
-				<RatingBar
-						android:id="@+id/rating_bar_love"
-						android:layout_width="wrap_content"
-						android:layout_height="14dp"
-						android:layout_toRightOf="@id/icon_avatar"
-						android:layout_below="@id/label_evaluation_level"
-						android:layout_marginTop="8dp"
-						android:isIndicator="true"
-						android:numStars="5"
-						android:progressDrawable="@drawable/love_ratingstart"
-						style="@style/Base.Widget.AppCompat.RatingBar.Small"/>
 			</RelativeLayout>
 
 			<TextView
