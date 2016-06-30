@@ -3,6 +3,7 @@ package com.ichg.jwc.presenter.worklist;
 import com.ichg.jwc.listener.WorkListListener;
 import com.ichg.service.api.base.ApiFacade;
 import com.ichg.service.api.worklist.GetWorkListApi;
+import com.ichg.service.api.worklist.WorkFollowApi;
 import com.ichg.service.object.WorkListInfo;
 
 import java.util.ArrayList;
@@ -21,6 +22,12 @@ public class WorkListPresenter {
     public void getWorkList(int id) {
         mApiFacade.request(new GetWorkListApi(id)
                 .success(this::onGetWorkListInfoSuccess)
+                .fail(workListListener::onFail), this);
+    }
+
+    public void addWorkFollow(WorkListInfo workListInfo) {
+        mApiFacade.request(new WorkFollowApi(Integer.parseInt(workListInfo.id))
+                .success(response -> workListListener.onSuccessFollowStatusChange(workListInfo))
                 .fail(workListListener::onFail), this);
     }
 

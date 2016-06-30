@@ -10,5 +10,6 @@ public interface WorkListListener {
 
     void onSuccess(ArrayList<WorkListInfo> workListInfoList);
 
+    void onSuccessFollowStatusChange(WorkListInfo workListInfo);
 
 }

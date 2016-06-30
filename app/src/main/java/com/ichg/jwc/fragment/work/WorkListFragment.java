@@ -140,6 +140,17 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
     }
 
     @Override
+    public void onClickFollow(WorkListInfo workListInfo) {
+        mPresenter.addWorkFollow(workListInfo);
+    }
+
+    @Override
+    public void onSuccessFollowStatusChange(WorkListInfo workListInfo) {
+        workListInfo.updateFollow();
+        workListAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void onFail(int errorType, String message) {
         isLoading = false;
         refreshListViewController.setRefreshing(false);

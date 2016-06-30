@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ichg.jwc.R;
@@ -25,6 +26,8 @@ public class WorkListAdapter extends RecyclerAdapterBase {
 
     public interface OnItemAdapterListener {
         void onClickItem(int workListId);
+
+        void onClickFollow(WorkListInfo workListInfo);
     }
 
     public WorkListAdapter(Context context, List<WorkListInfo> workListInfoList, OnItemAdapterListener listener) {
@@ -51,6 +54,7 @@ public class WorkListAdapter extends RecyclerAdapterBase {
         holder.labelDate.setText(itemInfo.getWorkDate());
         holder.labelMoney.setText(itemInfo.payAmount);
         holder.labelTime.setText(itemInfo.getCreateTime());
+        holder.iconFollow.setImageResource(itemInfo.isFollow() ? R.drawable.button_fa_on : R.drawable.button_fa_off);
     }
 
 
@@ -62,6 +66,7 @@ public class WorkListAdapter extends RecyclerAdapterBase {
         @Bind(R.id.label_title) TextView labelTitle;
         @Bind(R.id.label_time) TextView labelTime;
         @Bind(R.id.label_date) TextView labelDate;
+        @Bind(R.id.icon_follow) ImageView iconFollow;
 
         ViewHolder(View view) {
             super(view);
@@ -72,6 +77,11 @@ public class WorkListAdapter extends RecyclerAdapterBase {
         public void onClick() {
             String workId = workListInfoList.get(itemPosition).id;
             mListener.onClickItem(Integer.parseInt(workId));
+        }
+
+        @OnClick(R.id.icon_follow)
+        public void onClickFollow() {
+            mListener.onClickFollow(workListInfoList.get(itemPosition));
         }
     }
 }

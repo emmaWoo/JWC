@@ -41,4 +41,17 @@ public class WorkListInfo implements Serializable{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
 		return simpleDateFormat.format(calendar.getTime());
 	}
+
+
+	public boolean isFollow() {
+		return "Y".equals(follow);
+	}
+
+	public void updateFollow() {
+		if ("Y".equals(follow)) {
+			follow = "N";
+		} else {
+			follow = "Y";
+		}
+	}
 }
