@@ -32,6 +32,7 @@
             android:exported="false"
             android:saveEnabled="false"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
@@ -78,6 +79,13 @@
 
         <activity
             android:name=".activity.WorkDetailActivity"
+            android:exported="false"
+            android:saveEnabled="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity
+            android:name=".activity.search.SearchWorkActivity"
             android:exported="false"
             android:saveEnabled="false"
             android:screenOrientation="portrait"

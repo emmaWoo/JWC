@@ -25,7 +25,7 @@ public class HistoryWorkListAdapter extends RecyclerAdapterBase {
     private Context context;
 
     public interface OnItemAdapterListener {
-        void onClickItem(int workListId);
+        void onClickItem(WorkListInfo workListInfo);
     }
 
     public HistoryWorkListAdapter(Context context, List<WorkListInfo> workListInfoList, OnItemAdapterListener listener) {
@@ -68,9 +68,7 @@ public class HistoryWorkListAdapter extends RecyclerAdapterBase {
         @OnClick(R.id.button_card)
         public void onClick() {
             WorkListInfo workListInfo = workListInfoList.get(itemPosition);
-            if(!workListInfo.isOneMonth()) {
-                mListener.onClickItem(Integer.parseInt(workListInfo.id));
-            }
+            mListener.onClickItem(workListInfo);
         }
 
     }

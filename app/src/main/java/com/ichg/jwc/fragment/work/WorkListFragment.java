@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
 import com.ichg.jwc.activity.WorkDetailActivity;
+import com.ichg.jwc.activity.search.SearchWorkActivity;
 import com.ichg.jwc.adapter.worklist.WorkListAdapter;
 import com.ichg.jwc.fragment.FragmentBase;
 import com.ichg.jwc.listener.WorkListListener;
@@ -175,5 +176,7 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
     }
 
     @OnClick(R.id.button_advanced_search)
-    public void onClick() {}
+    public void onClick() {
+        startActivity(new Intent(getContext(), SearchWorkActivity.class));
+    }
 }

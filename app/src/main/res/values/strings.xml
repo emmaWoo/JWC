@@ -124,6 +124,7 @@
 	<string name="hourly">時薪</string>
 	<string name="money">金額</string>
 	<string name="remove_follow">是否確定刪除</string>
+	<string name="history_over">超過工作天數60天，不提供檢視工作明細</string>
 
 	<!-- work detail -->
 	<string name="work_title">工作內容</string>
@@ -166,4 +167,16 @@
 	<string name="company_phone">(02)2225-4066</string>
 
 	<string name="profile_message">填寫基本資料後才可以瀏覽工作內容</string>
+
+	<!-- search -->
+	<string name="search_title">進階搜尋</string>
+	<string name="search_keyword">關鍵字</string>
+	<string name="search_pay">薪資</string>
+	<string name="search_work_place">工作地點</string>
+	<string name="search_work_time">工作時間</string>
+	<string name="search_work_type">工作類別</string>
+	<string name="search">立即搜尋</string>
+	<string name="search_city_hint">請選擇</string>
+	<string name="search_area_hint">請選擇</string>
+	<string name="search_work_type_hint">請選擇</string>
 </resources>

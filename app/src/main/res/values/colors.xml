@@ -23,7 +23,7 @@
 
 	<color name="transparent">#00000000</color>
 
-
+	<color name="text_orange">#d18066</color>
 	<color name="text_gray_deep">#563743</color>
 	<color name="text_gray">#cabdbc</color>
 	<color name="text_work_list_filter">#9f6060</color>

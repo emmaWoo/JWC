@@ -110,14 +110,18 @@ public class HistoryWorkFragment extends FragmentBase implements HistoryWorkList
 	}
 
 	@Override
-	public void onClickItem(int workListId) {
+	public void onClickItem(WorkListInfo workListInfo) {
+		if(!workListInfo.isOneMonth()) {
+			DialogManager.with(getActivity()).setMessage(R.string.history_over).showAlertDialog();
+			return;
+		}
 		String userName = JoinWorkerApp.preference.getUserName();
 		if(TextUtils.isEmpty(userName)) {
 			DialogManager.with(getActivity()).setMessage(R.string.profile_message).showAlertDialog();
 			return;
 		}
 		Intent intent = new Intent(getContext(), WorkDetailActivity.class);
-		intent.putExtra(WORK_DETAIL_ID, workListId);
+		intent.putExtra(WORK_DETAIL_ID, Integer.parseInt(workListInfo.id));
 		startActivity(intent);
 	}
 
