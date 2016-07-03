@@ -19,8 +19,8 @@ public class WorkListPresenter {
         this.workListListener = workListListener;
     }
 
-    public void getWorkList(int id) {
-        mApiFacade.request(new GetWorkListApi(id)
+    public void getWorkList(int id, int time, String city) {
+        mApiFacade.request(new GetWorkListApi(id, time, city)
                 .success(this::onGetWorkListInfoSuccess)
                 .fail(workListListener::onFail), this);
     }

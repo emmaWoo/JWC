@@ -15,9 +15,13 @@ import java.util.Map;
 public class GetWorkListApi extends JoinWorkerApi<ArrayList<WorkListInfo>> {
 
 	private int id;
+	private int time;
+	private String city;
 
-	public GetWorkListApi(int id) {
+	public GetWorkListApi(int id, int time, String city) {
 		this.id = id;
+		this.time = time;
+		this.city = city;
 	}
 
 	@Override
@@ -45,6 +49,8 @@ public class GetWorkListApi extends JoinWorkerApi<ArrayList<WorkListInfo>> {
 	@Override
 	public void getParameter(Map<String, String> parameterMap) {
 		parameterMap.put("id", String.valueOf(id));
+		parameterMap.put("timeOption", String.valueOf(time));
+		parameterMap.put("cityOption", city);
 		parameterMap.put("rows", String.valueOf(JoinWorkerApi.LIMIT_COUNT));
 		super.getParameter(parameterMap);
 	}

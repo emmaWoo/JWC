@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemSelected;
 
 public class WorkListFragment extends FragmentBase implements WorkListAdapter.OnItemAdapterListener, WorkListListener {
 
@@ -50,8 +51,9 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
     private WorkListAdapter workListAdapter;
     private ArrayList<String> cityList;
     private String[] time;
+    private int[] timeValue;
     private String selectCity;
-    private String selectTime;
+    private int selectTime;
 
     private RefreshListViewController refreshListViewController;
 
@@ -69,7 +71,7 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
         ButterKnife.bind(this, view);
         initPresenter();
         initUI();
-        mPresenter.getWorkList(0);
+        mPresenter.getWorkList(0, selectTime, selectCity);
     }
 
     private void initPresenter() {
@@ -101,13 +103,14 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
 
     private void initSpinnerTime() {
         time = getActivity().getResources().getStringArray(R.array.filter_time);
+        timeValue = getActivity().getResources().getIntArray(R.array.filter_time_value);
         ArrayAdapter timeAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, time);
         spinnerFilterTime.setAdapter(timeAdapter);
-        selectTime = time[0];
+        selectTime = timeValue[0];
     }
 
     public void onRefresh() {
-        mPresenter.getWorkList(0);
+        mPresenter.getWorkList(0, selectTime, selectCity);
         refreshListViewController.setEnableLoadMore(false);
     }
 
@@ -118,7 +121,7 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
     }
 
     private void loadNextPageData() {
-        mPresenter.getWorkList(startId);
+        mPresenter.getWorkList(startId, selectTime, selectCity);
     }
 
     @Override
@@ -126,6 +129,20 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
         super.onDestroyView();
         mPresenter.cancel();
         ButterKnife.unbind(this);
+    }
+
+    @OnItemSelected(R.id.spinner_filter_city)
+    public void OnItemSelectedCity(int position) {
+        selectCity = cityList.get(position);
+        this.workListInfoList.clear();
+        onRefresh();
+    }
+
+    @OnItemSelected(R.id.spinner_filter_time)
+    public void OnItemSelectedTime(int position) {
+        selectTime = timeValue[position];
+        this.workListInfoList.clear();
+        onRefresh();
     }
 
     @Override
