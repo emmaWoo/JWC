@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
 import com.ichg.jwc.activity.setting.SettingActivity;
+import com.ichg.jwc.fragment.work.HistoryWorkFragment;
 import com.ichg.jwc.fragment.work.WorkTabFragment;
 import com.ichg.jwc.presenter.NavigationDrawerPresenter;
 import com.ichg.jwc.presenter.NavigationItemInfo;
@@ -136,7 +137,7 @@ public class MainActivity extends ActivityBase {
 				pageFragment = new WorkTabFragment();
 				break;
 			case NavigationType.WORK_HISTORY:
-				pageFragment = new WorkTabFragment();
+				pageFragment = new HistoryWorkFragment();
 				break;
 		}
 		return pageFragment;

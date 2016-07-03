@@ -42,6 +42,18 @@ public class WorkListInfo implements Serializable{
 		return simpleDateFormat.format(calendar.getTime());
 	}
 
+	public boolean isOneMonth() {
+		Calendar nowCalendar = Calendar.getInstance();
+		Calendar workCalendar = Calendar.getInstance();
+		workCalendar.setTimeInMillis(workingDate);
+		long m = nowCalendar.getTimeInMillis() - workCalendar.getTimeInMillis();
+		m = m / (24 * 60 * 60 * 1000);
+
+		if (m == 0 && nowCalendar.get(Calendar.DAY_OF_YEAR) != workCalendar.get(Calendar.DAY_OF_YEAR)) {
+			m += 1;
+		}
+		return m > 30;
+	}
 
 	public boolean isFollow() {
 		return "Y".equals(follow);

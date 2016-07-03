@@ -114,6 +114,7 @@
 	<string name="all_work_list">所有工作</string>
 	<string name="booking_work_list">我有空</string>
 	<string name="following_work_list">追蹤中</string>
+	<string name="history_work_list">歷史工作</string>
 	<string name="work_list">工作列表</string>
 	<string name="search_hint">搜尋工作</string>
 	<string name="work_list_hour">過去24小時</string>
