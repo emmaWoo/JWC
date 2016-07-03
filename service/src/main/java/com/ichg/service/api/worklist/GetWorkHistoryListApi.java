@@ -27,7 +27,7 @@ public class GetWorkHistoryListApi extends JoinWorkerApi<ArrayList<WorkListInfo>
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/job/follow";
+		return getBaseUrl() + "/job/historic";
 	}
 
 	@Override

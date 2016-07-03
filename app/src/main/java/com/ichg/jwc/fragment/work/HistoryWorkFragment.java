@@ -111,7 +111,7 @@ public class HistoryWorkFragment extends FragmentBase implements HistoryWorkList
 
 	@Override
 	public void onClickItem(WorkListInfo workListInfo) {
-		if(!workListInfo.isOneMonth()) {
+		if(workListInfo.isOneMonth()) {
 			DialogManager.with(getActivity()).setMessage(R.string.history_over).showAlertDialog();
 			return;
 		}

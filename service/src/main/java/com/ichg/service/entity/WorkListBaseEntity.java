@@ -46,7 +46,7 @@ public class WorkListBaseEntity {
 	public String city;
 
 	@SerializedName("workingDate")
-	public Long workingDate;
+	public long workingDate;
 
 	@SerializedName("workingTimeFrom")
 	public String workingTimeFrom;
@@ -61,7 +61,7 @@ public class WorkListBaseEntity {
 	public String payType;
 
 	@SerializedName("createTime")
-	public Long createTime;
+	public long createTime;
 
 	@SerializedName("follow")
 	public String follow;

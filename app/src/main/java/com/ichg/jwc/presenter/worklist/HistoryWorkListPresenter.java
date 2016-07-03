@@ -2,7 +2,7 @@ package com.ichg.jwc.presenter.worklist;
 
 import com.ichg.jwc.listener.HistoryWorkListListener;
 import com.ichg.service.api.base.ApiFacade;
-import com.ichg.service.api.worklist.GetWorkFollowListApi;
+import com.ichg.service.api.worklist.GetWorkHistoryListApi;
 import com.ichg.service.object.WorkListInfo;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class HistoryWorkListPresenter {
     }
 
     public void getWorkList(int id) {
-        mApiFacade.request(new GetWorkFollowListApi(id)
+        mApiFacade.request(new GetWorkHistoryListApi(id)
                 .success(this::onGetWorkListInfoSuccess)
                 .fail(historyWorkListListener::onFail), this);
     }
