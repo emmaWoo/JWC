@@ -114,21 +114,21 @@
 					android:textColor="@color/text_gray"
 					android:textSize="14sp"/>
 
-			<Button
-					android:id="@+id/facebook_login_button"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:background="@drawable/bg_facebook_round_corner"
-					android:drawableRight="@drawable/icon_fb"
-					android:layout_below="@id/login_forget_password"
-					android:layout_marginTop="33dp"
-					android:layout_marginRight="25dp"
-					android:layout_marginLeft="25dp"
-					android:layout_marginBottom="50dp"
-					android:paddingRight="18dp"
-					android:text="@string/facebook"
-					android:textColor="@color/white"
-					android:textSize="22sp"/>
+			<!--<Button-->
+					<!--android:id="@+id/facebook_login_button"-->
+					<!--android:layout_width="match_parent"-->
+					<!--android:layout_height="wrap_content"-->
+					<!--android:background="@drawable/bg_facebook_round_corner"-->
+					<!--android:drawableRight="@drawable/icon_fb"-->
+					<!--android:layout_below="@id/login_forget_password"-->
+					<!--android:layout_marginTop="33dp"-->
+					<!--android:layout_marginRight="25dp"-->
+					<!--android:layout_marginLeft="25dp"-->
+					<!--android:layout_marginBottom="50dp"-->
+					<!--android:paddingRight="18dp"-->
+					<!--android:text="@string/facebook"-->
+					<!--android:textColor="@color/white"-->
+					<!--android:textSize="22sp"/>-->
 
 		</RelativeLayout>
 	</ScrollView>
