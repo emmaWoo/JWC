@@ -277,6 +277,7 @@
                     android:textColor="#505050"/>
 
                 <RelativeLayout
+                    android:id="@+id/layout_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -352,7 +353,7 @@
                     android:textColor="@color/white"
                     android:textSize="15sp"/>
                 <TextView
-                    android:id="@+id/label_work_menory"
+                    android:id="@+id/label_work_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"

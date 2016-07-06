@@ -15,6 +15,8 @@ public class WorkDetailInfo implements Serializable {
     public static String RESPONSE_WORK = "A";
     public static String DETERMINE_WORK = "I";
     public static String DONE_WORK = "W";
+    public static String DO_WORK = "Y";
+    public static String NOT_DO_WORK = "N";
 
     public String id;
     public String typeId;
@@ -87,6 +89,10 @@ public class WorkDetailInfo implements Serializable {
             return companyContactPhone.substring(0, companyContactPhone.length() - 6) + "******";
         }
         return companyContactPhone;
+    }
+
+    public boolean isHistoryStatus() {
+        return DO_WORK.equals(status) || NOT_DO_WORK.equals(status);
     }
 
 }

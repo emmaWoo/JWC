@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,7 +28,7 @@ public class WorkDetailActivity extends ActivityBase implements WorkDetailListen
     @Bind(R.id.label_work_city) TextView labelWorkCity;
     @Bind(R.id.label_work_area) TextView labelWorkArea;
     @Bind(R.id.label_work_pay_type) TextView labelWorkPayType;
-    @Bind(R.id.label_work_menory) TextView labelWorkMenory;
+    @Bind(R.id.label_work_money) TextView labelWorkMoney;
     @Bind(R.id.label_work_typ) TextView labelWorkTyp;
     @Bind(R.id.label_work_time) TextView labelWorkTime;
     @Bind(R.id.label_work_place) TextView labelWorkPlace;
@@ -38,6 +39,7 @@ public class WorkDetailActivity extends ActivityBase implements WorkDetailListen
     @Bind(R.id.label_work_company_name) TextView labelWorkCompanyName;
     @Bind(R.id.label_work_contact_person) TextView labelWorkContactPerson;
     @Bind(R.id.label_work_contact_person_phone) TextView labelWorkContactPersonPhone;
+    @Bind(R.id.layout_status) View layoutStatus;
     @Bind(R.id.button_status) Button buttonStatus;
     @Bind(R.id.label_follow) TextView labelFollow;
 
@@ -117,20 +119,29 @@ public class WorkDetailActivity extends ActivityBase implements WorkDetailListen
         labelWorkCity.setText(workDetailInfo.city);
         labelWorkArea.setText(workDetailInfo.district);
         labelWorkPayType.setText(getString(workDetailInfo.isDailyWage() ? R.string.daily_wage : R.string.hourly));
-        labelWorkMenory.setText(getString(R.string.work_money, workDetailInfo.payAmount));
+        labelWorkMoney.setText(getString(R.string.work_money, workDetailInfo.payAmount));
         labelWorkTyp.setText(workDetailInfo.typeName);
         String workTime = getString(R.string.work_date, workDetailInfo.getWorkDate(), workDetailInfo.workingTimeFrom, workDetailInfo.workingTimeTo);
         labelWorkTime.setText(workTime);
-        labelWorkPlace.setText(workDetailInfo.address);
+        String place = workDetailInfo.city + workDetailInfo.district + workDetailInfo.address;
+        labelWorkPlace.setText(place);
         labelWorkContext.setText(workDetailInfo.content);
         labelWorkNeedNumber.setText(getString(R.string.work_need_people, workDetailInfo.needPeople, workDetailInfo.matchedPeople));
-        labelWorkHaveMeals.setText(getString(workDetailInfo.hasMeals() ? R.string.yes : R.string.no));
+        String mealsString = getString(workDetailInfo.hasMeals() ? R.string.yes : R.string.no);
+        if(!TextUtils.isEmpty(workDetailInfo.mealsContent)) {
+            mealsString += "/" + workDetailInfo.mealsContent;
+        }
+        labelWorkHaveMeals.setText(mealsString);
         labelWorkPayrollDay.setText(workDetailInfo.payDate);
         labelWorkCompanyName.setText(workDetailInfo.companyName);
         labelWorkContactPerson.setText(workDetailInfo.companyContactName);
         labelWorkContactPersonPhone.setText(workDetailInfo.getCompanyContactPhone());
-        buttonStatus.setBackgroundResource(getButtonBackground(workDetailInfo.status));
-        updateFollow();
+        if(workDetailInfo.isHistoryStatus()) {
+            layoutStatus.setVisibility(View.GONE);
+        } else {
+            buttonStatus.setBackgroundResource(getButtonBackground(workDetailInfo.status));
+            updateFollow();
+        }
         DialogManager.with(this).dismissDialog();
     }
 

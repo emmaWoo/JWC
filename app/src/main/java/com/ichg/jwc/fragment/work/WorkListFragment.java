@@ -71,7 +71,6 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
         ButterKnife.bind(this, view);
         initPresenter();
         initUI();
-        mPresenter.getWorkList(0, selectTime, selectCity);
     }
 
     private void initPresenter() {
@@ -110,6 +109,7 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
     }
 
     public void onRefresh() {
+        mPresenter.cancel();
         mPresenter.getWorkList(0, selectTime, selectCity);
         refreshListViewController.setEnableLoadMore(false);
     }
