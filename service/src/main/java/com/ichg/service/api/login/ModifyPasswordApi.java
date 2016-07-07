@@ -6,14 +6,14 @@ import com.ichg.service.framework.HttpMethod;
 
 import org.json.JSONObject;
 
-public class ForgetPasswordApi extends JoinWorkerApi<String> {
+public class ModifyPasswordApi extends JoinWorkerApi<String> {
 
-	private String phoneNo;
-	private String personalId;
+	private String password;
+	private String newPassword;
 
-	public ForgetPasswordApi(String personalId, String phoneNo){
-		this.phoneNo = phoneNo;
-		this.personalId = personalId;
+	public ModifyPasswordApi(String password, String newPassword){
+		this.password = password;
+		this.newPassword = newPassword;
 	}
 
 	@Override
@@ -29,13 +29,13 @@ public class ForgetPasswordApi extends JoinWorkerApi<String> {
 	@Override
 	public String getRequestBody() {
 		JsonObject jsonObject = new JsonObject();
-		jsonObject.addProperty("phoneNo", phoneNo);
-		jsonObject.addProperty("personalId", personalId);
+		jsonObject.addProperty("password", password);
+		jsonObject.addProperty("newPassword", newPassword);
 		return jsonObject.toString();
 	}
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/account/forget-password";
+		return getBaseUrl() + "/account/change-password";
 	}
 }

@@ -13,6 +13,7 @@ import android.widget.EditText;
 
 import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
+import com.ichg.jwc.activity.password.ForgetPasswordActivity;
 import com.ichg.jwc.listener.DialogListener;
 import com.ichg.jwc.listener.PresenterListener;
 import com.ichg.jwc.manager.ToolbarManager;

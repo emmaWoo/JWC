@@ -68,8 +68,10 @@
 
 	<!-- forget password -->
 	<string name="id_hint">輸入身份證字號</string>
-	<string name="account_hint">輸入帳號</string>
+	<string name="account_hint">輸入手機號碼</string>
 	<string name="id_error">身份證字號錯誤</string>
+	<string name="send_password">密碼簡訊至 %1$s</string>
+	<string name="resend_password">密碼簡訊已重送</string>
 
 	<!-- menu_profile -->
 	<string name="member_level">會員等級</string>
@@ -179,4 +181,10 @@
 	<string name="search_city_hint">請選擇</string>
 	<string name="search_area_hint">請選擇</string>
 	<string name="search_work_type_hint">請選擇</string>
+
+	<!-- modify password -->
+	<string name="modify_password_hint">請輸入密碼</string>
+	<string name="modify_new_password_hint">請輸入新密碼，須大於6字元</string>
+	<string name="modify_check_new_password_hint">確認新密碼</string>
+	<string name="modify_password_success">密碼修改成功</string>
 </resources>

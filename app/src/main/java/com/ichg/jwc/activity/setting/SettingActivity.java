@@ -11,6 +11,7 @@ import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
 import com.ichg.jwc.activity.ActivityBase;
 import com.ichg.jwc.activity.ProfileViewActivity;
+import com.ichg.jwc.activity.password.ModifyPasswordActivity;
 import com.ichg.jwc.manager.ToolbarManager;
 import com.ichg.jwc.utils.DialogManager;
 
@@ -48,6 +49,7 @@ public class SettingActivity extends ActivityBase {
                 DialogManager.with(this).setMessage(R.string.modify_account_message).showAlertDialog();
                 break;
             case R.id.label_modify_password:
+                startActivity(new Intent(this, ModifyPasswordActivity.class));
                 break;
             case R.id.label_profile:
                 startActivity(new Intent(this, ProfileViewActivity.class));
