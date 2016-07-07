@@ -127,6 +127,7 @@
 	<string name="money">金額</string>
 	<string name="remove_follow">是否確定刪除</string>
 	<string name="history_over">超過工作天數60天，不提供檢視工作明細</string>
+	<string name="search_all">不限</string>
 
 	<!-- work detail -->
 	<string name="work_title">工作內容</string>

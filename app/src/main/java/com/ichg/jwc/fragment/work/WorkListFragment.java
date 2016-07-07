@@ -54,6 +54,7 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
     private int[] timeValue;
     private String selectCity;
     private int selectTime;
+    private String searchAll;
 
     private RefreshListViewController refreshListViewController;
 
@@ -95,15 +96,18 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
 
     private void initSpinnerCity() {
         cityList = CityUtils.getCityList(getActivity());
-        ArrayAdapter cityAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, cityList);
+        searchAll = getString(R.string.search_all);
+        cityList.add(0, searchAll);
+        ArrayAdapter cityAdapter = new ArrayAdapter<>(getActivity(), R.layout.spinner_item, cityList);
         spinnerFilterCity.setAdapter(cityAdapter);
-        selectCity = cityList.get(0);
+        String city = cityList.get(0);
+        selectCity = city.equals(searchAll) ? "" : city;
     }
 
     private void initSpinnerTime() {
         time = getActivity().getResources().getStringArray(R.array.filter_time);
         timeValue = getActivity().getResources().getIntArray(R.array.filter_time_value);
-        ArrayAdapter timeAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, time);
+        ArrayAdapter timeAdapter = new ArrayAdapter<>(getActivity(), R.layout.spinner_item, time);
         spinnerFilterTime.setAdapter(timeAdapter);
         selectTime = timeValue[0];
     }
@@ -133,7 +137,8 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
 
     @OnItemSelected(R.id.spinner_filter_city)
     public void OnItemSelectedCity(int position) {
-        selectCity = cityList.get(position);
+        String city = cityList.get(position);
+        selectCity = city.equals(searchAll) ? "" : city;
         this.workListInfoList.clear();
         onRefresh();
     }

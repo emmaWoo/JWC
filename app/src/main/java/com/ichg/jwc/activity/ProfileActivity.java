@@ -165,9 +165,9 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
 
         ArrayAdapter<String> yearAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, yearArray);
         ArrayAdapter<String> monthAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, monthArray);
-        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        yearAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerYear.setAdapter(yearAdapter);
-        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        monthAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerMonth.setAdapter(monthAdapter);
         spinnerYear.setSelection(99);
         spinnerMonth.setSelection(newMonth - 1);
@@ -226,14 +226,15 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
             dayArray[i] = String.valueOf(i + 1);
         }
         ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, dayArray);
-        dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        dayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerDay.setAdapter(dayAdapter);
         return dayArray;
     }
 
     private void initSpinnerCity() {
         cityList = CityUtils.getCityList(this);
-        ArrayAdapter cityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cityList);
+        ArrayAdapter cityAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, cityList);
+        cityAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerCity.setAdapter(cityAdapter);
         selectCity = cityList.get(0);
     }
@@ -241,7 +242,7 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
     private void initSpinnerArea(int position) {
         areaList = CityUtils.getAreaList(this, areaIdArray[position]);
         ArrayAdapter<String> areaAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, areaList);
-        areaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        areaAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerArea.setAdapter(areaAdapter);
         selectArea = areaList.get(0);
     }
@@ -249,7 +250,7 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
     private void initSpinnerIdealCity() {
         idealCityList = CityUtils.getCityList(this);
         ArrayAdapter<String> areaAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, idealCityList);
-        areaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        areaAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerIdealWorkCity.setAdapter(areaAdapter);
         selectIdealCity = idealCityList.get(0);
     }
@@ -257,7 +258,7 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
     private void initSpinnerIdealArea(int position) {
         idealAreaList = CityUtils.getAreaList(this, areaIdArray[position]);
         ArrayAdapter<String> areaAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, idealAreaList);
-        areaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        areaAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerIdealWorkArea.setAdapter(areaAdapter);
         selectIdealArea = idealAreaList.get(0);
     }

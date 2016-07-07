@@ -1,5 +1,7 @@
 package com.ichg.service.api.worklist;
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.ichg.service.api.base.JoinWorkerApi;
 import com.ichg.service.entity.WorkListBaseEntity;
@@ -50,7 +52,9 @@ public class GetWorkListApi extends JoinWorkerApi<ArrayList<WorkListInfo>> {
 	public void getParameter(Map<String, String> parameterMap) {
 		parameterMap.put("id", String.valueOf(id));
 		parameterMap.put("timeOption", String.valueOf(time));
-		parameterMap.put("cityOption", city);
+		if(!TextUtils.isEmpty(city)) {
+			parameterMap.put("cityOption", city);
+		}
 		parameterMap.put("rows", String.valueOf(JoinWorkerApi.LIMIT_COUNT));
 		super.getParameter(parameterMap);
 	}

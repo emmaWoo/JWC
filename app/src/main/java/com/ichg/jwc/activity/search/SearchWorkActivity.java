@@ -94,7 +94,7 @@ public class SearchWorkActivity extends ActivityBase implements SearchWorkListen
         cityList = CityUtils.getCityList(this);
         defaultCity = getString(R.string.search_city_hint);
         cityList.add(0, defaultCity);
-        ArrayAdapter cityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cityList);
+        ArrayAdapter cityAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, cityList);
         spinnerCity.setAdapter(cityAdapter);
         selectCity = cityList.get(0);
     }
@@ -104,7 +104,7 @@ public class SearchWorkActivity extends ActivityBase implements SearchWorkListen
         defaultArea = getString(R.string.search_area_hint);
         areaList.add(0, defaultArea);
         ArrayAdapter<String> areaAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, areaList);
-        areaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        areaAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerArea.setAdapter(areaAdapter);
         selectArea = areaList.get(0);
     }
@@ -167,7 +167,7 @@ public class SearchWorkActivity extends ActivityBase implements SearchWorkListen
         for (int i = 0; i < workTypeInfoList.size() ; i++) {
             workTypes[i] = workTypeInfoList.get(i).name;
         }
-        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, workTypes);
+        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, workTypes);
         spinnerWorkType.setAdapter(arrayAdapter);
         selectWorkTypeId = workTypeInfoList.get(0).id;
     }
