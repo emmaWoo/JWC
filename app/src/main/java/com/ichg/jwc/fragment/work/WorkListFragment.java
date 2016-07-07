@@ -153,7 +153,7 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
     @Override
     public void onClickItem(int workListId) {
         String userName = JoinWorkerApp.preference.getUserName();
-        if(TextUtils.isEmpty(userName)) {
+        if (TextUtils.isEmpty(userName)) {
             DialogManager.with(getActivity()).setMessage(R.string.profile_message).showAlertDialog();
             return;
         }
@@ -197,8 +197,14 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
         workListAdapter.notifyDataSetChanged();
     }
 
-    @OnClick(R.id.button_advanced_search)
-    public void onClick() {
-        startActivity(new Intent(getContext(), SearchWorkActivity.class));
+    @OnClick({R.id.button_search, R.id.button_advanced_search})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.button_search:
+                break;
+            case R.id.button_advanced_search:
+                startActivity(new Intent(getContext(), SearchWorkActivity.class));
+                break;
+        }
     }
 }
