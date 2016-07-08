@@ -5,7 +5,7 @@ import com.ichg.jwc.manager.AccountManager;
 import com.ichg.service.api.base.ApiFacade;
 import com.ichg.service.api.login.ModifyPasswordApi;
 
-public class ForgetPasswordModifyPresenter {
+public class ModifyPasswordPresenter {
 
 	private static final int PASSWORD_MINI_SIZE = 6;
 
@@ -13,7 +13,7 @@ public class ForgetPasswordModifyPresenter {
 	private AccountManager mAccountManager;
 	private PresenterListener presenterListener;
 
-	public ForgetPasswordModifyPresenter(ApiFacade apiFacade, AccountManager accountManager, PresenterListener presenterListener) {
+	public ModifyPasswordPresenter(ApiFacade apiFacade, AccountManager accountManager, PresenterListener presenterListener) {
 		mApiFacade = apiFacade;
 		mAccountManager = accountManager;
 		this.presenterListener = presenterListener;

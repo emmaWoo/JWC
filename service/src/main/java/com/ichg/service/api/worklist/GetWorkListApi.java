@@ -8,7 +8,6 @@ import com.ichg.service.framework.HttpMethod;
 import com.ichg.service.object.BaseSearchInfo;
 import com.ichg.service.object.SearchInfo;
 import com.ichg.service.object.WorkListInfo;
-import com.ichg.service.utils.Debug;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -55,7 +54,6 @@ public class GetWorkListApi extends JoinWorkerApi<ArrayList<WorkListInfo>> {
 
 	@Override
 	public String getRequestBody() {
-		Debug.i(new Gson().toJson(searchWorkListBaseEntity));
 		return new Gson().toJson(searchWorkListBaseEntity);
 	}
 

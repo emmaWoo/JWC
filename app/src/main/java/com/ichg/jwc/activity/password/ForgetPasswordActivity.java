@@ -41,7 +41,7 @@ public class ForgetPasswordActivity extends ActivityBase implements ForgetPasswo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_forget_password);
+        setContentView(R.layout.activity_forget_password);
         ButterKnife.bind(this);
         initPresenter();
         initToolbar();

@@ -4,6 +4,7 @@ import com.ichg.jwc.listener.WorkListListener;
 import com.ichg.service.api.base.ApiFacade;
 import com.ichg.service.api.worklist.GetWorkListApi;
 import com.ichg.service.api.worklist.WorkFollowApi;
+import com.ichg.service.api.worklist.WorkUnfollowApi;
 import com.ichg.service.object.BaseSearchInfo;
 import com.ichg.service.object.SearchInfo;
 import com.ichg.service.object.WorkListInfo;
@@ -35,6 +36,12 @@ public class WorkListPresenter {
 
     public void addWorkFollow(WorkListInfo workListInfo) {
         mApiFacade.request(new WorkFollowApi(Integer.parseInt(workListInfo.id))
+                .success(response -> workListListener.onSuccessFollowStatusChange(workListInfo))
+                .fail(workListListener::onFail), this);
+    }
+
+    public void delWorkFollow(WorkListInfo workListInfo) {
+        mApiFacade.request(new WorkUnfollowApi(Integer.parseInt(workListInfo.id))
                 .success(response -> workListListener.onSuccessFollowStatusChange(workListInfo))
                 .fail(workListListener::onFail), this);
     }

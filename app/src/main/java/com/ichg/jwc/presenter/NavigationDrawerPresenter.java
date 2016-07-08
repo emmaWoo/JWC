@@ -18,6 +18,7 @@ import com.ichg.jwc.R;
 import com.ichg.jwc.adapter.DrawerItemAdapter;
 import com.ichg.jwc.manager.AccountManager;
 import com.ichg.jwc.transform.CircleTransform;
+import com.ichg.service.api.base.JoinWorkerApi;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -104,7 +105,7 @@ public class NavigationDrawerPresenter {
 
 
 	public void updateUserProfile() {
-		Picasso.with(context).load(mAccountManager.userAvatarUrl)
+		Picasso.with(context).load(JoinWorkerApi.getBaseUrl() + mAccountManager.userAvatarUrl)
 				.transform(new CircleTransform()).placeholder(R.drawable.ic_person_default).into(viewProfile);
 		labelName.setText(mAccountManager.userName);
 	}

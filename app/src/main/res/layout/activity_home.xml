@@ -35,7 +35,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textSize="13sp"
-				android:text="@string/app_name"
+				android:text="@string/join_worker"
 				android:textColor="#313131"
 				android:layout_centerInParent="true"/>
 
@@ -63,7 +63,7 @@
 			android:layout_above="@id/layout_bottom"
 			android:layout_marginBottom="20dp"
 			android:textSize="13sp"
-			android:text="@string/join_worker"
+			android:text="@string/app_name"
 			android:textColor="#313131"/>
 
 </RelativeLayout>

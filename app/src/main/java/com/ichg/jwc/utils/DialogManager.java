@@ -35,7 +35,7 @@ public class DialogManager {
 
 	public DialogManager(FragmentActivity activity) {
 		this.activity = activity;
-		setTitle(R.string.join_worker);
+		setTitle(R.string.app_name);
 		setMessage("");
 		setPositiveText(R.string.confirm);
 		setNegativeText(R.string.cancel);

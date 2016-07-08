@@ -293,7 +293,7 @@ public class SearchWorkActivity extends ActivityBase implements SearchWorkListen
             String minute1 = String.format(Locale.getDefault(), "%02d", minuteOfHour);
             labelStartTime.setText(hour1 + ":" + minute1);
         }, hour, minute, true);
-        customTimePickerDialog.setTitle(R.string.join_worker);
+        customTimePickerDialog.setTitle(R.string.app_name);
         customTimePickerDialog.show();
     }
 
@@ -322,7 +322,7 @@ public class SearchWorkActivity extends ActivityBase implements SearchWorkListen
             String minute1 = String.format(Locale.getDefault(), "%02d", minuteOfHour);
             labelEndTime.setText(hour1 + ":" + minute1);
         }, hour, minute, true);
-        customTimePickerDialog.setTitle(R.string.join_worker);
+        customTimePickerDialog.setTitle(R.string.app_name);
         customTimePickerDialog.show();
     }
 

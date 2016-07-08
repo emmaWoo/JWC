@@ -216,7 +216,11 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
 
     @Override
     public void onClickFollow(WorkListInfo workListInfo) {
-        mPresenter.addWorkFollow(workListInfo);
+        if (workListInfo.isFollow()) {
+            mPresenter.delWorkFollow(workListInfo);
+        } else {
+            mPresenter.addWorkFollow(workListInfo);
+        }
     }
 
     @Override

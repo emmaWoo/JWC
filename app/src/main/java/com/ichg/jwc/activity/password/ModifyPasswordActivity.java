@@ -17,7 +17,7 @@ import com.ichg.jwc.activity.ActivityBase;
 import com.ichg.jwc.listener.DialogListener;
 import com.ichg.jwc.listener.PresenterListener;
 import com.ichg.jwc.manager.ToolbarManager;
-import com.ichg.jwc.presenter.ForgetPasswordModifyPresenter;
+import com.ichg.jwc.presenter.ModifyPasswordPresenter;
 import com.ichg.jwc.utils.DialogManager;
 
 import butterknife.Bind;
@@ -31,7 +31,7 @@ public class ModifyPasswordActivity extends ActivityBase implements PresenterLis
     @Bind(R.id.edit_checking_new_password) EditText editCheckingNewPassword;
     @Bind(R.id.button_submit) Button buttonSubmit;
 
-    private ForgetPasswordModifyPresenter presenter;
+    private ModifyPasswordPresenter presenter;
 
     private final TextView.OnEditorActionListener passwordEditorActionListener = (v, actionId, event) -> {
         if (actionId == EditorInfo.IME_ACTION_NEXT) {
@@ -78,7 +78,7 @@ public class ModifyPasswordActivity extends ActivityBase implements PresenterLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_modify_password);
+        setContentView(R.layout.activity_modify_password);
         ButterKnife.bind(this);
         initPresenter();
         initToolbar();
@@ -92,7 +92,7 @@ public class ModifyPasswordActivity extends ActivityBase implements PresenterLis
     }
 
     private void initPresenter() {
-        presenter = new ForgetPasswordModifyPresenter(JoinWorkerApp.apiFacade, JoinWorkerApp.accountManager, this);
+        presenter = new ModifyPasswordPresenter(JoinWorkerApp.apiFacade, JoinWorkerApp.accountManager, this);
     }
 
     private void initEditText() {
@@ -129,7 +129,7 @@ public class ModifyPasswordActivity extends ActivityBase implements PresenterLis
     @Override
     public void onInputFormatCheckFinish(boolean isPass) {
         buttonSubmit.setEnabled(isPass);
-        buttonSubmit.setBackgroundResource(isPass ? R.drawable.bg_red_round_corner : R.drawable.bg_gray_round_corner);
+        buttonSubmit.setBackgroundResource(isPass ? R.drawable.bg_button_red_round_corner : R.drawable.bg_gray_round_corner);
     }
 
     @OnClick(R.id.button_submit)
