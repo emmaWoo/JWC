@@ -4,7 +4,6 @@ import com.ichg.jwc.listener.SearchWorkListener;
 import com.ichg.jwc.manager.AccountManager;
 import com.ichg.service.api.base.ApiFacade;
 import com.ichg.service.api.worklist.GetWorkTypeListApi;
-import com.ichg.service.object.SearchInfo;
 
 public class SearchWorkPresenter {
 
@@ -17,13 +16,6 @@ public class SearchWorkPresenter {
         mAccountManager = accountManager;
         this.searchWorkListener = searchWorkListener;
     }
-
-    public void SearchWork(SearchInfo searchInfo) {
-//        mApiFacade.request(new SearchWorkApi(workDetailInfo)
-//                .success(response -> SearchWorkListener.onSuccess())
-//                .fail(SearchWorkListener::onFail), this);
-    }
-
 
     public void getWorkTypeList() {
         mApiFacade.request(new GetWorkTypeListApi()

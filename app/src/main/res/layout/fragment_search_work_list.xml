@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:background="@null"
+                android:imeOptions="actionSearch"
                 android:hint="@string/search_hint"
                 android:textColorHint="@color/gray"
                 android:singleLine="true"

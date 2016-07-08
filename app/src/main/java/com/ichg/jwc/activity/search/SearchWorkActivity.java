@@ -1,6 +1,7 @@
 package com.ichg.jwc.activity.search;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -74,7 +75,25 @@ public class SearchWorkActivity extends ActivityBase implements SearchWorkListen
     private void initToolbar() {
         ToolbarManager.init((Toolbar) findViewById(R.id.toolbar))
                 .title(R.string.search_title)
-                .backNavigation(v -> onBackPressed());
+                .backNavigation(v -> onBackPressed())
+                .menu(R.menu.menu_search, item -> {
+                    clear();
+                    return false;
+                });
+    }
+
+    private void clear() {
+        editKeyword.setText("");
+        radioDailyWage.setChecked(false);
+        radioHourly.setChecked(false);
+        editStartMoney.setText("");
+        editEndMoney.setText("");
+        spinnerCity.setSelection(0);
+        spinnerArea.setSelection(0);
+        editWorkTime.setText("");
+        labelStartTime.setText("");
+        labelEndTime.setText("");
+        spinnerWorkType.setSelection(0);
     }
 
     private void initPresenter() {
@@ -82,12 +101,11 @@ public class SearchWorkActivity extends ActivityBase implements SearchWorkListen
     }
 
     private void initUI() {
-//        DialogManager.with(this).setCancelable(false).showProgressingDialog();
-//        presenter.getWorkTypeList();
+        DialogManager.with(this).setCancelable(false).showProgressingDialog();
+        presenter.getWorkTypeList();
         areaIdArray = CityUtils.getAreaIdArray();
         initSpinnerCity();
         initSpinnerArea(0);
-
     }
 
     private void initSpinnerCity() {
@@ -109,6 +127,43 @@ public class SearchWorkActivity extends ActivityBase implements SearchWorkListen
         selectArea = areaList.get(0);
     }
 
+    private void initDate() {
+        SearchInfo searchInfo = (SearchInfo) getIntent().getSerializableExtra("search_info");
+        editKeyword.setText(searchInfo.title);
+        if("D".equals(searchInfo.payType)) {
+            radioDailyWage.setChecked(true);
+        } else if ("H".equals(searchInfo.payType)) {
+            radioHourly.setChecked(true);
+        }
+        editStartMoney.setText(searchInfo.payAmountFrom);
+        editEndMoney.setText(searchInfo.payAmountTo);
+
+        int cityIndex = cityList.indexOf(searchInfo.city);
+        if (cityIndex != -1) {
+            spinnerCity.setSelection(cityIndex);
+            int areaIndex = areaList.indexOf(searchInfo.district);
+            if (areaIndex != -1) {
+                spinnerArea.postDelayed(() -> spinnerArea.setSelection(areaIndex), 200);
+            }
+        }
+
+        editWorkTime.setText(searchInfo.getWorkDate());
+        labelStartTime.setText(searchInfo.workingTimeFrom);
+        labelEndTime.setText(searchInfo.workingTimeTo);
+
+        int typeIndex = 0;
+        for (int i = 0 ; i < workTypeInfoList.size(); i++) {
+            WorkTypeInfo workTypeInfo = workTypeInfoList.get(i);
+            if (workTypeInfo.id.equals(searchInfo.typeId)) {
+                typeIndex = i;
+                break;
+            }
+        }
+        if (typeIndex != -1) {
+            spinnerWorkType.setSelection(typeIndex);
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -120,27 +175,30 @@ public class SearchWorkActivity extends ActivityBase implements SearchWorkListen
     @OnClick(R.id.button_search)
     public void onClickSearch() {
         SearchInfo searchInfo = getSearchInfo();
-        presenter.SearchWork(searchInfo);
-        //TODO
+        Intent intent = new Intent();
+        intent.putExtra("search_info", searchInfo);
+        setResult(RESULT_OK, intent);
         finish();
     }
 
     private SearchInfo getSearchInfo() {
         SearchInfo searchInfo = new SearchInfo();
-        searchInfo.typeId = selectWorkTypeId;
-        searchInfo.keyword = editKeyword.getText().toString();
+        searchInfo.setTypeId(selectWorkTypeId);
+        searchInfo.setTitle(editKeyword.getText().toString());
         searchInfo.setWorkDate(editWorkTime.getText().toString());
-        searchInfo.workingTimeFrom = labelStartTime.getText().toString();
-        searchInfo.workingTimeTo = labelEndTime.getText().toString();
+        searchInfo.setWorkingTimeFrom(labelStartTime.getText().toString());
+        searchInfo.setWorkingTimeTo(labelEndTime.getText().toString());
         if (!defaultCity.equals(selectCity)) {
-            searchInfo.city = selectCity;
+            searchInfo.setCity(selectCity);
         }
         if (!defaultArea.equals(selectArea)) {
-            searchInfo.district = selectArea;
+            searchInfo.setDistrict(selectArea);
         }
-        searchInfo.payType = radioDailyWage.isChecked() ? "D" : "H";
-        searchInfo.startMoney = editStartMoney.getText().toString();
-        searchInfo.endMoney = editEndMoney.getText().toString();
+        if (radioDailyWage.isChecked() || radioHourly.isChecked()) {
+            searchInfo.setPayType(radioDailyWage.isChecked() ? "D" : "H");
+        }
+        searchInfo.setPayAmountFrom(editStartMoney.getText().toString());
+        searchInfo.setPayAmountTo(editEndMoney.getText().toString());
         return searchInfo;
     }
 
@@ -170,6 +228,9 @@ public class SearchWorkActivity extends ActivityBase implements SearchWorkListen
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, workTypes);
         spinnerWorkType.setAdapter(arrayAdapter);
         selectWorkTypeId = workTypeInfoList.get(0).id;
+        if (getIntent().getSerializableExtra("search_info") != null) {
+            initDate();
+        }
     }
 
     @OnItemSelected(R.id.spinner_work_type)

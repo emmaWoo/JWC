@@ -9,12 +9,15 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
+import com.ichg.jwc.activity.ActivityBase;
 import com.ichg.jwc.activity.WorkDetailActivity;
 import com.ichg.jwc.activity.search.SearchWorkActivity;
 import com.ichg.jwc.adapter.worklist.WorkListAdapter;
@@ -25,6 +28,8 @@ import com.ichg.jwc.presenter.worklist.WorkListPresenter;
 import com.ichg.jwc.utils.CityUtils;
 import com.ichg.jwc.utils.DialogManager;
 import com.ichg.service.api.base.JoinWorkerApi;
+import com.ichg.service.object.BaseSearchInfo;
+import com.ichg.service.object.SearchInfo;
 import com.ichg.service.object.WorkListInfo;
 
 import java.util.ArrayList;
@@ -55,6 +60,8 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
     private String selectCity;
     private int selectTime;
     private String searchAll;
+    private BaseSearchInfo baseSearchInfo;
+    private SearchInfo searchInfo;
 
     private RefreshListViewController refreshListViewController;
 
@@ -83,6 +90,7 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
     private void initUI() {
         initSpinnerCity();
         initSpinnerTime();
+        editSearch.setOnEditorActionListener(editorActionListener);
         workListAdapter = new WorkListAdapter(getContext(), workListInfoList, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -112,9 +120,27 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
         selectTime = timeValue[0];
     }
 
+    private void updateBaseSearchInfo() {
+        baseSearchInfo = new BaseSearchInfo();
+        baseSearchInfo.setKeyword(editSearch.getText().toString().trim());
+        baseSearchInfo.setTimeOption(selectTime);
+        baseSearchInfo.setCityOption(selectCity);
+    }
+
+    private void resetBaseSearchUI() {
+        editSearch.setText("");
+        spinnerFilterCity.setSelection(0);
+        spinnerFilterTime.setSelection(4);
+    }
+
     public void onRefresh() {
         mPresenter.cancel();
-        mPresenter.getWorkList(0, selectTime, selectCity);
+        if (searchInfo == null) {
+            updateBaseSearchInfo();
+            mPresenter.getWorkList(0, baseSearchInfo);
+        } else {
+            mPresenter.getWorkList(0, searchInfo);
+        }
         refreshListViewController.setEnableLoadMore(false);
     }
 
@@ -125,7 +151,31 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
     }
 
     private void loadNextPageData() {
-        mPresenter.getWorkList(startId, selectTime, selectCity);
+        if (searchInfo == null) {
+            mPresenter.getWorkList(startId, baseSearchInfo);
+        } else {
+            mPresenter.getWorkList(startId, searchInfo);
+        }
+    }
+
+    private void clearSearchInfo() {
+        searchInfo = null;
+        baseSearchInfo = null;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 1) {
+            if(resultCode == ActivityBase.RESULT_OK && data != null) {
+                resetBaseSearchUI();
+                getView().postDelayed(() -> {
+                    workListInfoList.clear();
+                    clearSearchInfo();
+                    searchInfo = (SearchInfo) data.getSerializableExtra("search_info");
+                    onRefresh();
+                }, 200);
+            }
+        }
     }
 
     @Override
@@ -140,6 +190,7 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
         String city = cityList.get(position);
         selectCity = city.equals(searchAll) ? "" : city;
         this.workListInfoList.clear();
+        clearSearchInfo();
         onRefresh();
     }
 
@@ -147,6 +198,7 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
     public void OnItemSelectedTime(int position) {
         selectTime = timeValue[position];
         this.workListInfoList.clear();
+        clearSearchInfo();
         onRefresh();
     }
 
@@ -197,13 +249,30 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
         workListAdapter.notifyDataSetChanged();
     }
 
+    TextView.OnEditorActionListener editorActionListener = (v, actionId, event) -> {
+        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+            workListInfoList.clear();
+            clearSearchInfo();
+            onRefresh();
+            return true;
+        }
+        return false;
+    };
+
     @OnClick({R.id.button_search, R.id.button_advanced_search})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_search:
+                workListInfoList.clear();
+                clearSearchInfo();
+                onRefresh();
                 break;
             case R.id.button_advanced_search:
-                startActivity(new Intent(getContext(), SearchWorkActivity.class));
+                Intent intent = new Intent(getContext(), SearchWorkActivity.class);
+                if (searchInfo != null) {
+                    intent.putExtra("search_info", searchInfo);
+                }
+                startActivityForResult(intent, 1);
                 break;
         }
     }

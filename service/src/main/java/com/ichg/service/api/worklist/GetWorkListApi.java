@@ -1,12 +1,14 @@
 package com.ichg.service.api.worklist;
 
-import android.text.TextUtils;
-
 import com.google.gson.Gson;
 import com.ichg.service.api.base.JoinWorkerApi;
+import com.ichg.service.entity.SearchWorkListBaseEntity;
 import com.ichg.service.entity.WorkListBaseEntity;
 import com.ichg.service.framework.HttpMethod;
+import com.ichg.service.object.BaseSearchInfo;
+import com.ichg.service.object.SearchInfo;
 import com.ichg.service.object.WorkListInfo;
+import com.ichg.service.utils.Debug;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,18 +19,21 @@ import java.util.Map;
 public class GetWorkListApi extends JoinWorkerApi<ArrayList<WorkListInfo>> {
 
 	private int id;
-	private int time;
-	private String city;
+	private SearchWorkListBaseEntity searchWorkListBaseEntity;
 
-	public GetWorkListApi(int id, int time, String city) {
+	public GetWorkListApi(int id, BaseSearchInfo baseSearchInfo) {
 		this.id = id;
-		this.time = time;
-		this.city = city;
+		searchWorkListBaseEntity = new SearchWorkListBaseEntity(baseSearchInfo);
+	}
+
+	public GetWorkListApi(int id, SearchInfo searchInfo) {
+		this.id = id;
+		searchWorkListBaseEntity = new SearchWorkListBaseEntity(searchInfo);
 	}
 
 	@Override
 	public int getHttpMethod() {
-		return HttpMethod.GET;
+		return HttpMethod.POST;
 	}
 
 	@Override
@@ -49,12 +54,14 @@ public class GetWorkListApi extends JoinWorkerApi<ArrayList<WorkListInfo>> {
 	}
 
 	@Override
+	public String getRequestBody() {
+		Debug.i(new Gson().toJson(searchWorkListBaseEntity));
+		return new Gson().toJson(searchWorkListBaseEntity);
+	}
+
+	@Override
 	public void getParameter(Map<String, String> parameterMap) {
 		parameterMap.put("id", String.valueOf(id));
-		parameterMap.put("timeOption", String.valueOf(time));
-		if(!TextUtils.isEmpty(city)) {
-			parameterMap.put("cityOption", city);
-		}
 		parameterMap.put("rows", String.valueOf(JoinWorkerApi.LIMIT_COUNT));
 		super.getParameter(parameterMap);
 	}

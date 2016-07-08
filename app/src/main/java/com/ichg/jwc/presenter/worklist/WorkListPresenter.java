@@ -4,6 +4,8 @@ import com.ichg.jwc.listener.WorkListListener;
 import com.ichg.service.api.base.ApiFacade;
 import com.ichg.service.api.worklist.GetWorkListApi;
 import com.ichg.service.api.worklist.WorkFollowApi;
+import com.ichg.service.object.BaseSearchInfo;
+import com.ichg.service.object.SearchInfo;
 import com.ichg.service.object.WorkListInfo;
 
 import java.util.ArrayList;
@@ -19,8 +21,14 @@ public class WorkListPresenter {
         this.workListListener = workListListener;
     }
 
-    public void getWorkList(int id, int time, String city) {
-        mApiFacade.request(new GetWorkListApi(id, time, city)
+    public void getWorkList(int id, BaseSearchInfo baseSearchInfo) {
+        mApiFacade.request(new GetWorkListApi(id, baseSearchInfo)
+                .success(this::onGetWorkListInfoSuccess)
+                .fail(workListListener::onFail), this);
+    }
+
+    public void getWorkList(int id, SearchInfo searchInfo) {
+        mApiFacade.request(new GetWorkListApi(id, searchInfo)
                 .success(this::onGetWorkListInfoSuccess)
                 .fail(workListListener::onFail), this);
     }
