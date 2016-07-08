@@ -55,6 +55,7 @@ public class BookingWorkFragment extends FragmentBase implements BookingWorkList
 			ButterKnife.bind(this, view);
 			initPresenter();
 			initUI();
+			workListInfoList.clear();
 			mPresenter.getWorkList(0);
 		}
 

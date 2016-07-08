@@ -1,7 +1,9 @@
 package com.ichg.jwc.fragment.work;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +15,15 @@ import com.ichg.jwc.activity.MainActivity;
 import com.ichg.jwc.fragment.FragmentBase;
 import com.ichg.jwc.manager.ToolbarManager;
 
+import java.util.List;
+
 public class WorkTabFragment extends FragmentBase {
 
 	private ToolbarManager toolbarManager;
+	private WorkListFragment workListFragment;
+	private MyWorkListFragment myWorkListFragment;
+	private BookingWorkFragment bookingWorkFragment;
+	private FollowingWorkFragment followingWorkFragment;
 
 	@Nullable
 	@Override
@@ -33,25 +41,45 @@ public class WorkTabFragment extends FragmentBase {
 		((MainActivity) getActivity()).bindToolbarToDrawer(toolbar);
 	}
 
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		List<Fragment> fragmentList = getChildFragmentManager().getFragments();
+		for (Fragment fragment : fragmentList) {
+			fragment.onActivityResult(requestCode, resultCode, data);
+		}
+	}
+
 	private void initRadioGroup(View contentView) {
 		RadioGroup groupTab = (RadioGroup) contentView.findViewById(R.id.group_tab);
 		groupTab.setOnCheckedChangeListener((group, checkedId) -> {
 			switch (checkedId) {
 				case R.id.radio_all_work:
 					toolbarManager.title(R.string.work_list);
-					switchToChildFragment(new WorkListFragment(), new Bundle());
+					if (workListFragment == null) {
+						workListFragment = new WorkListFragment();
+					}
+					switchToChildFragment(workListFragment, null);
 					break;
 				case R.id.radio_my_work:
 					toolbarManager.title(R.string.my_work_list);
-					switchToChildFragment(new MyWorkListFragment(), new Bundle());
+					if (myWorkListFragment == null) {
+						myWorkListFragment = new MyWorkListFragment();
+					}
+					switchToChildFragment(myWorkListFragment, null);
 					break;
 				case R.id.radio_booking_work:
 					toolbarManager.title(R.string.booking_work_list);
-					switchToChildFragment(new BookingWorkFragment(), new Bundle());
+					if (bookingWorkFragment == null) {
+						bookingWorkFragment = new BookingWorkFragment();
+					}
+					switchToChildFragment(bookingWorkFragment, null);
 					break;
 				case R.id.radio_following_work:
 					toolbarManager.title(R.string.following_work_list);
-					switchToChildFragment(new FollowingWorkFragment(), new Bundle());
+					if (followingWorkFragment == null) {
+						followingWorkFragment = new FollowingWorkFragment();
+					}
+					switchToChildFragment(followingWorkFragment, null);
 					break;
 			}
 		});

@@ -55,6 +55,7 @@ public class MyWorkListFragment extends FragmentBase implements MyWorkListAdapte
 		ButterKnife.bind(this, view);
 		initPresenter();
 		initUI();
+		workListInfoList.clear();
 		mPresenter.getWorkList(0);
 	}
 

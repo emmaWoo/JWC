@@ -78,6 +78,10 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
 
     private ProfilePresenter presenter;
 
+    private ArrayAdapter<String> cityAdapter;
+    private ArrayAdapter<String> areaAdapter;
+    private ArrayAdapter<String> idealCityAdapter;
+    private ArrayAdapter<String> idealAreaAdapter;
     private ArrayList<String> idealCityList;
     private ArrayList<String> idealAreaList;
     private ArrayList<String> cityList;
@@ -233,7 +237,7 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
 
     private void initSpinnerCity() {
         cityList = CityUtils.getCityList(this);
-        ArrayAdapter cityAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, cityList);
+        cityAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, cityList);
         cityAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerCity.setAdapter(cityAdapter);
         selectCity = cityList.get(0);
@@ -241,25 +245,39 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
 
     private void initSpinnerArea(int position) {
         areaList = CityUtils.getAreaList(this, areaIdArray[position]);
-        ArrayAdapter<String> areaAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, areaList);
+        areaAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, areaList);
         areaAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerArea.setAdapter(areaAdapter);
         selectArea = areaList.get(0);
     }
 
+    private void updateSpinnerArea(int position) {
+        areaList = CityUtils.getAreaList(this, areaIdArray[position]);
+        areaAdapter.clear();
+        areaAdapter.addAll(areaList);
+        selectArea = areaList.get(0);
+    }
+
     private void initSpinnerIdealCity() {
         idealCityList = CityUtils.getCityList(this);
-        ArrayAdapter<String> areaAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, idealCityList);
-        areaAdapter.setDropDownViewResource(R.layout.spinner_item);
-        spinnerIdealWorkCity.setAdapter(areaAdapter);
+        idealCityAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, idealCityList);
+        idealCityAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spinnerIdealWorkCity.setAdapter(idealCityAdapter);
         selectIdealCity = idealCityList.get(0);
     }
 
     private void initSpinnerIdealArea(int position) {
         idealAreaList = CityUtils.getAreaList(this, areaIdArray[position]);
-        ArrayAdapter<String> areaAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, idealAreaList);
-        areaAdapter.setDropDownViewResource(R.layout.spinner_item);
-        spinnerIdealWorkArea.setAdapter(areaAdapter);
+        idealAreaAdapter = new ArrayAdapter<>(this, R.layout.layout_spinner, idealAreaList);
+        idealAreaAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spinnerIdealWorkArea.setAdapter(idealAreaAdapter);
+        selectIdealArea = idealAreaList.get(0);
+    }
+
+    private void updateSpinnerIdealArea(int position) {
+        idealAreaList = CityUtils.getAreaList(this, areaIdArray[position]);
+        idealAreaAdapter.clear();
+        idealAreaAdapter.addAll(idealAreaList);
         selectIdealArea = idealAreaList.get(0);
     }
 
@@ -285,15 +303,15 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
             spinnerCity.setSelection(cityIndex);
             areaList = CityUtils.getAreaList(this, areaIdArray[cityIndex]);
             int areaIndex = areaList.indexOf(userInfo.area);
-            spinnerArea.setSelection(areaIndex);
+            spinnerArea.postDelayed(() -> spinnerArea.setSelection(areaIndex), 200);
         }
 
         int idealCityIndex = idealCityList.indexOf(userInfo.idealWorkCity);
         if (idealCityIndex != -1) {
             spinnerIdealWorkCity.setSelection(idealCityIndex);
             idealAreaList = CityUtils.getAreaList(this, areaIdArray[idealCityIndex]);
-            int idealAreaIndex = areaList.indexOf(userInfo.idealWorkArea);
-            spinnerIdealWorkArea.setSelection(idealAreaIndex);
+            int idealAreaIndex = idealAreaList.indexOf(userInfo.idealWorkArea);
+            spinnerIdealWorkArea.postDelayed(() -> spinnerIdealWorkArea.setSelection(idealAreaIndex), 200);
         }
 
         editBankCode.setText(userInfo.bankCode);
@@ -311,7 +329,7 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         spinnerYear.setSelection(year - (nowYear - 99));
         spinnerMonth.setSelection(month -1);
-        spinnerDay.setSelection(day - 1);
+        spinnerDay.postDelayed(() -> spinnerDay.setSelection(day - 1), 200);
     }
 
     private void skipProfile() {
@@ -526,7 +544,7 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
 
     @OnItemSelected(R.id.spinner_city)
     public void OnItemSelectedCity(int position) {
-        initSpinnerArea(position);
+        updateSpinnerArea(position);
         selectCity = cityList.get(position);
     }
 
@@ -537,7 +555,7 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
 
     @OnItemSelected(R.id.spinner_ideal_work_city)
     public void OnItemSelectedIdealWorkCity(int position) {
-        initSpinnerIdealArea(position);
+        updateSpinnerIdealArea(position);
         selectIdealCity = idealCityList.get(position);
     }
 

@@ -59,6 +59,7 @@ public class HistoryWorkFragment extends FragmentBase implements HistoryWorkList
 		initToolbar(view);
 		initPresenter();
 		initUI();
+		workListInfoList.clear();
 		mPresenter.getWorkList(0);
 	}
 

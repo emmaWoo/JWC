@@ -56,6 +56,7 @@ public class FollowingWorkFragment extends FragmentBase implements FollowWorkLis
 		ButterKnife.bind(this, view);
 		initPresenter();
 		initUI();
+		workListInfoList.clear();
 		mPresenter.getWorkList(0);
 	}
 
