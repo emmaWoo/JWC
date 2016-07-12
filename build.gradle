@@ -31,6 +31,6 @@ project.ext {
 	SUPPORT_LIBRARY_VERSION = '23.2.0'
 	PLAY_SERVICE_VERSION = '8.4.0'
 
-	VersionCode = 10002
-	VersionName = "1.0.2"
+	VersionCode = 10003
+	VersionName = "1.0.3"
 }
