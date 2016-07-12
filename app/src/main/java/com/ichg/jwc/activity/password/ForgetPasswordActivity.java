@@ -37,6 +37,7 @@ public class ForgetPasswordActivity extends ActivityBase implements ForgetPasswo
     private ForgetPasswordPresenter presenter;
     private CountDownTimer countDownTimer;
     private boolean isFirstTime = true;
+    private int sendSMSCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,7 @@ public class ForgetPasswordActivity extends ActivityBase implements ForgetPasswo
 
     @Override
     public void onResendPasswordSuccess() {
+        sendSMSCount++;
         DialogManager.with(this).dismissDialog();
         Toast.makeText(this, R.string.resend_password, Toast.LENGTH_SHORT).show();
         showResendTimerCode();
@@ -86,6 +88,7 @@ public class ForgetPasswordActivity extends ActivityBase implements ForgetPasswo
 
     @Override
     public void onSendPasswordSuccess() {
+        sendSMSCount++;
         isFirstTime = false;
         showResendTimerCode();
     }
@@ -173,6 +176,10 @@ public class ForgetPasswordActivity extends ActivityBase implements ForgetPasswo
                 }
                 if (phoneNumber.length() < 10 || !phoneNumber.startsWith("09")) {
                     editPhoneNo.setError(this.getString(R.string.phone_number_size_hint));
+                    return;
+                }
+                if (sendSMSCount > 5) {
+                    DialogManager.with(this).setMessage(R.string.send_sms_message).showAlertDialog();
                     return;
                 }
                 requestVerifyCode();

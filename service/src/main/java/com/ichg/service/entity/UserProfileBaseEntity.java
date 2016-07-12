@@ -5,11 +5,13 @@ import android.text.TextUtils;
 import com.google.gson.annotations.SerializedName;
 import com.ichg.service.object.UserInfo;
 
+import java.util.Calendar;
+
 public class UserProfileBaseEntity {
 
 	public UserProfileBaseEntity(UserInfo userInfo) {
 		userName = userInfo.userName;
-		birthday = userInfo.birthday;
+		birthday = String.valueOf(userInfo.birthday);
 		sex = userInfo.gender;
 		identityType = userInfo.isNationalsId ? "P" : "W";
 		if (userInfo.isNationalsId) {
@@ -30,7 +32,7 @@ public class UserProfileBaseEntity {
 	public UserInfo getUserInfo() {
 		UserInfo userInfo = new UserInfo();
 		userInfo.userName = userName;
-		userInfo.birthday = birthday;
+		userInfo.birthday = TextUtils.isEmpty(birthday) ? Calendar.getInstance().getTimeInMillis() : Long.parseLong(birthday);
 		userInfo.gender = sex;
 		if (identityType != null) {
 			userInfo.isNationalsId = identityType.equals("P");
@@ -53,7 +55,7 @@ public class UserProfileBaseEntity {
 	public String userName;
 
 	@SerializedName("birthday")
-	public long birthday;
+	public String birthday;
 
 	@SerializedName("sex")
 	public String sex;

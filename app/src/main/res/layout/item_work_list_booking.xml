@@ -47,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/label_pay"
                 android:layout_marginRight="9dp"
+                android:layout_toLeftOf="@+id/icon_reply"
                 android:textColor="@color/red"
                 android:textSize="17sp"
                 android:layout_alignTop="@id/label_pay"
@@ -66,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#404141"
                 android:textSize="18sp"
+                android:layout_toLeftOf="@+id/icon_reply"
                 android:layout_below="@id/label_city"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="16dp"/>

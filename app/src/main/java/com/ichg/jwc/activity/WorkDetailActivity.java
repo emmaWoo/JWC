@@ -1,5 +1,6 @@
 package com.ichg.jwc.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -171,6 +172,10 @@ public class WorkDetailActivity extends ActivityBase implements WorkDetailListen
     public void onSuccessFollowStatusChange(String status) {
         workDetailInfo.updateFollow();
         updateFollow();
+        Intent intent = new Intent();
+        intent.putExtra("is_follow", workDetailInfo.follow);
+        intent.putExtra("work_id", workDetailInfo.id);
+        setResult(RESULT_OK, intent);
     }
 
     @Override

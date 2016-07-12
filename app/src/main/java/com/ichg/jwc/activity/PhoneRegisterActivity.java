@@ -37,6 +37,7 @@ public class PhoneRegisterActivity extends ActivityBase implements RegisterPhone
 	private PackageManager mPackageManager;
 	private ComponentName mComponentName;
 	private String mVerifyCode;
+	private int sendSMSCount;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +156,10 @@ public class PhoneRegisterActivity extends ActivityBase implements RegisterPhone
 				mPresenter.cancel();
 			}
 		}).showProgressingDialog();
+		if (sendSMSCount > 5) {
+			DialogManager.with(this).setMessage(R.string.send_sms_message).showAlertDialog();
+			return;
+		}
 		if(buttonNext.getVisibility() == View.GONE) {
 			mPresenter.startVerifyPhoneFlow(phoneNumber);
 		} else {
@@ -181,6 +186,7 @@ public class PhoneRegisterActivity extends ActivityBase implements RegisterPhone
 	}
 
 	public void showVerifyCode() {
+		sendSMSCount++;
 		DialogManager.with(this).dismissDialog();
 		verifyCodeEditText.setVisibility(View.VISIBLE);
 		buttonNext.setVisibility(View.VISIBLE);
@@ -260,6 +266,7 @@ public class PhoneRegisterActivity extends ActivityBase implements RegisterPhone
 
 	@Override
 	public void onResendVerifyCodeSuccess() {
+		sendSMSCount++;
 		DialogManager.with(this).dismissDialog();
 		Toast.makeText(this, R.string.resend_verify_code, Toast.LENGTH_SHORT).show();
 		showVerifyCode();

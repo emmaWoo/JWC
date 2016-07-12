@@ -88,6 +88,13 @@ public class ProfileViewActivity extends ActivityBase implements ProfileViewList
 
     @Override
     public void onSuccess(UserInfo userInfo) {
+        if (TextUtils.isEmpty(userInfo.userName)) {
+            Intent intent = new Intent(ProfileViewActivity.this, ProfileActivity.class);
+            intent.putExtra("user_info", userInfo);
+            intent.putExtra("is_modify", true);
+            startActivity(intent);
+            finish();
+        }
         this.userInfo = userInfo;
         labelName.setText(userInfo.userName);
         labelId.setText(userInfo.id);

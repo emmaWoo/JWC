@@ -175,6 +175,17 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
                     onRefresh();
                 }, 200);
             }
+        } if (requestCode == 2) {
+            if(resultCode == ActivityBase.RESULT_OK && data != null) {
+                String workId = data.getStringExtra("work_id");
+                for (WorkListInfo workListInfo : workListInfoList) {
+                    if (workListInfo.id.equals(workId)) {
+                        workListInfo.follow = data.getStringExtra("is_follow");
+                        workListAdapter.notifyDataSetChanged();
+                        break;
+                    }
+                }
+            }
         }
     }
 
@@ -211,7 +222,7 @@ public class WorkListFragment extends FragmentBase implements WorkListAdapter.On
         }
         Intent intent = new Intent(getContext(), WorkDetailActivity.class);
         intent.putExtra(WORK_DETAIL_ID, workListId);
-        startActivity(intent);
+        startActivityForResult(intent, 2);
     }
 
     @Override
