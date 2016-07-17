@@ -10,15 +10,12 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.ByteArrayBody;
-import org.apache.http.entity.mime.content.StringBody;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.Map;
 
 public class MultiPartRequest extends Request<String> {
 
@@ -34,7 +31,7 @@ public class MultiPartRequest extends Request<String> {
 		MultipartEntityBuilder builder = MultipartEntityBuilder.create();
 		final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-		builder.addPart("avatar", new ByteArrayBody(outputStream.toByteArray(), "UTF-8"));
+		builder.addPart("upload", new ByteArrayBody(outputStream.toByteArray(), "UTF-8"));
 //		for(String key : fields.keySet()){
 //			builder.addPart(key, new StringBody(fields.get(key), ContentType.MULTIPART_FORM_DATA));
 //		}

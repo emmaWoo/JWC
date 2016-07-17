@@ -27,7 +27,7 @@ public class GetWorkDownListApi extends JoinWorkerApi<ArrayList<WorkListInfo>> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/job/confirmed";
+		return getBaseUrl() + "/jwc/job/confirmed";
 	}
 
 	@Override

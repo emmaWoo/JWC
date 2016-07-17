@@ -3,12 +3,12 @@ package com.ichg.jwc.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class EWPreference {
+public class JWCPreference {
 
 	private SharedPreferences loginPrefs;
 	private SharedPreferences systemPrefs;
 
-	public EWPreference(Context context) {
+	public JWCPreference(Context context) {
 		loginPrefs = context.getSharedPreferences("pref_login", Context.MODE_PRIVATE);
 		systemPrefs = context.getSharedPreferences("pref_system", Context.MODE_PRIVATE);
 	}

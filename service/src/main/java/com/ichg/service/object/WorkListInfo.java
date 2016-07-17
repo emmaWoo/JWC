@@ -24,6 +24,10 @@ public class WorkListInfo implements Serializable{
 	public String follow; // Y\N
 	public String status;
 
+	public boolean isDoWork() {
+		return "Y".equals(status);
+	}
+
 	public boolean isDailyWage() {
 		return "D".equals(payType);
 	}

@@ -1,9 +1,6 @@
 package com.ichg.service.api.setting;
 
-import android.graphics.Bitmap;
-
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.ichg.service.api.base.JoinWorkerApi;
 import com.ichg.service.entity.UserProfileBaseEntity;
 import com.ichg.service.framework.HttpMethod;
@@ -36,6 +33,6 @@ public class UpdateUserApi extends JoinWorkerApi<String> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/account/account-info";
+		return getBaseUrl() + "/jwc/account/account-info";
 	}
 }

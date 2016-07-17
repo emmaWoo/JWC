@@ -85,14 +85,12 @@ public class WorkDetailActivity extends ActivityBase implements WorkDetailListen
         switch (view.getId()) {
             case R.id.button_status:
                 String status = workDetailInfo.status;
-                if (WorkDetailInfo.RESPONSE_WORK.equals(status)) {
+                if (WorkDetailInfo.RESPONSE_WORK.equals(status) || WorkDetailInfo.DONE_WORK.equals(status)) {
                     return;
                 }
                 DialogManager.with(this).showProgressingDialog();
                 if (WorkDetailInfo.DETERMINE_WORK.equals(status)) {
                     mPresenter.sendWorkDetermine(detailId);
-                } else if (WorkDetailInfo.DONE_WORK.equals(status)) {
-
                 } else {
                     mPresenter.sendWorkResponse(detailId);
                 }

@@ -28,7 +28,7 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 
 	public static class DomainName {
 		static final String PRD = "";
-		static final String DEV = "210.61.165.173:8080/jwc";
+		static final String DEV = "210.61.165.173:8080";
 		static final String STAGING = "";
 	}
 

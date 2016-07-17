@@ -22,7 +22,7 @@ public class UploadAvatarAPI extends JoinWorkerApi<String> {
 
 	@Override
 	protected String parseResult(String result) throws Exception {
-		return new JSONObject(result).optString("status");
+		return new JSONObject(result).optString("avatarUrl");
 	}
 
 	@Override
@@ -32,6 +32,6 @@ public class UploadAvatarAPI extends JoinWorkerApi<String> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/account/avatar";
+		return getBaseUrl() + "/jwc/account/avatar";
 	}
 }

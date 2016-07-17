@@ -1,5 +1,6 @@
 package com.ichg.jwc.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -31,6 +32,7 @@ import com.ichg.jwc.listener.DialogListener;
 import com.ichg.jwc.listener.ProfileListener;
 import com.ichg.jwc.manager.ToolbarManager;
 import com.ichg.jwc.presenter.ProfilePresenter;
+import com.ichg.jwc.transform.CircleTransform;
 import com.ichg.jwc.utils.BitmapUtils;
 import com.ichg.jwc.utils.CacheUtils;
 import com.ichg.jwc.utils.CityUtils;
@@ -39,8 +41,12 @@ import com.ichg.jwc.utils.DialogManager;
 import com.ichg.jwc.utils.IDUtils;
 import com.ichg.jwc.utils.LoginHandler;
 import com.ichg.jwc.utils.crop.Crop;
+import com.ichg.service.api.base.JoinWorkerApi;
 import com.ichg.service.object.UserInfo;
 import com.ichg.service.utils.Debug;
+import com.ichg.service.utils.Permission;
+import com.ichg.service.utils.PermissionManager;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.text.ParseException;
@@ -52,9 +58,14 @@ import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.OnItemSelected;
 
 public class ProfileActivity extends ActivityBase implements ProfileListener {
+
+    private static final String[] STORAGE_PERMISSIONS = {
+            Manifest.permission.READ_EXTERNAL_STORAGE
+    };
 
     private static final int REQUEST_UPDATE_PHOTO_GALLERY = 88;
     private static final int REQUEST_UPDATE_PHOTO_CAMERA = 99;
@@ -148,7 +159,6 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
     private void initInputEditTexts() {
         editId.addTextChangedListener(textWatcher);
         registerForContextMenu(iconAvatar);
-        iconAvatar.setOnClickListener(v -> iconAvatar.showContextMenu());
     }
 
     private void initBirthdaySpinner() {
@@ -288,6 +298,7 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN);
         birthday = sdf.format(current);
         buttonNationalsId.setChecked(true);
+        Picasso.with(this).load(JoinWorkerApi.getBaseUrl() + JoinWorkerApp.preference.getAvatarUrl()).transform(new CircleTransform()).placeholder(R.drawable.icon_person_img).into(iconAvatar);
     }
 
     private void initModifyData() {
@@ -567,4 +578,9 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
         selectIdealArea = idealAreaList.get(position);
     }
 
+    @OnClick(R.id.icon_avatar)
+    public void onClickAvatar() {
+        PermissionManager.checkRequirePermissionIfDenied(this, Permission.REQUEST_PERMISSION_STORAGE, STORAGE_PERMISSIONS,
+                () -> iconAvatar.showContextMenu(), deniedPermissions -> {});
+    }
 }

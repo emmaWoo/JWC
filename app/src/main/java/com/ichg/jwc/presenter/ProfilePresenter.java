@@ -2,6 +2,7 @@ package com.ichg.jwc.presenter;
 
 import android.graphics.Bitmap;
 
+import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.listener.ProfileListener;
 import com.ichg.jwc.manager.AccountManager;
 import com.ichg.service.api.avatar.UploadAvatarAPI;
@@ -34,8 +35,13 @@ public class ProfilePresenter {
 
 	public void uploadPhoto(Bitmap bitmap) {
 		mApiFacade.request(new UploadAvatarAPI(bitmap)
-				.success(response -> profileListener.onAvatarUpdateSuccess(bitmap))
+				.success(response -> uploadPhotoSuccess(bitmap, response))
 				.fail(profileListener::onFail), this);
+	}
+
+	public void uploadPhotoSuccess(Bitmap bitmap, String url) {
+		JoinWorkerApp.preference.setAvatarUrl(url);
+		profileListener.onAvatarUpdateSuccess(bitmap);
 	}
 
 	public int checkPageNavigation(){

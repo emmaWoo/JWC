@@ -37,7 +37,7 @@ public class GetWorkListApi extends JoinWorkerApi<ArrayList<WorkListInfo>> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/job/publish";
+		return getBaseUrl() + "/jwc/job/publish";
 	}
 
 	@Override

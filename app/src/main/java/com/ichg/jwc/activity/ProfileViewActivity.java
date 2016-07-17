@@ -12,6 +12,7 @@ import com.ichg.jwc.R;
 import com.ichg.jwc.listener.ProfileViewListener;
 import com.ichg.jwc.manager.ToolbarManager;
 import com.ichg.jwc.presenter.ProfileViewPresenter;
+import com.ichg.jwc.transform.CircleTransform;
 import com.ichg.jwc.utils.DialogManager;
 import com.ichg.service.api.base.JoinWorkerApi;
 import com.ichg.service.object.UserInfo;
@@ -82,6 +83,12 @@ public class ProfileViewActivity extends ActivityBase implements ProfileViewList
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Picasso.with(this).load(JoinWorkerApi.getBaseUrl() + JoinWorkerApp.preference.getAvatarUrl()).transform(new CircleTransform()).placeholder(R.drawable.icon_person_img).into(iconAvatar);
+    }
+
+    @Override
     public void onFail(int errorType, String message) {
         DialogManager.with(this).setMessage(message).showAlertDialog();
     }
@@ -110,7 +117,6 @@ public class ProfileViewActivity extends ActivityBase implements ProfileViewList
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(userInfo.birthday);
         labelBirthday.setText(simpleDateFormat.format(calendar.getTime()));
-        Picasso.with(this).load(JoinWorkerApi.getBaseUrl() + JoinWorkerApp.preference.getAvatarUrl()).placeholder(R.drawable.icon_person_img).into(iconAvatar);
         DialogManager.with(this).dismissDialog();
     }
 }

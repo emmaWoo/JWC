@@ -33,6 +33,6 @@ public class GetVerifyCodeAPI extends JoinWorkerApi<String> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/register/verification";
+		return getBaseUrl() + "/jwc/register/verification";
 	}
 }

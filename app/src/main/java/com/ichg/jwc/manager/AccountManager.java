@@ -2,14 +2,14 @@ package com.ichg.jwc.manager;
 
 import android.text.TextUtils;
 
-import com.ichg.jwc.utils.EWPreference;
+import com.ichg.jwc.utils.JWCPreference;
 import com.ichg.service.api.base.ApiFacade;
 import com.ichg.service.api.login.LoginApi;
 import com.ichg.service.api.login.LoginApiBase;
 
 public class AccountManager {
 
-	private EWPreference preference;
+	private JWCPreference preference;
 	private ApiFacade apiFacade;
 	public boolean isBindFacebook;
 	public int userId;
@@ -31,7 +31,7 @@ public class AccountManager {
 		public static final int PROFILE_SETTING = 2;
 	}
 
-	public AccountManager(ApiFacade apiFacade, EWPreference preference) {
+	public AccountManager(ApiFacade apiFacade, JWCPreference preference) {
 		this.preference = preference;
 		this.apiFacade = apiFacade;
 

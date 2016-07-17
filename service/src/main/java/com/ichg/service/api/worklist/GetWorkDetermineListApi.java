@@ -27,7 +27,7 @@ public class GetWorkDetermineListApi extends JoinWorkerApi<ArrayList<WorkListInf
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/job/available";
+		return getBaseUrl() + "/jwc/job/available";
 	}
 
 	@Override

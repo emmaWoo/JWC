@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ichg.jwc.R;
@@ -50,6 +51,7 @@ public class HistoryWorkListAdapter extends RecyclerAdapterBase {
         holder.labelTitle.setText(itemInfo.title);
         holder.labelDate.setText(itemInfo.getWorkDate());
         holder.labelMoney.setText(itemInfo.payAmount);
+        holder.iconWorkStatus.setImageResource(itemInfo.isDoWork() ? R.drawable.ic_do_work : R.drawable.ic_do_not_work);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -59,6 +61,7 @@ public class HistoryWorkListAdapter extends RecyclerAdapterBase {
         @Bind(R.id.label_money) TextView labelMoney;
         @Bind(R.id.label_title) TextView labelTitle;
         @Bind(R.id.label_date) TextView labelDate;
+        @Bind(R.id.icon_work_status) ImageView iconWorkStatus;
 
         ViewHolder(View view) {
             super(view);

@@ -36,6 +36,6 @@ public class ModifyPasswordApi extends JoinWorkerApi<String> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/account/change-password";
+		return getBaseUrl() + "/jwc/account/change-password";
 	}
 }

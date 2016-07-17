@@ -43,6 +43,6 @@ public class ActivateAccountApi extends JoinWorkerApi<String> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/register/activate";
+		return getBaseUrl() + "/jwc/register/activate";
 	}
 }

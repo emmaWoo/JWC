@@ -24,6 +24,6 @@ public class GetUserApi extends JoinWorkerApi<UserInfo> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/account/account-info";
+		return getBaseUrl() + "/jwc/account/account-info";
 	}
 }

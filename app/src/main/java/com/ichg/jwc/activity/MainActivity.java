@@ -82,7 +82,6 @@ public class MainActivity extends ActivityBase {
 
 		drawerPresenter.addDrawerItems(initDrawerItemInfoList());
 		drawerPresenter.selectNavigationItem(DEFAULT_PAGE_TYPE);
-		drawerPresenter.updateStatus();
 	}
 
 	private List<NavigationItemInfo> initDrawerItemInfoList() {
@@ -178,6 +177,7 @@ public class MainActivity extends ActivityBase {
 //			overridePendingTransition(R.anim.activity_slide_in_up, android.R.anim.fade_out);
 			finish();
 		}
+		drawerPresenter.updateStatus();
 	}
 
 	@Override

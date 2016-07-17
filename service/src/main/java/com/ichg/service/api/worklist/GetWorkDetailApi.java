@@ -25,7 +25,7 @@ public class GetWorkDetailApi extends JoinWorkerApi<WorkDetailInfo> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/job/"+ id +"/detail";
+		return getBaseUrl() + "/jwc/job/"+ id +"/detail";
 	}
 
 	@Override

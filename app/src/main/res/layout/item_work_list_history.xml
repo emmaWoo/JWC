@@ -52,6 +52,14 @@
                 android:layout_alignTop="@id/label_pay"
                 android:layout_marginLeft="14dp"/>
 
+            <ImageView
+                android:id="@+id/icon_work_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_do_work"/>
+
             <TextView
                 android:id="@+id/label_title"
                 android:layout_width="match_parent"

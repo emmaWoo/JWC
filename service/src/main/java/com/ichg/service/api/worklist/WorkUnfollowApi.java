@@ -22,7 +22,7 @@ public class WorkUnfollowApi extends JoinWorkerApi<String> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/job/"+ id +"/unfollow";
+		return getBaseUrl() + "/jwc/job/"+ id +"/unfollow";
 	}
 
 	@Override

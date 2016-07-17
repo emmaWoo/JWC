@@ -8,14 +8,14 @@ import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.ichg.jwc.manager.AccountManager;
-import com.ichg.jwc.utils.EWPreference;
+import com.ichg.jwc.utils.JWCPreference;
 import com.ichg.service.api.base.ApiFacade;
 import com.ichg.service.framework.VolleyRequestExecutor;
 
 import io.fabric.sdk.android.Fabric;
 
 public class JoinWorkerApp extends Application {
-	public static EWPreference preference;
+	public static JWCPreference preference;
 	public static JoinWorkerApp instance;
 //	public static NotifyController notifyController;
 //	private Tracker tracker;
@@ -31,7 +31,7 @@ public class JoinWorkerApp extends Application {
 		super.onCreate();
 		Fabric.with(this, new Crashlytics());
 		instance = this;
-		preference = new EWPreference(this);
+		preference = new JWCPreference(this);
 		isDebug = getResources().getBoolean(R.bool.in_debug);
 //		notifyController = new NotifyController();
 //		FacebookSdk.sdkInitialize(getApplicationContext());

@@ -36,6 +36,6 @@ public class SettingAccountApi extends JoinWorkerApi<String> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/account/change-account";
+		return getBaseUrl() + "/jwc/account/change-account";
 	}
 }

@@ -36,6 +36,6 @@ public class ForgetPasswordApi extends JoinWorkerApi<String> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/account/forget-password";
+		return getBaseUrl() + "/jwc/account/forget-password";
 	}
 }

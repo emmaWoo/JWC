@@ -27,7 +27,7 @@ public class GetWorkFollowListApi extends JoinWorkerApi<ArrayList<WorkListInfo>>
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/job/follow";
+		return getBaseUrl() + "/jwc/job/follow";
 	}
 
 	@Override

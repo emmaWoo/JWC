@@ -33,6 +33,6 @@ public class CheckPhoneStatusApi extends JoinWorkerApi<String> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/register/phone-status";
+		return getBaseUrl() + "/jwc/register/phone-status";
 	}
 }

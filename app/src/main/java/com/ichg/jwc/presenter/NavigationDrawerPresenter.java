@@ -105,7 +105,7 @@ public class NavigationDrawerPresenter {
 
 
 	public void updateUserProfile() {
-		Picasso.with(context).load(JoinWorkerApi.getBaseUrl() + mAccountManager.userAvatarUrl)
+		Picasso.with(context).load(JoinWorkerApi.getBaseUrl() + JoinWorkerApp.preference.getAvatarUrl())
 				.transform(new CircleTransform()).placeholder(R.drawable.ic_person_default).into(viewProfile);
 		labelName.setText(mAccountManager.userName);
 	}

@@ -19,7 +19,7 @@ public class GetWorkTypeListApi extends JoinWorkerApi<ArrayList<WorkTypeInfo>> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/job/type";
+		return getBaseUrl() + "/jwc/job/type";
 	}
 
 	@Override

@@ -22,7 +22,7 @@ public class WorkFollowApi extends JoinWorkerApi<String> {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/job/"+ id +"/follow";
+		return getBaseUrl() + "/jwc/job/"+ id +"/follow";
 	}
 
 	@Override
