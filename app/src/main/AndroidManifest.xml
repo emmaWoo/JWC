@@ -30,6 +30,7 @@
 
         <activity
             android:name=".activity.HomeActivity"
+            android:launchMode="singleTop"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
@@ -39,6 +40,16 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="jwc"/>
+            </intent-filter>
         </activity>
 
         <activity
@@ -46,6 +57,7 @@
             android:label="@string/app_name"
             android:exported="false"
             android:saveEnabled="false"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme.NoActionBar"/>

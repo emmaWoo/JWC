@@ -14,6 +14,7 @@ import com.ichg.jwc.activity.ActivityBase;
 public abstract class FragmentBase extends Fragment {
 
 	private ActivityBase activity;
+	protected Bundle bundle;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,10 @@ public abstract class FragmentBase extends Fragment {
 
 	public ActivityBase getActivityBase() {
 		return activity;
+	}
+
+	public void setBundle(Bundle args) {
+		bundle = args;
 	}
 
 	protected void onNavigationClick() {

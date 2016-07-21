@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ public class HomeActivity extends Activity {
     @Bind(R.id.label_version) TextView labelVersion;
 
     private Handler handler = new Handler();
+    private static Uri uri = null;
     private Runnable mainRunnable;
 
     @Override
@@ -26,9 +28,18 @@ public class HomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
+        Intent protocolIntent = getIntent();
+        final String action = protocolIntent.getAction();
+        if (protocolIntent.getData() != null) {
+            uri = getIntent().getData();
+        }
         labelVersion.setText(getVersionName(this));
         mainRunnable = () -> {
             Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+            if (action != null && uri != null) {
+                intent.putExtra("protocol_url", uri.toString());
+                uri = null;
+            }
             startActivity(intent);
             finish();
         };
@@ -43,6 +54,25 @@ public class HomeActivity extends Activity {
             e.printStackTrace();
         }
         return "";
+    }
+
+    @Override
+    public void onBackPressed() {
+        removeRunnableWhenLeave(mainRunnable);
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onUserLeaveHint() {
+        removeRunnableWhenLeave(mainRunnable);
+        super.onUserLeaveHint();
+    }
+
+    private void removeRunnableWhenLeave(Runnable runnable) {
+        if(runnable != null) {
+            handler.removeCallbacks(runnable);
+            finish();
+        }
     }
 
 }

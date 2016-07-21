@@ -4,22 +4,24 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.SparseArray;
 import android.widget.Toast;
 
 import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
 import com.ichg.jwc.activity.setting.SettingActivity;
+import com.ichg.jwc.fragment.FragmentBase;
 import com.ichg.jwc.fragment.work.HistoryWorkFragment;
 import com.ichg.jwc.fragment.work.WorkTabFragment;
 import com.ichg.jwc.presenter.NavigationDrawerPresenter;
 import com.ichg.jwc.presenter.NavigationItemInfo;
+import com.ichg.jwc.utils.ProtocolUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,7 @@ public class MainActivity extends ActivityBase {
 		public static final int ABOUT = 5;
 	}
 
-	private SparseArray<Fragment> fragmentMap;
+	private SparseArray<FragmentBase> fragmentMap;
 	private SparseArray<NavigationItemInfo> itemInfoSparseArray = new SparseArray<>();
 	private DrawerLayout drawerLayout;
 	private boolean isClickToLeave = false;
@@ -53,6 +55,11 @@ public class MainActivity extends ActivityBase {
 		fragmentMap = new SparseArray<>();
 		setContentView(R.layout.activity_main);
 		initNavigationDrawer();
+		String url = getIntent().getStringExtra("protocol_url");
+		if (JoinWorkerApp.accountManager.isSignIn() && !TextUtils.isEmpty(url)) {
+			ProtocolUtils.execute(this, url);
+			getIntent().removeExtra("protocol_url");
+		}
 	}
 
 	private void initNavigationDrawer() {
@@ -115,13 +122,13 @@ public class MainActivity extends ActivityBase {
 	private void onNavigationDrawerItemSelected(NavigationItemInfo itemInfo) {
 		//FragmentBase.setAnimation(FragmentBase.AnimationType.FAST_FADE_OUT);
 		FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-		Fragment fragment = fragmentMap.get(itemInfo.pageType);
+		FragmentBase fragment = fragmentMap.get(itemInfo.pageType);
 		if (fragment == null) {
 			fragment = createPageFragment(itemInfo.pageType);
 			fragmentMap.put(itemInfo.pageType, fragment);
 		}
 		if (itemInfo.arguments != null) {
-			fragment.setArguments(itemInfo.arguments);
+			fragment.setBundle(itemInfo.arguments);
 			itemInfo.arguments = null;
 		}
 		fragmentTransaction.replace(R.id.container, fragment, itemInfo.name);
@@ -129,8 +136,8 @@ public class MainActivity extends ActivityBase {
 		getSupportFragmentManager().executePendingTransactions();
 	}
 
-	private Fragment createPageFragment(int pageType) {
-		Fragment pageFragment = null;
+	private FragmentBase createPageFragment(int pageType) {
+		FragmentBase pageFragment = null;
 		switch (pageType) {
 			case NavigationType.WORK_LIST:
 				pageFragment = new WorkTabFragment();

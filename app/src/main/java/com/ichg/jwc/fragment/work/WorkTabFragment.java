@@ -19,11 +19,14 @@ import java.util.List;
 
 public class WorkTabFragment extends FragmentBase {
 
+	public static String INPUT_TAB_ID = "1";
+
 	private ToolbarManager toolbarManager;
 	private WorkListFragment workListFragment;
 	private MyWorkListFragment myWorkListFragment;
 	private BookingWorkFragment bookingWorkFragment;
 	private FollowingWorkFragment followingWorkFragment;
+	private RadioGroup groupTab;
 
 	@Nullable
 	@Override
@@ -31,6 +34,14 @@ public class WorkTabFragment extends FragmentBase {
 		View contentView = inflater.inflate(R.layout.fragment_work_tab, container, false);
 		initToolbar(contentView);
 		initRadioGroup(contentView);
+		if (bundle != null) {
+			int tabId = bundle.getInt(INPUT_TAB_ID, 0);
+			if (tabId > 0) {
+				groupTab.check(tabId);
+				bundle.putInt(INPUT_TAB_ID, 0);
+			}
+		}
+
 		return contentView;
 	}
 
@@ -50,7 +61,7 @@ public class WorkTabFragment extends FragmentBase {
 	}
 
 	private void initRadioGroup(View contentView) {
-		RadioGroup groupTab = (RadioGroup) contentView.findViewById(R.id.group_tab);
+		groupTab = (RadioGroup) contentView.findViewById(R.id.group_tab);
 		groupTab.setOnCheckedChangeListener((group, checkedId) -> {
 			switch (checkedId) {
 				case R.id.radio_all_work:
@@ -85,7 +96,5 @@ public class WorkTabFragment extends FragmentBase {
 		});
 		groupTab.check(R.id.radio_all_work);
 	}
-
-
 
 }

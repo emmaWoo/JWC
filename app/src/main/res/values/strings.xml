@@ -54,7 +54,7 @@
 	<string name="dialog_is_leave_login">是否離開登入流程？</string>
 	<string name="welcome">welcome</string>
 	<string name="password_error">兩組密碼輸入不相同</string>
-	<string name="send_sms_message">已超過傳送簡訊上限!</string>
+	<string name="send_sms_message">請洽客服人員!</string>
 
 	<string name="register_complete">送出</string>
 	<string name="hint_enter_checking_password">再次輸入密碼</string>
