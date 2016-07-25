@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.util.SparseArray;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
 import com.ichg.jwc.activity.setting.SettingActivity;
@@ -60,6 +61,14 @@ public class MainActivity extends ActivityBase {
 			ProtocolUtils.execute(this, url);
 			getIntent().removeExtra("protocol_url");
 		}
+		logUser();
+	}
+
+	private void logUser() {
+		// TODO: Use the current user's information
+		// You can call any combination of these three methods
+		Crashlytics.setUserIdentifier(String.valueOf(JoinWorkerApp.preference.getUserId()));
+		Crashlytics.setUserName(JoinWorkerApp.preference.getUserName());
 	}
 
 	private void initNavigationDrawer() {
