@@ -91,6 +91,7 @@ public class ForgetPasswordActivity extends ActivityBase implements ForgetPasswo
         sendSMSCount++;
         isFirstTime = false;
         showResendTimerCode();
+        DialogManager.with(this).setMessage(R.string.send_forget_password_message).showAlertDialog();
     }
 
     public void showResendTimerCode() {

@@ -55,6 +55,7 @@
 	<string name="welcome">welcome</string>
 	<string name="password_error">兩組密碼輸入不相同</string>
 	<string name="send_sms_message">請洽客服人員!</string>
+	<string name="send_forget_password_message">簡訊已送出，請輸入簡訊內傳送的新密碼登入</string>
 
 	<string name="register_complete">送出</string>
 	<string name="hint_enter_checking_password">再次輸入密碼</string>
