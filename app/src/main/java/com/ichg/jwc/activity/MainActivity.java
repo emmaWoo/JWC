@@ -53,6 +53,7 @@ public class MainActivity extends ActivityBase {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(null);
+		JoinWorkerApp.registerGCM();
 		fragmentMap = new SparseArray<>();
 		setContentView(R.layout.activity_main);
 		initNavigationDrawer();

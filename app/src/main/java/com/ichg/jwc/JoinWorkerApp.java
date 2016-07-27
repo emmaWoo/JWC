@@ -1,6 +1,8 @@
 package com.ichg.jwc;
 
 import android.app.Application;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.util.DisplayMetrics;
@@ -11,10 +13,12 @@ import com.ichg.jwc.manager.AccountManager;
 import com.ichg.jwc.utils.JWCPreference;
 import com.ichg.service.api.base.ApiFacade;
 import com.ichg.service.framework.VolleyRequestExecutor;
+import com.ichg.service.utils.Debug;
 
 import io.fabric.sdk.android.Fabric;
 
 public class JoinWorkerApp extends Application {
+	private final static String GCM_SENDERID = "914853625297";
 	public static JWCPreference preference;
 	public static JoinWorkerApp instance;
 //	public static NotifyController notifyController;
@@ -80,19 +84,19 @@ public class JoinWorkerApp extends Application {
 //		preference.setRegistrationID("");
 //	}
 
-//	public static void registerGCM() {
-//		try {
-//			if (instance.getPackageManager().getPackageInfo("com.google.android.gsf", 0) != null
-//					&& "".equals(preference.getRegistrationID())) {
-//				Intent intent = new Intent("com.google.android.c2dm.intent.REGISTER");
-//				intent.setPackage("com.google.android.gsf");
-//				intent.putExtra("app", PendingIntent.getBroadcast(instance, 0, new Intent(), 0));
-//				intent.putExtra("sender", GCM_SENDERID);
-//				instance.startService(intent);
-//			}
-//		} catch (Exception e) {
-//			Debug.e("register gcm exception " + Log.getStackTraceString(e));
-//		}
-//	}
+	public static void registerGCM() {
+		try {
+			if (instance.getPackageManager().getPackageInfo("com.google.android.gsf", 0) != null
+					&& "".equals(preference.getRegistrationID())) {
+				Intent intent = new Intent("com.google.android.c2dm.intent.REGISTER");
+				intent.setPackage("com.google.android.gsf");
+				intent.putExtra("app", PendingIntent.getBroadcast(instance, 0, new Intent(), 0));
+				intent.putExtra("sender", GCM_SENDERID);
+				instance.startService(intent);
+			}
+		} catch (Exception e) {
+			Debug.e("register gcm exception " + Log.getStackTraceString(e));
+		}
+	}
 
 }
