@@ -6,156 +6,103 @@
               android:orientation="vertical">
 
     <include
-        android:id="@+id/toolbar"
-        layout="@layout/layout_toolbar"/>
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar"/>
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_head"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_head"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginLeft="24dp"
-                android:background="#dedede"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:background="#e2e2e2"/>
 
             <TextView
-                android:id="@+id/label_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="39dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:drawableLeft="@drawable/ic_phone"
-                android:drawablePadding="6dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/call_phone"
-                android:textSize="20sp"
-                android:textColor="#9a9a9a"/>
+                    android:id="@+id/label_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="24dp"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawablePadding="4dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/call_phone"
+                    android:textSize="20sp"
+                    android:textColor="#9a9a9a"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginLeft="24dp"
-                android:background="#dedede"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:background="#e2e2e2"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:drawableLeft="@drawable/ic_question"
-                android:drawablePadding="6dp"
-                android:singleLine="true"
-                android:text="文字文字文字"
-                android:textSize="16sp"
-                android:textColor="#5a5a5a"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:drawableLeft="@drawable/ic_answer"
-                android:drawablePadding="6dp"
-                android:text="文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字"
-                android:textSize="18sp"
-                android:textColor="#505050"/>
+                    android:id="@+id/label_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="24dp"
+                    android:drawableLeft="@drawable/ic_mail"
+                    android:drawablePadding="4dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/send_mail"
+                    android:textSize="20sp"
+                    android:textColor="#9a9a9a"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginLeft="24dp"
-                android:background="#dedede"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:background="#e2e2e2"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:drawableLeft="@drawable/ic_question"
-                android:drawablePadding="6dp"
-                android:singleLine="true"
-                android:text="文字文字文字"
-                android:textSize="16sp"
-                android:textColor="#5a5a5a"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:drawableLeft="@drawable/ic_answer"
-                android:drawablePadding="6dp"
-                android:text="文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字"
-                android:textSize="18sp"
-                android:textColor="#505050"/>
+                    android:id="@+id/label_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="24dp"
+                    android:drawableLeft="@drawable/ic_qq"
+                    android:drawablePadding="4dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/question_link"
+                    android:textSize="20sp"
+                    android:textColor="#9a9a9a"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginLeft="24dp"
-                android:background="#dedede"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:drawableLeft="@drawable/ic_question"
-                android:drawablePadding="6dp"
-                android:singleLine="true"
-                android:text="文字文字文字"
-                android:textSize="16sp"
-                android:textColor="#5a5a5a"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:drawableLeft="@drawable/ic_answer"
-                android:drawablePadding="6dp"
-                android:text="文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字"
-                android:textSize="18sp"
-                android:textColor="#505050"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginLeft="24dp"
-                android:background="#dedede"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:background="#e2e2e2"/>
 
         </LinearLayout>
     </ScrollView>

@@ -163,6 +163,8 @@
 
 	<string name="question">常見問題</string>
 	<string name="call_phone">播打電話</string>
+	<string name="send_mail">寄送E-MAIL</string>
+	<string name="question_link">問與答點我</string>
 	<string name="about">關於享工作</string>
 	<string name="about_join_worker">享工作 Join worker</string>
 	<string name="version">版本號碼</string>
