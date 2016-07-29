@@ -32,7 +32,7 @@ android {
 		myConfig {
 			storeFile file("../join.keystore")
 			storePassword "a63bdXuWaU"
-			keyAlias "join"
+			keyAlias "ichg"
 			keyPassword "a63bdXuWaU"
 		}
 	}
