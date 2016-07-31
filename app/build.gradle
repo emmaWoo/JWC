@@ -30,7 +30,7 @@ android {
 
 	signingConfigs {
 		myConfig {
-			storeFile file("../join.keystore")
+			storeFile file("../ichg.keystore")
 			storePassword "a63bdXuWaU"
 			keyAlias "ichg"
 			keyPassword "a63bdXuWaU"

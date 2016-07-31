@@ -164,6 +164,9 @@ public class WorkDetailActivity extends ActivityBase implements WorkDetailListen
     @Override
     public void onSuccessResponse(String status) {
         mPresenter.getWorkDetail(detailId);
+        Intent intent = new Intent();
+        intent.putExtra("work_id", workDetailInfo.id);
+        setResult(RESULT_OK, intent);
     }
 
     @Override

@@ -65,7 +65,7 @@
 	<string name="uid_hint">請輸入帳號</string>
 	<string name="password_hint">請輸入密碼</string>
 	<string name="confirm_password_error">密碼輸入不一致</string>
-	<string name="duplicate_phone">電話號碼重覆註冊，如有問題請聯絡客服電話「09xxxxxxxx」</string>
+	<string name="duplicate_phone">電話號碼重覆註冊，如有問題請聯絡客服電話「(02)2225-4066」</string>
 
 	<!-- forget password -->
 	<string name="id_hint">輸入身份證字號</string>

@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -12,6 +13,9 @@ import com.crashlytics.android.Crashlytics;
 import com.ichg.jwc.manager.AccountManager;
 import com.ichg.jwc.utils.JWCPreference;
 import com.ichg.service.api.base.ApiFacade;
+import com.ichg.service.api.gcm.GCMDevicesAPI;
+import com.ichg.service.api.gcm.GCMRemoveAPI;
+import com.ichg.service.framework.Api;
 import com.ichg.service.framework.VolleyRequestExecutor;
 import com.ichg.service.utils.Debug;
 
@@ -63,40 +67,43 @@ public class JoinWorkerApp extends Application {
 		return isDebug;
 	}
 
-	public static void logout() {
-//		removeGCMDevice();
-//		preference.clearPrefs();
-//		instance.getContentResolver().delete(CONTENT_URI, null, null);
-//		apiFacade.updateUserToken("");
-//		new FacebookUtils().logout();
-		accountManager.logout();
+	public static void logout(LogoutListener logoutListener) {
+		removeGCMDevice(logoutListener);
 	}
 
-//	private static void removeGCMDevice() {
-//		GCMDeviceRemoveAPI gcmDeviceRemoveAPI = new GCMDeviceRemoveAPI();
-//		gcmDeviceRemoveAPI.setAPIListener(new APIListener() {
-//			@Override
-//			public void onAPIError(int errorCode, String errorMessage) {
-//				Debug.e("device", "Unregister device error.");
-//			}
-//		});
-//		gcmDeviceRemoveAPI.start();
-//		preference.setRegistrationID("");
-//	}
+	private static void removeGCMDevice(LogoutListener logoutListener) {
+		apiFacade.request(new GCMRemoveAPI(instance, preference.getRegistrationID()).success(new Api.ApiListener<String>() {
+			@Override
+			public void onSuccess(String response) {
+				logoutListener.onSuccess();
+				//		instance.getContentResolver().delete(CONTENT_URI, null, null);
+				apiFacade.updateUserToken("");
+				//		new FacebookUtils().logout();
+				accountManager.logout();
+			}
+		}), instance);
+	}
 
 	public static void registerGCM() {
 		try {
 			if (instance.getPackageManager().getPackageInfo("com.google.android.gsf", 0) != null
-					&& "".equals(preference.getRegistrationID())) {
+					&& "".equals(preference.getRegistrationID()) && !TextUtils.isEmpty(preference.getUserToken())) {
 				Intent intent = new Intent("com.google.android.c2dm.intent.REGISTER");
 				intent.setPackage("com.google.android.gsf");
 				intent.putExtra("app", PendingIntent.getBroadcast(instance, 0, new Intent(), 0));
 				intent.putExtra("sender", GCM_SENDERID);
 				instance.startService(intent);
-			}
+			} else if (!TextUtils.isEmpty(preference.getUserToken())) {
+			JoinWorkerApp.apiFacade.request(new GCMDevicesAPI(instance, preference.getRegistrationID())
+					.success(response -> preference.setAccountStatus(response)), instance);
+		}
 		} catch (Exception e) {
 			Debug.e("register gcm exception " + Log.getStackTraceString(e));
 		}
+	}
+
+	public interface LogoutListener {
+		void onSuccess();
 	}
 
 }

@@ -60,6 +60,8 @@ public class ProtocolUtils {
 			}
 		} catch (NumberFormatException e) {
 			Debug.e("ID does not conform to the format:" + e.getMessage());
+		} catch (ArrayIndexOutOfBoundsException e) {
+			Debug.e("ArrayIndexOutOfBoundsException:" + e.getMessage());
 		}
 	}
 
@@ -90,10 +92,7 @@ public class ProtocolUtils {
 
 	private static void performCompletedAction(ActivityBase activity) {
 		MainActivity mainActivity = ((MainActivity)activity);
-		Bundle arguments = new Bundle();
-		arguments.putInt(WorkTabFragment.INPUT_TAB_ID, R.id.radio_my_work);
-		mainActivity.setNavigationItemArguments(MainActivity.NavigationType.WORK_LIST, arguments);
-		mainActivity.selectNavigationItem(MainActivity.NavigationType.WORK_LIST);
+		mainActivity.selectNavigationItem(MainActivity.NavigationType.WORK_HISTORY);
 	}
 
 	private static void performAbsenceAction(ActivityBase activity) {

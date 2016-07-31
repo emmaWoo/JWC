@@ -10,7 +10,7 @@ public class PushNotificationInfo {
 	@SerializedName("contentText")
 	public String contentText;
 
-	@SerializedName("notifyDataEntity")
-	public NotifyDataEntity notifyDataEntity;
+	@SerializedName("deeplink")
+	public String protocalUrl;
 
 }

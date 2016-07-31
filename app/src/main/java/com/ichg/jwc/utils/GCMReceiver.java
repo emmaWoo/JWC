@@ -12,7 +12,6 @@ import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v7.app.NotificationCompat;
 import android.text.TextUtils;
 
-import com.google.gson.Gson;
 import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
 import com.ichg.service.api.gcm.GCMDevicesAPI;
@@ -29,6 +28,7 @@ public class GCMReceiver extends BroadcastReceiver {
 
 	private final static int ID_TYPE_NORMAL = 0;
 	private final static int ID_TYPE_CHAT = 1;
+	private int indexId = 0;
 
 	@Override
 	public void onReceive(Context context, Intent gcmIntent) {
@@ -39,8 +39,12 @@ public class GCMReceiver extends BroadcastReceiver {
 			if (isRegisterFail(gcmIntent)) {
 				JoinWorkerApp.preference.setRegistrationID("");
 			} else {
-				JoinWorkerApp.apiFacade.request(new GCMDevicesAPI(registrationId)
-						.success(response -> JoinWorkerApp.preference.setRegistrationID(registrationId)), this);
+				JoinWorkerApp.apiFacade.cancel(this);
+				JoinWorkerApp.apiFacade.request(new GCMDevicesAPI(context, registrationId)
+						.success(response -> {
+							JoinWorkerApp.preference.setAccountStatus(response);
+							JoinWorkerApp.preference.setRegistrationID(registrationId);
+						}), this);
 			}
 		} else if (GCM_RECEIVE.equals(gcmIntent.getAction())) {
 			sendPushNotification(context, pushNotificationInfo);
@@ -56,14 +60,14 @@ public class GCMReceiver extends BroadcastReceiver {
 		PushNotificationInfo pushNotificationInfo = new PushNotificationInfo();
 		pushNotificationInfo.title = extras.getString("title");
 		pushNotificationInfo.contentText = extras.getString("message");
-		pushNotificationInfo.notifyDataEntity = new Gson().fromJson(extras.getString("custom"), NotifyDataEntity.class);
+		pushNotificationInfo.protocalUrl = extras.getString("deeplink");
 		return pushNotificationInfo;
 	}
 
 	private void sendPushNotification(final Context context, final PushNotificationInfo pushNotificationInfo) {
 
-		String gcmAction = new Gson().toJson(pushNotificationInfo.notifyDataEntity);
-		Debug.e("sendPushNotification: " + gcmAction);
+		String gcmAction = pushNotificationInfo.protocalUrl;
+		Debug.i("sendPushNotification: " + gcmAction);
 		if (TextUtils.isEmpty(gcmAction) || gcmAction.equals("null") || TextUtils.isEmpty(pushNotificationInfo.title) || TextUtils.isEmpty(pushNotificationInfo.contentText)) {
 			return;
 		}
@@ -86,7 +90,8 @@ public class GCMReceiver extends BroadcastReceiver {
 //
 //		}.execute();
 		NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		notificationManager.notify(finalNotificationType, buildNotification(context, finalNotificationType, pushNotificationInfo));
+		notificationManager.notify(indexId, buildNotification(context, finalNotificationType, pushNotificationInfo));
+		indexId++;
 	}
 
 	private Notification buildNotification(Context context, int notificationType, PushNotificationInfo pushNotificationInfo) {
@@ -112,7 +117,7 @@ public class GCMReceiver extends BroadcastReceiver {
 //				notification = normalBuilder.build();
 //				break;
 //		}
-		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(buildProtocolActionString(pushNotificationInfo.notifyDataEntity)));
+		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(pushNotificationInfo.protocalUrl));
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		intent.putExtra("protocol_title", pushNotificationInfo.title);
 		Builder normalBuilder = createNormalNotificationBuilder(context, intent, pushNotificationInfo);

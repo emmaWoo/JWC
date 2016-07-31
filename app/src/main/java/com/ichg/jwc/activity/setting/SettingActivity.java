@@ -55,8 +55,7 @@ public class SettingActivity extends ActivityBase {
                 startActivity(new Intent(this, ProfileViewActivity.class));
                 break;
             case R.id.label_logout:
-                JoinWorkerApp.accountManager.logout();
-                finish();
+                JoinWorkerApp.logout(() -> finish());
                 break;
         }
     }

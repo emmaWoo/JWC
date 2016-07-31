@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.ichg.jwc.JoinWorkerApp;
 import com.ichg.jwc.R;
+import com.ichg.jwc.activity.ActivityBase;
 import com.ichg.jwc.activity.WorkDetailActivity;
 import com.ichg.jwc.adapter.worklist.BookingWorkListAdapter;
 import com.ichg.jwc.fragment.FragmentBase;
@@ -93,6 +94,23 @@ public class BookingWorkFragment extends FragmentBase implements BookingWorkList
 	}
 
 	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(requestCode == 1) {
+			if(resultCode == ActivityBase.RESULT_OK && data != null) {
+				String workId = data.getStringExtra("work_id");
+				for (WorkListInfo workListInfo : workListInfoList) {
+					if (workListInfo.id.equals(workId)) {
+						workListInfoList.remove(workListInfo);
+						bookingWorkListAdapter.notifyDataSetChanged();
+						break;
+					}
+				}
+			}
+		}
+	}
+
+
+	@Override
 	public void onDestroyView() {
 		super.onDestroyView();
 		mPresenter.cancel();
@@ -108,7 +126,7 @@ public class BookingWorkFragment extends FragmentBase implements BookingWorkList
 		}
 		Intent intent = new Intent(getContext(), WorkDetailActivity.class);
 		intent.putExtra(WORK_DETAIL_ID, workListId);
-		startActivity(intent);
+		startActivityForResult(intent, 1);
 	}
 
 	@Override

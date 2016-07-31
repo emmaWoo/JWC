@@ -89,12 +89,20 @@ public class JWCPreference {
 		loginPrefs.edit().putBoolean("is_skip_profile", isSkipProfile).apply();
 	}
 
+	public String getAccountStatus() {
+		return loginPrefs.getString("account_status", "");
+	}
+
+	public void setAccountStatus(String accountStatus) {
+		loginPrefs.edit().putString("account_status", accountStatus).apply();;
+	}
+
 	public String getRegistrationID() {
-		return loginPrefs.getString("key_gcm_registration_id", "");
+		return systemPrefs.getString("key_gcm_registration_id", "");
 	}
 
 	public void setRegistrationID(String id) {
-		loginPrefs.edit().putString("key_gcm_registration_id", id).apply();
+		systemPrefs.edit().putString("key_gcm_registration_id", id).apply();
 	}
 
 	public String getVersionNow() {

@@ -278,7 +278,7 @@ public class SearchWorkActivity extends ActivityBase implements SearchWorkListen
             minute = calendar.get(Calendar.MINUTE);
         } else {
             try {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
                 Date date = simpleDateFormat.parse(labelStartTime.getText().toString());
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(date);
@@ -307,7 +307,7 @@ public class SearchWorkActivity extends ActivityBase implements SearchWorkListen
             minute = calendar.get(Calendar.MINUTE);
         } else {
             try {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
                 Date date = simpleDateFormat.parse(labelEndTime.getText().toString());
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(date);
