@@ -23,7 +23,10 @@ public class AccountManager {
 	public boolean isSkipProfile;
 	private boolean isLoginByAccount;
 
-
+	public class LoginType {
+		public static final String APPROVED = "approved";
+		public static final String DISABLED = "disabled";
+	}
 
 	public class LoginNavigationType {
 		public static final int REGISTER_ACCOUNT = 0;

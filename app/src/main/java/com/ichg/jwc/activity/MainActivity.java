@@ -20,8 +20,11 @@ import com.ichg.jwc.activity.setting.SettingActivity;
 import com.ichg.jwc.fragment.FragmentBase;
 import com.ichg.jwc.fragment.work.HistoryWorkFragment;
 import com.ichg.jwc.fragment.work.WorkTabFragment;
+import com.ichg.jwc.listener.DialogListener;
+import com.ichg.jwc.manager.AccountManager;
 import com.ichg.jwc.presenter.NavigationDrawerPresenter;
 import com.ichg.jwc.presenter.NavigationItemInfo;
+import com.ichg.jwc.utils.DialogManager;
 import com.ichg.jwc.utils.ProtocolUtils;
 
 import java.util.ArrayList;
@@ -53,7 +56,7 @@ public class MainActivity extends ActivityBase {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(null);
-		JoinWorkerApp.registerGCM();
+		JoinWorkerApp.registerGCM(() -> updateLoginStatus());
 		fragmentMap = new SparseArray<>();
 		setContentView(R.layout.activity_main);
 		initNavigationDrawer();
@@ -70,6 +73,28 @@ public class MainActivity extends ActivityBase {
 		// You can call any combination of these three methods
 		Crashlytics.setUserIdentifier(String.valueOf(JoinWorkerApp.preference.getUserId()));
 		Crashlytics.setUserName(JoinWorkerApp.preference.getUserName());
+	}
+
+	private void updateLoginStatus() {
+		String status = JoinWorkerApp.preference.getAccountStatus();
+		if (AccountManager.LoginType.DISABLED.equals(status)) {
+			JoinWorkerApp.logout(new JoinWorkerApp.LogoutListener() {
+				@Override
+				public void onSuccess() {
+					DialogManager.with(MainActivity.this).setMessage(R.string.disable_account_message).setListener(new DialogListener() {
+						@Override
+						public void onPositive() {
+							//			JoinWorkerApp.preference.clearPrefs();
+							Intent intent = new Intent(MainActivity.this, AccountLoginActivity.class);
+							startActivity(intent);
+							//			overridePendingTransition(R.anim.activity_slide_in_up, android.R.anim.fade_out);
+							finish();
+						}
+					}).disableBack().showAlertDialog();
+
+				}
+			});
+		}
 	}
 
 	private void initNavigationDrawer() {

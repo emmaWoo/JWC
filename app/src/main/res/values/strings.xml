@@ -66,6 +66,7 @@
 	<string name="password_hint">請輸入密碼</string>
 	<string name="confirm_password_error">密碼輸入不一致</string>
 	<string name="duplicate_phone">電話號碼重覆註冊，如有問題請聯絡客服電話「(02)2225-4066」</string>
+	<string name="disable_account_message">帳號停用中，請洽客服人員</string>
 
 	<!-- forget password -->
 	<string name="id_hint">輸入身份證字號</string>

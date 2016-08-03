@@ -22,6 +22,6 @@ public class LoginApi extends LoginApiBase {
 
 	@Override
 	public String getUrl() {
-		return getBaseUrl() + "/jwc/auth/login";
+		return getBaseUrl() + "/jwc/account/login";
 	}
 }

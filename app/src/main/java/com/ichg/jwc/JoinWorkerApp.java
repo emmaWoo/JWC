@@ -84,7 +84,7 @@ public class JoinWorkerApp extends Application {
 		}), instance);
 	}
 
-	public static void registerGCM() {
+	public static void registerGCM(GCMRegisterListener gcmRegisterListener) {
 		try {
 			if (instance.getPackageManager().getPackageInfo("com.google.android.gsf", 0) != null
 					&& "".equals(preference.getRegistrationID()) && !TextUtils.isEmpty(preference.getUserToken())) {
@@ -94,15 +94,22 @@ public class JoinWorkerApp extends Application {
 				intent.putExtra("sender", GCM_SENDERID);
 				instance.startService(intent);
 			} else if (!TextUtils.isEmpty(preference.getUserToken())) {
-			JoinWorkerApp.apiFacade.request(new GCMDevicesAPI(instance, preference.getRegistrationID())
-					.success(response -> preference.setAccountStatus(response)), instance);
-		}
+				JoinWorkerApp.apiFacade.request(new GCMDevicesAPI(instance, preference.getRegistrationID())
+						.success(response -> {
+							preference.setAccountStatus(response);
+							gcmRegisterListener.onSuccess();
+						}), instance);
+			}
 		} catch (Exception e) {
 			Debug.e("register gcm exception " + Log.getStackTraceString(e));
 		}
 	}
 
 	public interface LogoutListener {
+		void onSuccess();
+	}
+
+	public interface GCMRegisterListener {
 		void onSuccess();
 	}
 

@@ -396,7 +396,8 @@ public class ProfileActivity extends ActivityBase implements ProfileListener {
         userInfo.city = selectCity;
         userInfo.area = selectArea;
         userInfo.idealWorkCity = selectIdealCity;
-        userInfo.idealWorkArea = selectIdealArea;
+        String allArea = getString(R.string.all_area);
+        userInfo.idealWorkArea = allArea.equals(selectIdealArea) ? null : selectIdealArea;
         userInfo.address = editAddress.getText().toString();
         userInfo.email = editEmail.getText().toString();
         userInfo.gender = gender;

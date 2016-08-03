@@ -106,6 +106,7 @@ public class ProfileViewActivity extends ActivityBase implements ProfileViewList
         labelName.setText(userInfo.userName);
         labelId.setText(userInfo.id);
         labelAddress.setText(userInfo.city + userInfo.area + userInfo.address);
+        userInfo.idealWorkArea = TextUtils.isEmpty(userInfo.idealWorkArea) ? getString(R.string.all_area) : userInfo.idealWorkArea;
         labelLocation.setText(userInfo.idealWorkCity + userInfo.idealWorkArea);
         labelEmail.setText(userInfo.email);
         labelBankCode.setText(userInfo.bankCode);
