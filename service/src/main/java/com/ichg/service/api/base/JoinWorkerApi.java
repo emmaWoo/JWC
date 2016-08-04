@@ -23,8 +23,8 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 	public static final int RETRY_COUNT = 2;
 
 	public static class DomainName {
-		static final String PRD = "app.joinworker.com.tw:8080";
-		static final String DEV = "beta.joinworker.com.tw:8080";
+		static final String PRD = "app.joinworker.com.tw:443";
+		static final String DEV = "bate.joinworker.com.tw:8080";
 	}
 
 	private static String mDomainName = DomainName.DEV;
@@ -53,7 +53,7 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 		switch (environmentType) {
 			case 0:
 				mDomainName = DomainName.PRD;
-				mApiProtocol = Protocol.HTTP;
+				mApiProtocol = Protocol.HTTPS;
 				break;
 			case 1:
 				mDomainName = DomainName.DEV;

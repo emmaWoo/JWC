@@ -19,7 +19,7 @@ import io.fabric.sdk.android.Fabric;
 
 public class JoinWorkerApp extends Application {
 	private final static String DEBUG_GCM_SENDERID = "914853625297";
-	private final static String RELEASE_GCM_SENDERID = "126537140721";
+	private final static String RELEASE_GCM_SENDERID = "228879006008";
 	public static JWCPreference preference;
 	public static JoinWorkerApp instance;
 	public static boolean isDebug;
