@@ -56,7 +56,6 @@ public class MainActivity extends ActivityBase {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(null);
-		JoinWorkerApp.registerGCM(() -> updateLoginStatus());
 		fragmentMap = new SparseArray<>();
 		setContentView(R.layout.activity_main);
 		initNavigationDrawer();
@@ -73,28 +72,6 @@ public class MainActivity extends ActivityBase {
 		// You can call any combination of these three methods
 		Crashlytics.setUserIdentifier(String.valueOf(JoinWorkerApp.preference.getUserId()));
 		Crashlytics.setUserName(JoinWorkerApp.preference.getUserName());
-	}
-
-	private void updateLoginStatus() {
-		String status = JoinWorkerApp.preference.getAccountStatus();
-		if (AccountManager.LoginType.DISABLED.equals(status)) {
-			JoinWorkerApp.logout(new JoinWorkerApp.LogoutListener() {
-				@Override
-				public void onSuccess() {
-					DialogManager.with(MainActivity.this).setMessage(R.string.disable_account_message).setListener(new DialogListener() {
-						@Override
-						public void onPositive() {
-							//			JoinWorkerApp.preference.clearPrefs();
-							Intent intent = new Intent(MainActivity.this, AccountLoginActivity.class);
-							startActivity(intent);
-							//			overridePendingTransition(R.anim.activity_slide_in_up, android.R.anim.fade_out);
-							finish();
-						}
-					}).disableBack().showAlertDialog();
-
-				}
-			});
-		}
 	}
 
 	private void initNavigationDrawer() {
@@ -197,6 +174,26 @@ public class MainActivity extends ActivityBase {
 				R.string.navigation_drawer_close);
 		drawerLayout.post(actionBarDrawerToggle::syncState);
 		drawerLayout.setDrawerListener(actionBarDrawerToggle);
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		JoinWorkerApp.registerGCM(() -> updateLoginStatus());
+	}
+
+	private void updateLoginStatus() {
+		String status = JoinWorkerApp.preference.getAccountStatus();
+		if (AccountManager.LoginType.DISABLED.equals(status)) {
+			JoinWorkerApp.logout(() -> DialogManager.with(MainActivity.this).setMessage(R.string.disable_account_message).setListener(new DialogListener() {
+				@Override
+				public void onPositive() {
+					Intent intent = new Intent(MainActivity.this, AccountLoginActivity.class);
+					startActivity(intent);
+					finish();
+				}
+			}).disableBack().showAlertDialog());
+		}
 	}
 
 	@Override

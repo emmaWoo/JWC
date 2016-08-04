@@ -49,11 +49,6 @@ public class AccountManager {
 		isSkipProfile = preference.isSkipProfile();
 	}
 
-	public void facebookLogin(String userId, String userToken, LoginListener listener) {
-		//FacebookLoginApi api = new FacebookLoginApi(userId, userToken);
-		//startLogin(api, listener);
-	}
-
 	public void accountLogin(String phoneNo, String password, LoginListener listener) {
 		isLoginByAccount = true;
 		LoginApi api = new LoginApi(phoneNo, password);

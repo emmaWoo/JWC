@@ -8,7 +8,7 @@ public class ApiFacade {
 
 	public ApiFacade(RequestExecutor executor, int envir){
 		mExecutor = executor;
-		JoinWorkerApi.initVars("", envir);
+		JoinWorkerApi.initVars(envir);
 		JoinWorkerApi.initApiFacade(this);
 	}
 

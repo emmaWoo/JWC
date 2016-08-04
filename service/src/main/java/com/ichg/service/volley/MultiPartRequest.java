@@ -32,9 +32,6 @@ public class MultiPartRequest extends Request<String> {
 		final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
 		builder.addPart("upload", new ByteArrayBody(outputStream.toByteArray(), "UTF-8"));
-//		for(String key : fields.keySet()){
-//			builder.addPart(key, new StringBody(fields.get(key), ContentType.MULTIPART_FORM_DATA));
-//		}
 		mHttpEntity = builder.build();
 	}
 

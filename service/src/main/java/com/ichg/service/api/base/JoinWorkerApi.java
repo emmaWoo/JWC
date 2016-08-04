@@ -19,33 +19,21 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 	private static ApiFacade mApiFacade;
 
 	public static int LIMIT_COUNT = 25;
-	public static final int MAX_COUNT_PER_REQUEST = 25;
 	public static final int TIMEOUT = 30000;
 	public static final int RETRY_COUNT = 2;
-	public static final int API_VERSION = 1;
-	//private static final String VERSION_TEXT = "/v%s/";
-	private static final String DEVICE_OS = "android";
 
 	public static class DomainName {
-		static final String PRD = "";
-		static final String DEV = "210.61.165.173:8080";
-		static final String STAGING = "";
+		static final String PRD = "app.joinworker.com.tw:8080";
+		static final String DEV = "beta.joinworker.com.tw:8080";
 	}
-
-	public static final String SECRET_KEY = "";
-	public static final String USER_AGENT = "";
 
 	private static String mDomainName = DomainName.DEV;
 	private static String mApiProtocol = Protocol.HTTP;
 
-	private static String DEVICE_ID;
 	private static String USER_TOKEN;
-	//protected static String AUTH_TOKEN;
 
 	private ApiErrorListener mApiErrorListener;
 	private ApiListener<T> mApiListener;
-
-	private boolean isLoading;
 
 	protected abstract T parseResult(String result) throws Exception;
 
@@ -57,8 +45,7 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 		return errorType;
 	}
 
-	public static void initVars(String deviceId, int environmentType) {
-		DEVICE_ID = deviceId;
+	public static void initVars(int environmentType) {
 		updateEnvironment(environmentType);
 	}
 
@@ -66,21 +53,13 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 		switch (environmentType) {
 			case 0:
 				mDomainName = DomainName.PRD;
-				mApiProtocol = Protocol.HTTPS;
+				mApiProtocol = Protocol.HTTP;
 				break;
 			case 1:
 				mDomainName = DomainName.DEV;
 				mApiProtocol = Protocol.HTTP;
 				break;
-			case 2:
-				mDomainName = DomainName.STAGING;
-				mApiProtocol = Protocol.HTTPS;
-				break;
 		}
-		//mDomainName += String.format(VERSION_TEXT, API_VERSION);
-//		String secretKey = environmentType != 0 ?
-//				"1:client_team" : SECRET_KEY;
-//		AUTH_TOKEN = "Basic " + Base64.encodeToString(secretKey.getBytes(), Base64.NO_WRAP);
 	}
 
 	public static String getBaseUrl() {
@@ -106,7 +85,6 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 	@Override
 	final public void onRequestSuccess(final String result) {
 		Debug.i(getClass().getName() + " Result: " + result);
-		isLoading = false;
 		try {
 			JSONObject jsonObject = new JSONObject(result);
 			String message = jsonObject.optString("message");
@@ -146,7 +124,6 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 	@Override
 	final public void onRequestFail(int cause, String response) {
 		Debug.i("onRequestFail: " + response);
-		isLoading = false;
 		if (mApiErrorListener == null) {
 			return;
 		}
@@ -211,12 +188,10 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 
 	@Override
 	public void getHeaders(Map<String, String> headerMap) {
-//		headerMap.put("Authorization", USER_TOKEN == null ? AUTH_TOKEN : USER_TOKEN);
 		if (USER_TOKEN != null) {
 			headerMap.put("jwc-token", USER_TOKEN);
 		}
 		headerMap.put("Content-Type", getContentType());
-		//headerMap.put("User-Agent", USER_AGENT);
 	}
 
 	@Override
@@ -241,7 +216,6 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 		if (mApiFacade == null) {
 			throw new RuntimeException("You have to init ApiFacade before using start method.");
 		}
-		isLoading = true;
 		mApiFacade.request(this, user);
 		return this;
 	}
@@ -256,10 +230,6 @@ public abstract class JoinWorkerApi<T> implements Api<T> {
 
 	public void cancel(Object user) {
 		mApiFacade.cancel(user);
-	}
-
-	public boolean isLoading(){
-		return isLoading;
 	}
 
 }
